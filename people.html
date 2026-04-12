@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>People | DIIM Lab</title>
+    <meta name="description" content="Meet the team at the Design Innovation and Intelligent Manufacturing Lab, University of Guelph." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <style>
+      /* ─── Variables (matches index.html light theme) ─────────── */
+      :root {
+        --color-bg: #ffffff;
+        --color-surface: #f8fafc;
+        --color-surface-2: #f1f5f9;
+        --color-border: rgba(0,0,0,0.08);
+        --color-text: #0f172a;
+        --color-muted: #64748b;
+        --color-accent: #2563eb;
+        --color-accent-2: #0891b2;
+        --color-gold: #d97706;
+        --radius: 14px;
+        --radius-sm: 8px;
+        --font: 'Plus Jakarta Sans', sans-serif;
+        --transition: 0.25s ease;
+        --nav-h: 70px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--font); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      /* ─── NAV ─────────────────────────────────────────────────── */
+      .nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        height: var(--nav-h);
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav__container {
+        max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        height: 100%; display: flex; align-items: center; justify-content: space-between;
+      }
+      .nav__logo {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--color-text);
+      }
+      .nav__logo-icon {
+        width: 34px; height: 34px;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+        border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      }
+      .nav__logo-icon svg { width: 18px; height: 18px; }
+      .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
+      .nav__link {
+        padding: 7px 14px; border-radius: var(--radius-sm);
+        font-size: 0.875rem; font-weight: 500; color: var(--color-muted);
+        transition: color var(--transition), background var(--transition);
+      }
+      .nav__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
+      .nav__link--active { color: var(--color-text); font-weight: 600; }
+      .nav__link--cta {
+        background: var(--color-accent); color: #fff; padding: 7px 16px;
+      }
+      .nav__link--cta:hover { background: #1d4ed8; color: #fff; }
+
+      /* ─── PAGE HEADER ─────────────────────────────────────────── */
+      .page-header {
+        padding-top: calc(var(--nav-h) + 60px);
+        padding-bottom: 60px;
+        padding-left: 24px; padding-right: 24px;
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-border);
+        text-align: center;
+      }
+      .page-header__label {
+        display: inline-block;
+        font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--color-accent);
+        background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.15);
+        padding: 5px 14px; border-radius: 100px; margin-bottom: 14px;
+      }
+      .page-header__title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px;
+      }
+      .page-header__desc { font-size: 1rem; color: var(--color-muted); max-width: 520px; margin: 0 auto; }
+
+      /* ─── SECTIONS ────────────────────────────────────────────── */
+      .people-section { padding: 72px 24px; }
+      .people-section + .people-section { padding-top: 0; }
+      .section-inner { max-width: 1200px; margin: 0 auto; }
+
+      .section-divider {
+        display: flex; align-items: center; gap: 16px;
+        margin-bottom: 40px;
+      }
+      .section-divider__title {
+        font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em;
+        white-space: nowrap; color: var(--color-text);
+      }
+      .section-divider__line {
+        flex: 1; height: 1px; background: var(--color-border);
+      }
+      .section-divider__count {
+        font-size: 0.78rem; font-weight: 600; color: var(--color-muted);
+        background: var(--color-surface-2); border: 1px solid var(--color-border);
+        padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+      }
+
+      /* ─── PI CARD ─────────────────────────────────────────────── */
+      .pi-card {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 40px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        display: grid;
+        grid-template-columns: 200px 1fr auto;
+        gap: 40px;
+        align-items: start;
+        transition: box-shadow var(--transition);
+      }
+      .pi-card:hover { box-shadow: 0 8px 40px rgba(37,99,235,0.1); }
+
+      .pi-card__photo {
+        width: 200px; height: 200px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+        background: var(--color-surface-2);
+        flex-shrink: 0;
+      }
+      .pi-card__photo img {
+        width: 100%; height: 100%; object-fit: cover;
+      }
+      .pi-card__photo-placeholder {
+        width: 100%; height: 100%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 3rem; color: var(--color-muted);
+        background: var(--color-surface);
+      }
+
+      .pi-card__main { display: flex; flex-direction: column; gap: 16px; }
+      .pi-card__name {
+        font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em;
+      }
+      .pi-card__role {
+        font-size: 0.9rem; color: var(--color-accent); font-weight: 600;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .pi-card__role::before {
+        content: ''; width: 6px; height: 6px; border-radius: 50%;
+        background: var(--color-accent); flex-shrink: 0;
+      }
+      .pi-card__links { display: flex; gap: 8px; flex-wrap: wrap; }
+      .pi-card__link {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 0.8rem; font-weight: 600; color: var(--color-muted);
+        border: 1px solid var(--color-border); padding: 6px 12px;
+        border-radius: var(--radius-sm);
+        transition: all var(--transition);
+      }
+      .pi-card__link:hover { color: var(--color-accent); border-color: rgba(37,99,235,0.3); background: rgba(37,99,235,0.05); }
+      .pi-card__link svg { width: 13px; height: 13px; }
+
+      .pi-card__edu { display: flex; flex-direction: column; gap: 6px; }
+      .pi-card__edu-item {
+        display: flex; align-items: baseline; gap: 8px;
+        font-size: 0.85rem; color: var(--color-muted);
+      }
+      .pi-card__edu-item strong { color: var(--color-text); font-weight: 600; font-size: 0.83rem; }
+
+      .pi-card__awards { border-left: 3px solid rgba(37,99,235,0.2); padding-left: 16px; }
+      .pi-card__awards-title {
+        font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.06em; color: var(--color-gold); margin-bottom: 10px;
+      }
+      .pi-card__award-item {
+        display: flex; align-items: baseline; gap: 8px;
+        font-size: 0.82rem; color: var(--color-muted); padding: 3px 0;
+      }
+      .pi-card__award-item::before {
+        content: '→'; color: var(--color-gold); font-size: 0.7rem; flex-shrink: 0;
+      }
+
+      /* ─── GRAD STUDENTS GRID ──────────────────────────────────── */
+      .members-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+      }
+
+      .member-card {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+        transition: all var(--transition);
+        display: flex; flex-direction: column;
+      }
+      .member-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(37,99,235,0.1);
+        border-color: rgba(37,99,235,0.2);
+      }
+      .member-card__photo {
+        aspect-ratio: 1;
+        background: var(--color-surface-2);
+        overflow: hidden;
+      }
+      .member-card__photo img {
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+      .member-card:hover .member-card__photo img { transform: scale(1.04); }
+      .member-card__photo-placeholder {
+        width: 100%; height: 100%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2.5rem; color: var(--color-muted);
+        background: linear-gradient(135deg, var(--color-surface), var(--color-surface-2));
+        aspect-ratio: 1;
+      }
+      .member-card__body {
+        padding: 20px 18px;
+        display: flex; flex-direction: column; gap: 8px; flex: 1;
+      }
+      .member-card__name { font-size: 0.95rem; font-weight: 700; color: var(--color-text); }
+      .member-card__degree {
+        display: inline-flex; align-items: center;
+        font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+        color: var(--color-accent);
+        background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.15);
+        padding: 3px 9px; border-radius: 100px; width: fit-content;
+      }
+      .member-card__topic { font-size: 0.8rem; color: var(--color-muted); line-height: 1.5; flex: 1; }
+      .member-card__links { display: flex; gap: 8px; margin-top: 4px; }
+      .member-card__link {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 30px; height: 30px; border-radius: 6px;
+        border: 1px solid var(--color-border); color: var(--color-muted);
+        transition: all var(--transition);
+      }
+      .member-card__link:hover { color: var(--color-accent); border-color: rgba(37,99,235,0.3); background: rgba(37,99,235,0.05); }
+      .member-card__link svg { width: 14px; height: 14px; }
+
+      /* ─── ALUMNI SECTION ──────────────────────────────────────── */
+      .alumni-section { background: var(--color-surface); padding: 72px 24px; }
+      .alumni-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 12px;
+      }
+      .alumni-item {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        padding: 16px 20px;
+        display: flex; justify-content: space-between; align-items: center;
+        transition: all var(--transition);
+      }
+      .alumni-item:hover { border-color: rgba(37,99,235,0.2); background: rgba(37,99,235,0.02); }
+      .alumni-item__name { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+      .alumni-item__detail { font-size: 0.78rem; color: var(--color-muted); margin-top: 2px; }
+      .alumni-item__year {
+        font-size: 0.75rem; font-weight: 700; color: var(--color-muted);
+        background: var(--color-surface-2); border: 1px solid var(--color-border);
+        padding: 3px 9px; border-radius: 100px; white-space: nowrap;
+      }
+
+      /* ─── FOOTER ──────────────────────────────────────────────── */
+      .footer {
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        padding: 40px 24px;
+      }
+      .footer__content {
+        max-width: 1200px; margin: 0 auto;
+        display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+      }
+      .footer__logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--color-text); }
+      .footer__links { display: flex; gap: 6px; flex-wrap: wrap; }
+      .footer__link {
+        font-size: 0.8rem; color: var(--color-muted); padding: 5px 10px;
+        border-radius: 6px; transition: all var(--transition);
+      }
+      .footer__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
+      .footer__copy { font-size: 0.78rem; color: var(--color-muted); }
+
+      /* ─── FADE IN ─────────────────────────────────────────────── */
+      .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+      /* ─── RESPONSIVE ──────────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .pi-card { grid-template-columns: 1fr; gap: 28px; }
+        .pi-card__photo { width: 140px; height: 140px; }
+      }
+      @media (max-width: 768px) {
+        .nav__links { display: none; }
+        .members-grid { grid-template-columns: repeat(2, 1fr); }
+        .footer__content { flex-direction: column; align-items: flex-start; }
+      }
+      @media (max-width: 480px) {
+        .members-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ── NAV ────────────────────────────────────────────────────── -->
+    <nav class="nav">
+      <div class="nav__container">
+        <a href="index.html" class="nav__logo">
+          <div class="nav__logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          DIIM Lab
+        </a>
+        <ul class="nav__links">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="research.html" class="nav__link">Research</a></li>
+          <li><a href="people.html" class="nav__link nav__link--active">People</a></li>
+          <li><a href="publications.html" class="nav__link">Publications</a></li>
+          <li><a href="news.html" class="nav__link">News</a></li>
+          <li><a href="opening.html" class="nav__link">Openings</a></li>
+          <li><a href="teaching.html" class="nav__link">Teaching</a></li>
+          <li><a href="contact.html" class="nav__link nav__link--cta">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ── PAGE HEADER ─────────────────────────────────────────────── -->
+    <div class="page-header">
+      <div class="page-header__label">The Team</div>
+      <h1 class="page-header__title">People</h1>
+      <p class="page-header__desc">A multidisciplinary team from mechanical engineering, computer engineering, and data science.</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         PRINCIPAL INVESTIGATOR
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="people-section">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Principal Investigator</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="pi-card fade-in">
+          <!-- PHOTO: replace src with actual photo path once added to images/ folder -->
+          <div class="pi-card__photo">
+            <img
+              src="https://sy1990.github.io/diim-lab/themes/img/people/sheng_yang.jpg"
+              alt="Dr. Sheng Yang"
+              onerror="this.parentElement.innerHTML='<div class=\'pi-card__photo-placeholder\'>👤</div>'"
+            />
+          </div>
+
+          <div class="pi-card__main">
+            <div>
+              <div class="pi-card__name">Dr. Sheng Yang</div>
+              <div class="pi-card__role">Associate Professor in Digital Transformation / Industrial AI, University of Guelph</div>
+            </div>
+
+            <div class="pi-card__links">
+              <a href="https://www.uoguelph.ca/engineering/people/sheng-yang-phd" target="_blank" class="pi-card__link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                Guelph Profile
+              </a>
+              <a href="https://scholar.google.ca/citations?user=gJwNDIYAAAAJ&hl=en" target="_blank" class="pi-card__link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                Google Scholar
+              </a>
+              <a href="https://www.linkedin.com/in/sheng-yang-30b906124/" target="_blank" class="pi-card__link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <a href="mailto:syang19@uoguelph.ca" class="pi-card__link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Email
+              </a>
+            </div>
+
+            <div class="pi-card__edu">
+              <div class="pi-card__edu-item"><strong>Ph.D</strong> Mechanical Engineering — McGill University (2014–2019)</div>
+              <div class="pi-card__edu-item"><strong>M.S</strong> Aerospace Engineering — Northwestern Polytechnical University (2011–2014)</div>
+              <div class="pi-card__edu-item"><strong>B.S</strong> Manufacturing Engineering — Northwestern Polytechnical University (2007–2011)</div>
+            </div>
+          </div>
+
+          <div class="pi-card__awards">
+            <div class="pi-card__awards-title">Awards &amp; Honors</div>
+            <div class="pi-card__award-item">University Research Excellence Award (2025)</div>
+            <div class="pi-card__award-item">SME Outstanding Young Manufacturing Engineer Award (2025)</div>
+            <div class="pi-card__award-item">CIEI Outstanding Paper Nomination Award (2024)</div>
+            <div class="pi-card__award-item">CSME Best Student Paper Award (2024)</div>
+            <div class="pi-card__award-item">CEPS Assistant Professor Research Excellence Award (2023)</div>
+            <div class="pi-card__award-item">ACU Blue Charter Fellowship (2019)</div>
+            <div class="pi-card__award-item">ASME IDETC/CIE Best Paper Award (2018)</div>
+            <div class="pi-card__award-item">Chinese Government Award for Outstanding Self-Financed Students Abroad (2017)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CURRENT GRADUATE STUDENTS
+         
+         HOW TO ADD A STUDENT:
+         1. Copy one <article class="member-card"> block
+         2. Paste it inside the .members-grid div
+         3. Fill in: name, degree badge (PhD / MASc / MEng), research topic
+         4. Add photo to images/people/ folder and update src
+         5. Add links (email, LinkedIn, GitHub, personal site) as needed
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="people-section" id="grad-students">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Graduate Students</span>
+          <div class="section-divider__line"></div>
+          <span class="section-divider__count">Current Members</span>
+        </div>
+
+        <div class="members-grid">
+
+          <!-- ── STUDENT: Enshen ───────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <!-- Replace src with: images/people/enshen.jpg -->
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Enshen [Last Name]</div>
+              <span class="member-card__degree">PhD Student</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── STUDENT: Vahid ────────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Vahid [Last Name]</div>
+              <span class="member-card__degree">PhD Student</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── STUDENT: Mohammad ─────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Mohammad [Last Name]</div>
+              <span class="member-card__degree">PhD Student</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── STUDENT: Patrick ──────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Patrick [Last Name]</div>
+              <span class="member-card__degree">PhD Student</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── STUDENT: Purvatya ─────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Purvatya [Last Name]</div>
+              <span class="member-card__degree">MASc Student</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── STUDENT: Mrunal ───────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Mrunal [Last Name]</div>
+              <span class="member-card__degree">MASc Student</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── STUDENT: Bhavdip ──────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Bhavdip [Last Name]</div>
+              <span class="member-card__degree">MASc Student</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── STUDENT: Manan ────────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Manan [Last Name]</div>
+              <span class="member-card__degree">MASc Student</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── STUDENT: Taha ──────────────────────────────────── -->
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <div class="member-card__photo-placeholder">👤</div>
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">Taha [Last Name]</div>
+              <span class="member-card__degree">URA</span>
+              <p class="member-card__topic">Research topic — to be filled in.</p>
+              <div class="member-card__links">
+                <a href="mailto:" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!--
+            ╔══════════════════════════════════════════════════════╗
+            ║  ADD A NEW STUDENT — copy this block and fill in     ║
+            ╚══════════════════════════════════════════════════════╝
+
+          <article class="member-card fade-in">
+            <div class="member-card__photo">
+              <img src="images/people/FILENAME.jpg" alt="Student Name"
+                onerror="this.parentElement.innerHTML='<div class=\'member-card__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="member-card__body">
+              <div class="member-card__name">First Last</div>
+              <span class="member-card__degree">PhD Student</span>
+              ─ or: MASc Student / MEng Student / URA / Postdoc ─
+              <p class="member-card__topic">Brief research topic description.</p>
+              <div class="member-card__links">
+                <a href="mailto:email@uoguelph.ca" class="member-card__link" title="Email">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/..." target="_blank" class="member-card__link" title="LinkedIn">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="https://github.com/..." target="_blank" class="member-card__link" title="GitHub">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ALUMNI
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="alumni-section" id="alumni">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Alumni</span>
+          <div class="section-divider__line"></div>
+          <span class="section-divider__count">Former Members</span>
+        </div>
+
+        <div class="alumni-grid">
+
+          <!-- ── Add alumni below: name, degree + destination, graduation year ── -->
+
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Dr. Junfei Li</div>
+              <div class="alumni-item__detail">Tenure-Track Assistant Professor, Lakehead University</div>
+            </div>
+            <span class="alumni-item__year">2025</span>
+          </div>
+
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Anna [Last Name]</div>
+              <div class="alumni-item__detail">MASc — to be filled in</div>
+            </div>
+            <span class="alumni-item__year">2025</span>
+          </div>
+
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Manal [Last Name]</div>
+              <div class="alumni-item__detail">Masters Project — to be filled in</div>
+            </div>
+            <span class="alumni-item__year">2025</span>
+          </div>
+
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Zezhong [Last Name]</div>
+              <div class="alumni-item__detail">Masters Project — to be filled in</div>
+            </div>
+            <span class="alumni-item__year">2025</span>
+          </div>
+
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Ahmad [Last Name]</div>
+              <div class="alumni-item__detail">PhD — to be filled in</div>
+            </div>
+            <span class="alumni-item__year">2024</span>
+          </div>
+
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Vipul [Last Name]</div>
+              <div class="alumni-item__detail">Graduate — to be filled in</div>
+            </div>
+            <span class="alumni-item__year">2024</span>
+          </div>
+
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Akash [Last Name]</div>
+              <div class="alumni-item__detail">Graduate — to be filled in</div>
+            </div>
+            <span class="alumni-item__year">2023</span>
+          </div>
+
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Pinkesh [Last Name]</div>
+              <div class="alumni-item__detail">Graduate — to be filled in</div>
+            </div>
+            <span class="alumni-item__year">2022</span>
+          </div>
+
+          <!--
+            ── ADD AN ALUMNUS ────────────────────────────────────────
+          <div class="alumni-item fade-in">
+            <div>
+              <div class="alumni-item__name">Full Name</div>
+              <div class="alumni-item__detail">Degree — Current position / institution</div>
+            </div>
+            <span class="alumni-item__year">YEAR</span>
+          </div>
+          -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer__content">
+        <a href="index.html" class="footer__logo">
+          <div class="nav__logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          DIIM Lab
+        </a>
+        <div class="footer__links">
+          <a href="research.html" class="footer__link">Research</a>
+          <a href="people.html" class="footer__link">People</a>
+          <a href="publications.html" class="footer__link">Publications</a>
+          <a href="opening.html" class="footer__link">Openings</a>
+          <a href="https://www.youtube.com/channel/UCh6oN-DiD9h4lSHXrCd7Ccg" target="_blank" class="footer__link">YouTube</a>
+          <a href="https://www.uoguelph.ca/engineering/" target="_blank" class="footer__link">College of Engineering</a>
+        </div>
+        <div class="footer__copy">© 2025 Design Innovation and Intelligent Manufacturing Lab · University of Guelph</div>
+      </div>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((el, i) => {
+          if (el.isIntersecting) {
+            setTimeout(() => el.target.classList.add('visible'), i * 60);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+  </body>
+</html>
