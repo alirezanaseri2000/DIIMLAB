@@ -3,431 +3,715 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Digital Twin Technologies | DIIM Lab</title>
-    <meta
-      name="description"
-      content="Exploring the future of Digital Twin technology at the DIIM Lab, University of Guelph."
-    />
+    <title>DIIM Lab | Design Innovation and Intelligent Manufacturing</title>
+    <meta name="description" content="The Lab of Design Innovation and Intelligent Manufacturing at the University of Guelph — advancing AI, digital twins, and human-centered design." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="css/styles.css" />
+
+    <style>
+      /* ─── CSS Variables ─────────────────────────────────────── */
+      :root {
+        --color-bg: #0a0f1e;
+        --color-surface: #111827;
+        --color-surface-2: #1a2236;
+        --color-border: rgba(255,255,255,0.08);
+        --color-text: #e8edf5;
+        --color-muted: #8b95a8;
+        --color-accent: #3b82f6;
+        --color-accent-2: #06b6d4;
+        --color-gold: #f59e0b;
+        --color-success: #10b981;
+        --radius: 14px;
+        --radius-sm: 8px;
+        --font: 'Plus Jakarta Sans', sans-serif;
+        --transition: 0.25s ease;
+        --nav-h: 70px;
+      }
+
+      /* ─── Reset ─────────────────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--font); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      /* ─── NAV ────────────────────────────────────────────────── */
+      .nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        height: var(--nav-h);
+        background: rgba(10, 15, 30, 0.85);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--color-border);
+        transition: background var(--transition);
+      }
+      .nav__container {
+        max-width: 1200px; margin: 0 auto;
+        padding: 0 24px;
+        height: 100%;
+        display: flex; align-items: center; justify-content: space-between;
+      }
+      .nav__logo {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em;
+      }
+      .nav__logo-icon {
+        width: 34px; height: 34px;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+        border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+      }
+      .nav__logo-icon svg { width: 18px; height: 18px; }
+      .nav__links {
+        display: flex; align-items: center; gap: 4px; list-style: none;
+      }
+      .nav__link {
+        padding: 7px 14px; border-radius: var(--radius-sm);
+        font-size: 0.875rem; font-weight: 500; color: var(--color-muted);
+        transition: color var(--transition), background var(--transition);
+      }
+      .nav__link:hover { color: var(--color-text); background: rgba(255,255,255,0.06); }
+      .nav__link--active { color: var(--color-text); }
+      .nav__link--cta {
+        background: var(--color-accent); color: #fff;
+        padding: 7px 16px;
+      }
+      .nav__link--cta:hover { background: #2563eb; color: #fff; }
+
+      /* ─── HERO ───────────────────────────────────────────────── */
+      .hero {
+        position: relative; min-height: 100vh;
+        display: flex; align-items: center;
+        overflow: hidden;
+        padding-top: var(--nav-h);
+      }
+      .hero__image {
+        position: absolute; inset: 0; z-index: 0;
+      }
+      .hero__image img {
+        width: 100%; height: 100%; object-fit: cover;
+        opacity: 0.18;
+      }
+      .hero__bg {
+        position: absolute; inset: 0; z-index: 1;
+        background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(59,130,246,0.18) 0%, transparent 70%),
+                    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(6,182,212,0.12) 0%, transparent 70%);
+      }
+      .hero__grid {
+        position: absolute; inset: 0; z-index: 1;
+        background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+      }
+      .hero__content {
+        position: relative; z-index: 2;
+        max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+        width: 100%;
+      }
+      .hero__left { display: flex; flex-direction: column; gap: 24px; }
+      .hero__badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3);
+        color: var(--color-accent-2); padding: 6px 14px;
+        border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+        letter-spacing: 0.05em; text-transform: uppercase;
+        width: fit-content;
+      }
+      .hero__badge::before {
+        content: ''; width: 6px; height: 6px; border-radius: 50%;
+        background: var(--color-accent-2);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+      .hero__title {
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        font-weight: 700; line-height: 1.15;
+        letter-spacing: -0.03em;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero__description {
+        font-size: 1.05rem; color: var(--color-muted); line-height: 1.75; max-width: 520px;
+      }
+      .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+      /* ─── STATS PANEL (right side of hero) ──────────────────── */
+      .hero__stats {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      }
+      .hero__stat-card {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 24px 20px;
+        transition: border-color var(--transition), background var(--transition);
+      }
+      .hero__stat-card:hover {
+        border-color: rgba(59,130,246,0.3);
+        background: rgba(59,130,246,0.05);
+      }
+      .hero__stat-value {
+        font-size: 2rem; font-weight: 700; letter-spacing: -0.03em;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero__stat-label { font-size: 0.8rem; color: var(--color-muted); margin-top: 4px; font-weight: 500; }
+
+      /* ─── BUTTONS ────────────────────────────────────────────── */
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 11px 22px; border-radius: var(--radius-sm);
+        font-size: 0.9rem; font-weight: 600; cursor: pointer;
+        transition: all var(--transition); border: none; text-decoration: none;
+      }
+      .btn--primary {
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+        color: #fff;
+      }
+      .btn--primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(59,130,246,0.3); }
+      .btn--secondary {
+        background: rgba(255,255,255,0.07); color: var(--color-text);
+        border: 1px solid var(--color-border);
+      }
+      .btn--secondary:hover { background: rgba(255,255,255,0.12); }
+      .btn--link {
+        background: none; color: var(--color-accent); padding: 0; font-size: 0.875rem;
+      }
+      .btn--link:hover { gap: 12px; }
+      .btn--link svg { width: 16px; height: 16px; transition: transform var(--transition); }
+      .btn--link:hover svg { transform: translateX(4px); }
+
+      /* ─── SECTION COMMONS ────────────────────────────────────── */
+      section { padding: 90px 24px; }
+      .section-inner { max-width: 1200px; margin: 0 auto; }
+      .section-header { text-align: center; margin-bottom: 56px; }
+      .section-label {
+        display: inline-block;
+        font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--color-accent);
+        background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+        padding: 5px 14px; border-radius: 100px; margin-bottom: 14px;
+      }
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px;
+      }
+      .section-desc { font-size: 1rem; color: var(--color-muted); max-width: 560px; margin: 0 auto; }
+
+      /* ─── NEWS SECTION ───────────────────────────────────────── */
+      .news { background: var(--color-surface); }
+      .news__layout {
+        max-width: 1200px; margin: 0 auto;
+        display: grid; grid-template-columns: 1fr 360px; gap: 40px; align-items: start;
+      }
+      .news__list { display: flex; flex-direction: column; gap: 2px; }
+      .news-item {
+        display: flex; gap: 20px; align-items: flex-start;
+        padding: 20px 22px;
+        border-radius: var(--radius);
+        border: 1px solid transparent;
+        transition: all var(--transition);
+        cursor: default;
+      }
+      .news-item:hover {
+        background: rgba(59,130,246,0.05);
+        border-color: rgba(59,130,246,0.15);
+      }
+      .news-item__date {
+        flex-shrink: 0;
+        font-size: 0.78rem; font-weight: 600; color: var(--color-accent);
+        background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+        padding: 4px 10px; border-radius: 6px;
+        white-space: nowrap; margin-top: 2px;
+        font-variant-numeric: tabular-nums;
+      }
+      .news-item__body { flex: 1; }
+      .news-item__text { font-size: 0.9rem; color: var(--color-text); line-height: 1.6; }
+      .news-item__text a { color: var(--color-accent-2); text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color var(--transition); }
+      .news-item__text a:hover { text-decoration-color: var(--color-accent-2); }
+      .news-item--highlight .news-item__text { font-weight: 500; }
+
+      /* ─── EVENTS SIDEBAR ─────────────────────────────────────── */
+      .events-panel {
+        background: var(--color-surface-2);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 28px 24px;
+        position: sticky; top: calc(var(--nav-h) + 20px);
+      }
+      .events-panel__title {
+        font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--color-gold);
+        margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+      }
+      .events-panel__title::before {
+        content: ''; width: 6px; height: 6px; border-radius: 50%;
+        background: var(--color-gold);
+      }
+      .event-card {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .event-card:last-child { border-bottom: none; padding-bottom: 0; }
+      .event-card:first-of-type { padding-top: 0; }
+      .event-card__name { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+      .event-card__detail { font-size: 0.8rem; color: var(--color-muted); line-height: 1.5; }
+      .event-card__link {
+        display: inline-flex; align-items: center; gap: 5px;
+        font-size: 0.78rem; color: var(--color-accent); font-weight: 600; margin-top: 8px;
+        transition: gap var(--transition);
+      }
+      .event-card__link:hover { gap: 8px; }
+      .event-card__link svg { width: 12px; height: 12px; }
+
+      /* ─── ABOUT SECTION ──────────────────────────────────────── */
+      .about { background: var(--color-bg); }
+      .about__inner { max-width: 1200px; margin: 0 auto; }
+      .about__grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      }
+      .about__text { display: flex; flex-direction: column; gap: 18px; }
+      .about__text p { color: var(--color-muted); line-height: 1.8; font-size: 0.975rem; }
+      .about__text p strong { color: var(--color-text); }
+      .about__links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+      .about__link {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 0.85rem; font-weight: 600; color: var(--color-muted);
+        border: 1px solid var(--color-border); padding: 8px 14px;
+        border-radius: var(--radius-sm);
+        transition: all var(--transition);
+      }
+      .about__link:hover { color: var(--color-text); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+      .about__link svg { width: 14px; height: 14px; }
+
+      .pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .pillar {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 22px 20px;
+        transition: all var(--transition);
+      }
+      .pillar:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); }
+      .pillar__icon {
+        width: 36px; height: 36px;
+        background: rgba(59,130,246,0.12); border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 12px;
+      }
+      .pillar__icon svg { width: 18px; height: 18px; color: var(--color-accent); stroke: var(--color-accent); fill: none; stroke-width: 1.5; }
+      .pillar__title { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+      .pillar__desc { font-size: 0.78rem; color: var(--color-muted); line-height: 1.6; }
+
+      /* ─── CONTACT SECTION ────────────────────────────────────── */
+      .contact { background: var(--color-surface); }
+      .contact__inner { max-width: 1200px; margin: 0 auto; }
+      .contact__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .contact-card {
+        background: var(--color-surface-2);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 28px 22px;
+        transition: all var(--transition);
+        display: flex; flex-direction: column; gap: 12px;
+      }
+      .contact-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-3px); }
+      .contact-card__icon {
+        width: 44px; height: 44px;
+        background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .contact-card__icon svg { width: 20px; height: 20px; fill: none; stroke: var(--color-accent); stroke-width: 1.5; }
+      .contact-card__title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-muted); }
+      .contact-card__text { font-size: 0.875rem; line-height: 1.7; color: var(--color-text); }
+      .contact-card__text a { color: var(--color-accent-2); }
+      .contact-card__text a:hover { text-decoration: underline; }
+
+      /* ─── FOOTER ─────────────────────────────────────────────── */
+      .footer {
+        background: var(--color-bg);
+        border-top: 1px solid var(--color-border);
+        padding: 40px 24px;
+      }
+      .footer__content {
+        max-width: 1200px; margin: 0 auto;
+        display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+      }
+      .footer__logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; }
+      .footer__links { display: flex; gap: 6px; flex-wrap: wrap; }
+      .footer__link {
+        font-size: 0.8rem; color: var(--color-muted); padding: 5px 10px;
+        border-radius: 6px; transition: all var(--transition);
+      }
+      .footer__link:hover { color: var(--color-text); background: rgba(255,255,255,0.05); }
+      .footer__copy { font-size: 0.78rem; color: var(--color-muted); }
+
+      /* ─── FADE IN ANIMATION ──────────────────────────────────── */
+      .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+      /* ─── RESPONSIVE ─────────────────────────────────────────── */
+      @media (max-width: 1024px) {
+        .news__layout { grid-template-columns: 1fr; }
+        .events-panel { position: static; }
+        .contact__grid { grid-template-columns: repeat(2, 1fr); }
+        .about__grid { grid-template-columns: 1fr; gap: 40px; }
+      }
+      @media (max-width: 768px) {
+        .hero__content { grid-template-columns: 1fr; gap: 40px; }
+        .hero__stats { display: none; }
+        .contact__grid { grid-template-columns: 1fr; }
+        .pillars-grid { grid-template-columns: 1fr; }
+        .nav__links { display: none; }
+        .footer__content { flex-direction: column; align-items: flex-start; }
+      }
+    </style>
   </head>
+
   <body>
+
+    <!-- ── NAV ──────────────────────────────────────────────────── -->
     <nav class="nav">
       <div class="nav__container">
         <a href="index.html" class="nav__logo">
           <div class="nav__logo-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" />
-              <path
-                d="M2 17L12 22L22 17"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M2 12L12 17L22 12"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           DIIM Lab
         </a>
         <ul class="nav__links">
-          <li><a href="#projects" class="nav__link">Projects</a></li>
-          <li><a href="#about" class="nav__link">About</a></li>
-          <li><a href="#contact" class="nav__link">Contact</a></li>
-          <li>
-            <a
-              href="https://sy1990.github.io/diim-lab/"
-              target="_blank"
-              class="nav__link"
-              >Main Lab Site</a
-            >
-          </li>
+          <li><a href="index.html" class="nav__link nav__link--active">Home</a></li>
+          <li><a href="research.html" class="nav__link">Research</a></li>
+          <li><a href="people.html" class="nav__link">People</a></li>
+          <li><a href="publications.html" class="nav__link">Publications</a></li>
+          <li><a href="news.html" class="nav__link">News</a></li>
+          <li><a href="opening.html" class="nav__link">Openings</a></li>
+          <li><a href="teaching.html" class="nav__link">Teaching</a></li>
+          <li><a href="contact.html" class="nav__link nav__link--cta">Contact</a></li>
         </ul>
       </div>
     </nav>
 
-    <!-- ==========================================
-         HERO SECTION WITH BACKGROUND IMAGE
-         
-         To change the image:
-         1. Add your image to the images/ folder
-         2. Update the src below (e.g., src="images/hero-bg.jpg")
-         
-         For light images, use class="hero"
-         For dark images, add class="hero hero--dark" to use 
-         white text with dark overlay
-         ========================================== -->
-    <section class="hero hero--dark">
-      <!-- Background Image -->
+    <!-- ── HERO ─────────────────────────────────────────────────── -->
+    <section class="hero">
       <div class="hero__image">
         <img src="images/hero.jpg" alt="" aria-hidden="true" />
       </div>
-
       <div class="hero__bg"></div>
-      <div class="hero__mesh"></div>
+      <div class="hero__grid"></div>
+
       <div class="hero__content">
-        <div class="hero__badge">DIIM Lab Research</div>
-        <h1 class="hero__title">
-          Exploring the Future of
-          <span class="gradient-text">Digital Twin</span> Technology
-        </h1>
-        <p class="hero__description">
-          Bridging physical and digital worlds through cutting-edge research in
-          AI, smart manufacturing, and intelligent systems at the University of
-          Guelph.
-        </p>
-        <div class="hero__cta">
-          <a href="#projects" class="btn btn--primary">View Projects</a>
-          <a href="#contact" class="btn btn--secondary">Get in Touch</a>
+        <div class="hero__left fade-in">
+          <div class="hero__badge">University of Guelph · Est. 2020</div>
+          <h1 class="hero__title">
+            Design Innovation &amp;<br>
+            <span class="gradient-text">Intelligent Manufacturing</span>
+          </h1>
+          <p class="hero__description">
+            We develop next-generation intelligent engineering systems through synergistic research on AI,
+            digital twins, and human-centered design — in collaboration with broad industrial partners.
+          </p>
+          <div class="hero__cta">
+            <a href="research.html" class="btn btn--primary">Our Research</a>
+            <a href="people.html" class="btn btn--secondary">Meet the Team</a>
+          </div>
+        </div>
+
+        <div class="hero__stats fade-in">
+          <div class="hero__stat-card">
+            <div class="hero__stat-value">2020</div>
+            <div class="hero__stat-label">Lab Established</div>
+          </div>
+          <div class="hero__stat-card">
+            <div class="hero__stat-value">10+</div>
+            <div class="hero__stat-label">Team Members</div>
+          </div>
+          <div class="hero__stat-card">
+            <div class="hero__stat-value">4+</div>
+            <div class="hero__stat-label">Research Areas</div>
+          </div>
+          <div class="hero__stat-card">
+            <div class="hero__stat-value">NSERC</div>
+            <div class="hero__stat-label">Funded Research</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="projects" id="projects">
+    <!-- ── NEWS + EVENTS ─────────────────────────────────────────── -->
+    <section class="news" id="news">
       <div class="section-header fade-in">
-        <div class="section-label">Research Projects</div>
-        <h2 class="section-title">Digital Twin Innovations</h2>
-        <p class="section-desc">
-          Exploring the intersection of physical systems and their digital
-          counterparts across diverse domains.
-        </p>
+        <div class="section-label">Latest Updates</div>
+        <h2 class="section-title">Recent News</h2>
+        <p class="section-desc">Stay up to date with what's happening in the DIIM Lab.</p>
       </div>
 
-      <div class="projects__grid">
-        <!-- ============================================================
-             PROJECT 1
-             ============================================================ -->
-        <article class="project-card">
-          <div class="project-card__image">
-            <img src="images/project1.png" alt="Project 1 Image" />
-            <div class="project-card__overlay">
-              <span class="project-card__tag">Human-Robot Interaction</span>
-              <h3 class="project-card__title">
-                Gated MLP for Human Motion Prediction
-              </h3>
-              <span class="project-card__author"
-                >NPJ Advanced Manufacturing</span
-              >
+      <div class="news__layout">
+        <div class="news__list">
+
+          <div class="news-item news-item--highlight fade-in">
+            <span class="news-item__date">2025.09.10</span>
+            <div class="news-item__body">
+              <p class="news-item__text">Dr. Junfei Li has joined Lakehead University as a Tenure-Track Assistant Professor, congratulations!</p>
             </div>
           </div>
-          <div class="project-card__content">
-            <p class="project-card__description">
-              A lightweight AI system that predicts human movement 7.7% more
-              accurately than existing methods — while using 3.6× less computing
-              power.
-            </p>
-            <a
-              href="https://i-umayr.github.io/GatedMLP/"
-              target="_blank"
-              class="btn btn--link"
-            >
+
+          <div class="news-item fade-in">
+            <span class="news-item__date">2025.08.25</span>
+            <div class="news-item__body">
+              <p class="news-item__text">Anna has successfully defended her MASc thesis, congratulations!</p>
+            </div>
+          </div>
+
+          <div class="news-item fade-in">
+            <span class="news-item__date">2025.05.15</span>
+            <div class="news-item__body">
+              <p class="news-item__text">One PhD position is available on <strong>knowledge representation and learning in smart agriculture</strong> beginning 09/2025 or 01/2026. Master and undergraduate students looking for research projects are also welcomed. <a href="opening.html">See openings →</a></p>
+            </div>
+          </div>
+
+          <div class="news-item fade-in">
+            <span class="news-item__date">2025.05.15</span>
+            <div class="news-item__body">
+              <p class="news-item__text">Enshen, Anna, and Da have won the Braithwaite travel grant for attending international conferences, congratulations!</p>
+            </div>
+          </div>
+
+          <div class="news-item fade-in">
+            <span class="news-item__date">2025.05.15</span>
+            <div class="news-item__body">
+              <p class="news-item__text">Enshen has won the prestigious NSERC CGS scholarship, congratulations!</p>
+            </div>
+          </div>
+
+          <div class="news-item fade-in">
+            <span class="news-item__date">2025.04.20</span>
+            <div class="news-item__body">
+              <p class="news-item__text">Manal and Zezhong have successfully defended their Masters' projects, congratulations!</p>
+            </div>
+          </div>
+
+          <div class="news-item fade-in">
+            <span class="news-item__date">2025.03.20</span>
+            <div class="news-item__body">
+              <p class="news-item__text">Our project on AI for soilless growing media was funded by <strong>NSERC Alliance Grant</strong>, congratulations!</p>
+            </div>
+          </div>
+
+          <!-- 
+            ── HOW TO ADD NEWS ──────────────────────────────────────
+            Copy the block below and paste above this comment.
+            Update the date and text content.
+            
+          <div class="news-item fade-in">
+            <span class="news-item__date">YYYY.MM.DD</span>
+            <div class="news-item__body">
+              <p class="news-item__text">Your news text here.</p>
+            </div>
+          </div>
+          -->
+
+        </div>
+
+        <!-- Upcoming Events Sidebar -->
+        <aside class="events-panel fade-in">
+          <div class="events-panel__title">Upcoming Events</div>
+
+          <div class="event-card">
+            <div class="event-card__name">CSME Congress 2026</div>
+            <div class="event-card__detail">UBC, Canada<br/>May 24–27, 2026<br/>Submission deadline: Jan 15, 2026</div>
+            <a href="http://www.csme-scgm.ca/conferences" target="_blank" class="event-card__link">
               Learn more
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
-        </article>
 
-        <!-- ============================================================
-             PROJECT 2
-             ============================================================ -->
-        <article class="project-card">
-          <div class="project-card__image">
-            <img src="images/project2.png" alt="Project 2 Image" />
-            <div class="project-card__overlay">
-              <span class="project-card__tag">To be added</span>
-              <h3 class="project-card__title">To be added</h3>
-              <span class="project-card__author">To be added</span>
-            </div>
-          </div>
-          <div class="project-card__content">
-            <p class="project-card__description">To be added</p>
-          </div>
-        </article>
-
-        <!-- ============================================================
-             PROJECT 3
-             ============================================================ -->
-        <article class="project-card">
-          <div class="project-card__image">
-            <img src="images/project3.png" alt="Project 3 Image" />
-            <div class="project-card__overlay">
-              <span class="project-card__tag">To be added</span>
-              <h3 class="project-card__title">To be added</h3>
-              <span class="project-card__author">To be added</span>
-            </div>
-          </div>
-          <div class="project-card__content">
-            <p class="project-card__description">To be added</p>
-          </div>
-        </article>
-
-        <!-- ============================================================
-             PROJECT 4
-             ============================================================ -->
-        <article class="project-card">
-          <div class="project-card__image">
-            <img src="images/project4.png" alt="Project 4 Image" />
-            <div class="project-card__overlay">
-              <span class="project-card__tag">To be added</span>
-              <h3 class="project-card__title">To be added</h3>
-              <span class="project-card__author">To be added</span>
-            </div>
-          </div>
-          <div class="project-card__content">
-            <p class="project-card__description">To be added</p>
-          </div>
-        </article>
-
-        <!-- ============================================================
-        
-             HOW TO ADD A NEW PROJECT:
-             
-             1. Copy the entire block below (from <article> to </article>)
-             2. Paste it above this comment
-             3. Update the following:
-                - Tag: Change the category (e.g., "Smart Manufacturing")
-                - Title: Change the project title
-                - Author: Change to student name or publication
-                - Description: Change the project description (2-3 sentences)
-                - Link: Change href to the student's project page URL
-             4. Add an image named "project5.png" to the images/ folder
-             
-             ============================================================
-        
-        <article class="project-card">
-          <div class="project-card__image">
-            <img src="images/project5.png" alt="Project 5 Image" />
-            <div class="project-card__overlay">
-              <span class="project-card__tag">Category Here</span>
-              <h3 class="project-card__title">
-                Project Title Here
-              </h3>
-              <span class="project-card__author">Student Name</span>
-            </div>
-          </div>
-          <div class="project-card__content">
-            <p class="project-card__description">
-              Brief description of the project goes here. Keep it to 2-3 
-              sentences that explain what the project is about.
-            </p>
-            <a href="https://student-username.github.io/project-repo/" target="_blank" class="btn btn--link">
+          <div class="event-card">
+            <div class="event-card__name">AMD 2025</div>
+            <div class="event-card__detail">Toronto, Canada<br/>October 21–23, 2025</div>
+            <a href="https://www.admtoronto.com/en/home.html" target="_blank" class="event-card__link">
               Learn more
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
-        </article>
-        
-             ============================================================ -->
+
+          <!--
+            ── HOW TO ADD AN EVENT ──────────────────────────────────
+            Copy the event-card block above and update fields.
+          -->
+        </aside>
       </div>
     </section>
 
+    <!-- ── ABOUT SECTION ──────────────────────────────────────────── -->
     <section class="about" id="about">
-      <div class="section-header fade-in">
-        <div class="section-label">About Us</div>
-        <h2 class="section-title">DIIM Lab</h2>
-      </div>
-
-      <div class="about__content">
-        <div class="about__text fade-in">
-          <p>
-            The Lab of Design Innovation and Intelligent Manufacturing (DIIM)
-            was established by Dr. Sheng Yang in September 2020, affiliated with
-            the College of Engineering at the University of Guelph in Ontario,
-            Canada.
-          </p>
-          <p>
-            We are a highly multidisciplinary research team with members from
-            mechanical engineering, computer engineering, and data science. Our
-            mission is to develop the next generation of intelligent engineering
-            systems through synergistic research on AI, digital twins, and
-            human-centered design.
-          </p>
+      <div class="about__inner">
+        <div class="section-header fade-in">
+          <div class="section-label">About the Lab</div>
+          <h2 class="section-title">Who We Are</h2>
         </div>
 
-        <div class="stats-grid fade-in">
-          <div class="stat">
-            <div class="stat__value">2020</div>
-            <div class="stat__label">Established</div>
+        <div class="about__grid">
+          <div class="about__text fade-in">
+            <p>
+              The <strong>Lab of Design Innovation and Intelligent Manufacturing (DIIM)</strong> was established by
+              <a href="people.html" style="color:var(--color-accent-2)">Dr. Sheng Yang</a> in September 2020,
+              affiliated with the <a href="https://www.uoguelph.ca/engineering/" target="_blank" style="color:var(--color-accent-2)">College of Engineering</a>
+              at the <a href="https://www.uoguelph.ca/" target="_blank" style="color:var(--color-accent-2)">University of Guelph</a> in Guelph, ON, Canada.
+            </p>
+            <p>
+              We are a highly <strong>multidisciplinary research team</strong> with members from mechanical engineering,
+              computer engineering, and data science. Our mission is to develop the next generation of intelligent
+              engineering systems through synergistic research on AI, digital twins, and human-centered design.
+            </p>
+            <p>
+              In collaboration with broad industrial partners, we endeavor to push the boundaries of
+              <strong>smart manufacturing, personalized products, precision agriculture, and green energy</strong>.
+            </p>
+            <div class="about__links">
+              <a href="people.html" class="about__link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Meet the Team
+              </a>
+              <a href="research.html" class="about__link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+                Our Research
+              </a>
+              <a href="https://www.youtube.com/channel/UCh6oN-DiD9h4lSHXrCd7Ccg" target="_blank" class="about__link">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                YouTube Channel
+              </a>
+            </div>
           </div>
-          <div class="stat">
-            <div class="stat__value">4+</div>
-            <div class="stat__label">Research Areas</div>
-          </div>
-          <div class="stat">
-            <div class="stat__value">10+</div>
-            <div class="stat__label">Team Members</div>
-          </div>
-          <div class="stat">
-            <div class="stat__value">∞</div>
-            <div class="stat__label">Possibilities</div>
+
+          <div class="pillars-grid fade-in">
+            <div class="pillar">
+              <div class="pillar__icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="pillar__title">Digital Twins</div>
+              <div class="pillar__desc">Cloud-based and physics-informed digital twin frameworks for complex engineering systems.</div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+              </div>
+              <div class="pillar__title">AI &amp; Machine Learning</div>
+              <div class="pillar__desc">Deep learning and data-driven methods for intelligent manufacturing and autonomous systems.</div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div class="pillar__title">Smart Manufacturing</div>
+              <div class="pillar__desc">Additive manufacturing, process optimization, and next-gen production systems.</div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="pillar__title">Human-Centered Design</div>
+              <div class="pillar__desc">Personalized products, precision agriculture, and green energy through human-AI collaboration.</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ── CONTACT SECTION ────────────────────────────────────────── -->
     <section class="contact" id="contact">
-      <div class="section-header fade-in">
-        <div class="section-label">Get in Touch</div>
-        <h2 class="section-title">Contact Us</h2>
-        <p class="section-desc">
-          Interested in collaboration or learning more about our research?
-        </p>
-      </div>
-
-      <div class="contact__grid">
-        <div class="contact-card fade-in">
-          <div class="contact-card__icon">
-            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-          </div>
-          <h3 class="contact-card__title">Address</h3>
-          <p class="contact-card__text">
-            50 Stone Road East<br />
-            Guelph, Ontario, Canada<br />
-            N1G 2W1
-          </p>
+      <div class="contact__inner">
+        <div class="section-header fade-in">
+          <div class="section-label">Get in Touch</div>
+          <h2 class="section-title">Contact Us</h2>
+          <p class="section-desc">Interested in collaboration or learning more about our research?</p>
         </div>
 
-        <div class="contact-card fade-in">
-          <div class="contact-card__icon">
-            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9,22 9,12 15,12 15,22" />
-            </svg>
+        <div class="contact__grid">
+          <div class="contact-card fade-in">
+            <div class="contact-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-card__title">Address</div>
+            <div class="contact-card__text">50 Stone Road East<br/>Guelph, Ontario, Canada<br/>N1G 2W1</div>
           </div>
-          <h3 class="contact-card__title">Office & Lab</h3>
-          <p class="contact-card__text">
-            Office: Richards Building, Room 3501<br />
-            Lab: Richards Building, Room 1525
-          </p>
-        </div>
 
-        <div class="contact-card fade-in">
-          <div class="contact-card__icon">
-            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
-              <path
-                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-              />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
+          <div class="contact-card fade-in">
+            <div class="contact-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            </div>
+            <div class="contact-card__title">Office &amp; Lab</div>
+            <div class="contact-card__text">Office: Richards Building, Room 3501<br/>Lab: Richards Building, Room 1525</div>
           </div>
-          <h3 class="contact-card__title">Email</h3>
-          <p class="contact-card__text">
-            <a href="mailto:syang19@uoguelph.ca">syang19@uoguelph.ca</a>
-          </p>
-        </div>
 
-        <div class="contact-card fade-in">
-          <div class="contact-card__icon">
-            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-              />
-            </svg>
+          <div class="contact-card fade-in">
+            <div class="contact-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-card__title">Email</div>
+            <div class="contact-card__text"><a href="mailto:syang19@uoguelph.ca">syang19@uoguelph.ca</a></div>
           </div>
-          <h3 class="contact-card__title">Phone</h3>
-          <p class="contact-card__text">
-            (+1) 519-824-4120<br />
-            Ext. 58677
-          </p>
+
+          <div class="contact-card fade-in">
+            <div class="contact-card__icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-card__title">Phone</div>
+            <div class="contact-card__text">(+1) 519-824-4120<br/>Ext. 58677</div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- ── FOOTER ─────────────────────────────────────────────────── -->
     <footer class="footer">
       <div class="footer__content">
         <a href="index.html" class="footer__logo">
           <div class="nav__logo-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white" />
-              <path
-                d="M2 17L12 22L22 17"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M2 12L12 17L22 12"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           DIIM Lab
         </a>
         <div class="footer__links">
-          <a
-            href="https://sy1990.github.io/diim-lab/"
-            target="_blank"
-            class="footer__link"
-            >Main Lab Website</a
-          >
-          <a
-            href="https://www.youtube.com/channel/UCh6oN-DiD9h4lSHXrCd7Ccg"
-            target="_blank"
-            class="footer__link"
-            >YouTube Channel</a
-          >
-          <a
-            href="https://www.uoguelph.ca/engineering/"
-            target="_blank"
-            class="footer__link"
-            >College of Engineering</a
-          >
-          <a
-            href="https://www.uoguelph.ca/"
-            target="_blank"
-            class="footer__link"
-            >University of Guelph</a
-          >
+          <a href="research.html" class="footer__link">Research</a>
+          <a href="people.html" class="footer__link">People</a>
+          <a href="publications.html" class="footer__link">Publications</a>
+          <a href="opening.html" class="footer__link">Openings</a>
+          <a href="https://www.youtube.com/channel/UCh6oN-DiD9h4lSHXrCd7Ccg" target="_blank" class="footer__link">YouTube</a>
+          <a href="https://www.uoguelph.ca/engineering/" target="_blank" class="footer__link">College of Engineering</a>
         </div>
-        <div class="footer__copy">
-          © 2025 Design Innovation and Intelligent Manufacturing Lab. University
-          of Guelph.
-        </div>
+        <div class="footer__copy">© 2025 Design Innovation and Intelligent Manufacturing Lab · University of Guelph</div>
       </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+      // Fade-in on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(el => {
+          if (el.isIntersecting) { el.target.classList.add('visible'); }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
   </body>
 </html>
