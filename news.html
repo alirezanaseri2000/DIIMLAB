@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News | DIIM Lab</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f8fafc;
+      --border: rgba(0,0,0,0.08);
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #2563eb;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: var(--muted);
+    }
+
+    /* GRID */
+    .news-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    /* CARD */
+    .news-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      background: white;
+      transition: 0.25s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .news-date {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .news-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .news-text {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>News</h1>
+    <p>Latest updates from the DIIM Lab</p>
+  </div>
+
+  <div class="news-grid">
+
+    <!-- NEWS ITEM -->
+    <div class="news-card">
+      <div class="news-date">March 2026</div>
+      <div class="news-title">Paper Accepted in Journal</div>
+      <div class="news-text">
+        Our paper on EV battery screw detection has been accepted in The International Journal of Advanced Manufacturing Technology.
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-date">February 2026</div>
+      <div class="news-title">New Graduate Students Joined</div>
+      <div class="news-text">
+        We welcome new members to the DIIM Lab working on AI, robotics, and digital manufacturing.
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-date">January 2026</div>
+      <div class="news-title">Conference Participation</div>
+      <div class="news-text">
+        Our team will present research at the CSME 2026 conference.
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-date">2025</div>
+      <div class="news-title">Research Grant Awarded</div>
+      <div class="news-text">
+        The lab received funding to advance research in intelligent manufacturing systems.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
