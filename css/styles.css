@@ -802,3 +802,81 @@ section {
 .mb-4 {
   margin-bottom: 2rem;
 }
+
+/* ═══ DARK MODE ══════════════════════════════════════════════════════
+   Set via [data-theme="dark"] on <html> (toggled by JS, persisted in
+   localStorage). CSS-variable overrides cascade to all inline var()
+   references; explicit selectors override hardcoded colours in the
+   per-page <style> blocks (attribute selector gives higher specificity).
+══════════════════════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --color-bg:      #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-2: #334155;
+  --color-border:  rgba(255,255,255,0.09);
+  --color-text:    #f1f5f9;
+  --color-muted:   #94a3b8;
+  --color-accent:  #60a5fa;
+  --color-accent-2:#22d3ee;
+  --color-gold:    #fbbf24;
+  --color-success: #34d399;
+}
+
+/* Nav */
+[data-theme="dark"] .nav              { background: rgba(15,23,42,0.92); }
+[data-theme="dark"] .nav--scrolled   { background: rgba(15,23,42,0.98); }
+
+/* Hero */
+[data-theme="dark"] .hero            { background: var(--color-bg); }
+[data-theme="dark"] .hero__image::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(15,23,42,0.55) 0%,
+    rgba(15,23,42,0.75) 50%,
+    rgba(15,23,42,0.95) 100%
+  );
+}
+
+/* Cards with hardcoded #ffffff backgrounds */
+[data-theme="dark"] .hero__stat-card,
+[data-theme="dark"] .events-panel,
+[data-theme="dark"] .pillar,
+[data-theme="dark"] .contact-card,
+[data-theme="dark"] .pi-card,
+[data-theme="dark"] .member-card,
+[data-theme="dark"] .alumni-item     { background: var(--color-surface); }
+
+/* Subtle button in dark */
+[data-theme="dark"] .btn--secondary  { background: rgba(255,255,255,0.04); }
+[data-theme="dark"] .btn--secondary:hover { background: rgba(255,255,255,0.09); }
+
+/* ─── Theme toggle button ──────────────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: none;
+  cursor: pointer;
+  color: var(--color-muted);
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.theme-toggle:hover {
+  color: var(--color-text);
+  background: rgba(0,0,0,0.05);
+}
+[data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.07); }
+.theme-toggle svg {
+  width: 15px; height: 15px;
+  stroke: currentColor; fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.theme-toggle__sun  { display: none; }   /* hidden in light mode */
+.theme-toggle__moon { display: block; }  /* visible in light mode */
+[data-theme="dark"] .theme-toggle__sun  { display: block; }
+[data-theme="dark"] .theme-toggle__moon { display: none; }

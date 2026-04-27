@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="css/styles.css" />
+    <script>(function(){var t=localStorage.getItem('diimlab-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}());</script>
 
     <style>
       /* ─── CSS Variables ─────────────────────────────────────── */
@@ -401,11 +402,14 @@
           <li><a href="research/" class="nav__link">Research</a></li>
           <li><a href="people/" class="nav__link">People</a></li>
           <li><a href="publications/" class="nav__link">Publications</a></li>
-          <li><a href="news/" class="nav__link">News</a></li>
           <li><a href="opening/" class="nav__link">Openings</a></li>
           <li><a href="teaching/" class="nav__link">Teaching</a></li>
           <li><a href="contact/" class="nav__link nav__link--cta">Contact</a></li>
         </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="theme-toggle__sun"  viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
       </div>
     </nav>
 
@@ -713,6 +717,13 @@
         });
       }, { threshold: 0.1 });
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      // Dark mode toggle
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('diimlab-theme', next);
+      });
     </script>
 
   </body>
