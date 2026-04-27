@@ -104,11 +104,7 @@
                     radial-gradient(ellipse 50% 50% at 15% 85%, rgba(8,145,178,0.07) 0%, transparent 65%);
       }
       .hero__grid {
-        position: absolute; inset: 0; z-index: 1;
-        background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-        background-size: 60px 60px;
-        mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+        display: none;
       }
       .hero__content {
         position: relative; z-index: 2;
@@ -608,31 +604,31 @@
           <div class="pillars-grid fade-in">
             <div class="pillar">
               <div class="pillar__icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              </div>
-              <div class="pillar__title">Digital Twins</div>
-              <div class="pillar__desc">Cloud-based and physics-informed digital twin frameworks for complex engineering systems.</div>
-            </div>
-            <div class="pillar">
-              <div class="pillar__icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-              </div>
-              <div class="pillar__title">AI &amp; Machine Learning</div>
-              <div class="pillar__desc">Deep learning and data-driven methods for intelligent manufacturing and autonomous systems.</div>
-            </div>
-            <div class="pillar">
-              <div class="pillar__icon">
                 <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               </div>
               <div class="pillar__title">Smart Manufacturing</div>
-              <div class="pillar__desc">Additive manufacturing, process optimization, and next-gen production systems.</div>
+              <div class="pillar__desc">AI-driven process optimization, digital twins, and next-generation intelligent production systems.</div>
             </div>
             <div class="pillar">
               <div class="pillar__icon">
-                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
               </div>
-              <div class="pillar__title">Human-Centered Design</div>
-              <div class="pillar__desc">Personalized products, precision agriculture, and green energy through human-AI collaboration.</div>
+              <div class="pillar__title">Personalized Products</div>
+              <div class="pillar__desc">Human-centered design and additive manufacturing enabling customized, user-tailored products at scale.</div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div class="pillar__title">Precision Agriculture</div>
+              <div class="pillar__desc">Data-driven sensing, machine learning, and autonomous systems for smart and sustainable farming.</div>
+            </div>
+            <div class="pillar">
+              <div class="pillar__icon">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="pillar__title">Green Energy</div>
+              <div class="pillar__desc">Intelligent monitoring and optimization of renewable energy systems for a sustainable future.</div>
             </div>
           </div>
         </div>
