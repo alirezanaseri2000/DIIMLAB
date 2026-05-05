@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Openings | DIIM Lab</title>
+    <meta name="description" content="Open positions and opportunities at the Design Innovation and Intelligent Manufacturing Lab, University of Guelph." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <style>
+      /* ─── Variables ──────────────────────────────────────────── */
+      :root {
+        --color-bg: #ffffff;
+        --color-surface: #f8fafc;
+        --color-surface-2: #f1f5f9;
+        --color-border: rgba(0,0,0,0.08);
+        --color-text: #0f172a;
+        --color-muted: #64748b;
+        --color-accent: #2563eb;
+        --color-accent-2: #0891b2;
+        --color-gold: #d97706;
+        --color-green: #16a34a;
+        --radius: 14px;
+        --radius-sm: 8px;
+        --font: 'Plus Jakarta Sans', sans-serif;
+        --transition: 0.25s ease;
+        --nav-h: 70px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--font); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      /* ─── NAV ────────────────────────────────────────────────── */
+      .nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        height: var(--nav-h);
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav__container {
+        max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        height: 100%; display: flex; align-items: center; justify-content: space-between;
+      }
+      .nav__logo {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--color-text);
+      }
+      .nav__logo-icon {
+        width: 34px; height: 34px;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+        border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      }
+      .nav__logo-icon svg { width: 18px; height: 18px; }
+      .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
+      .nav__link {
+        padding: 7px 14px; border-radius: var(--radius-sm);
+        font-size: 0.875rem; font-weight: 500; color: var(--color-muted);
+        transition: color var(--transition), background var(--transition);
+      }
+      .nav__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
+      .nav__link--active { color: var(--color-text); font-weight: 600; }
+      .nav__link--cta {
+        background: var(--color-accent); color: #fff; padding: 7px 16px;
+      }
+      .nav__link--cta:hover { background: #1d4ed8; color: #fff; }
+
+      /* ─── PAGE HEADER ────────────────────────────────────────── */
+      .page-header {
+        padding-top: calc(var(--nav-h) + 60px);
+        padding-bottom: 60px;
+        padding-left: 24px; padding-right: 24px;
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-border);
+        text-align: center;
+      }
+      .page-header__label {
+        display: inline-block;
+        font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--color-accent);
+        background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.15);
+        padding: 5px 14px; border-radius: 100px; margin-bottom: 14px;
+      }
+      .page-header__title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px;
+      }
+      .page-header__desc { font-size: 1rem; color: var(--color-muted); max-width: 580px; margin: 0 auto; }
+
+      /* ─── SECTIONS ───────────────────────────────────────────── */
+      .opening-section { padding: 72px 24px; }
+      .opening-section + .opening-section { padding-top: 0; }
+      .opening-section--alt { background: var(--color-surface); }
+      .section-inner { max-width: 1200px; margin: 0 auto; }
+
+      .section-divider {
+        display: flex; align-items: center; gap: 16px;
+        margin-bottom: 40px;
+      }
+      .section-divider__title {
+        font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em;
+        white-space: nowrap; color: var(--color-text);
+      }
+      .section-divider__line { flex: 1; height: 1px; background: var(--color-border); }
+      .section-divider__count {
+        font-size: 0.78rem; font-weight: 600; color: var(--color-muted);
+        background: var(--color-surface-2); border: 1px solid var(--color-border);
+        padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+      }
+
+      /* ─── POSITION CARD ──────────────────────────────────────── */
+      .position-card {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 36px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        transition: box-shadow var(--transition), border-color var(--transition);
+        margin-bottom: 20px;
+      }
+      .position-card:last-child { margin-bottom: 0; }
+      .position-card:hover { box-shadow: 0 8px 40px rgba(37,99,235,0.1); border-color: rgba(37,99,235,0.2); }
+
+      .position-card__header {
+        display: flex; align-items: flex-start; justify-content: space-between;
+        gap: 20px; margin-bottom: 20px; flex-wrap: wrap;
+      }
+      .position-card__title { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+      .position-card__meta { display: flex; gap: 8px; flex-wrap: wrap; }
+      .position-card__tag {
+        display: inline-flex; align-items: center;
+        font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+        padding: 4px 11px; border-radius: 100px;
+      }
+      .position-card__tag--phd {
+        color: var(--color-accent);
+        background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.15);
+      }
+      .position-card__tag--msc {
+        color: var(--color-accent-2);
+        background: rgba(8,145,178,0.07); border: 1px solid rgba(8,145,178,0.15);
+      }
+      .position-card__tag--postdoc {
+        color: var(--color-gold);
+        background: rgba(217,119,6,0.07); border: 1px solid rgba(217,119,6,0.2);
+      }
+      .position-card__tag--visiting {
+        color: var(--color-green);
+        background: rgba(22,163,74,0.07); border: 1px solid rgba(22,163,74,0.2);
+      }
+      .position-card__tag--open {
+        color: var(--color-green);
+        background: rgba(22,163,74,0.07); border: 1px solid rgba(22,163,74,0.2);
+      }
+      .position-card__tag--funded {
+        color: var(--color-gold);
+        background: rgba(217,119,6,0.07); border: 1px solid rgba(217,119,6,0.2);
+      }
+
+      .position-card__desc { font-size: 0.9rem; color: var(--color-muted); line-height: 1.7; margin-bottom: 24px; }
+
+      .position-card__section-title {
+        font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.07em; color: var(--color-text); margin-bottom: 10px;
+      }
+      .position-card__list {
+        list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px;
+      }
+      .position-card__list li {
+        font-size: 0.87rem; color: var(--color-muted);
+        display: flex; align-items: baseline; gap: 10px;
+      }
+      .position-card__list li::before {
+        content: '→'; color: var(--color-accent); font-size: 0.75rem; flex-shrink: 0;
+      }
+
+      .position-card__apply {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: 0.85rem; font-weight: 600;
+        background: var(--color-accent); color: #fff;
+        padding: 10px 20px; border-radius: var(--radius-sm);
+        transition: background var(--transition);
+      }
+      .position-card__apply:hover { background: #1d4ed8; }
+      .position-card__apply svg { width: 14px; height: 14px; }
+
+      /* ─── HOW TO APPLY ───────────────────────────────────────── */
+      .apply-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+      }
+      .apply-step {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 28px 24px;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+        transition: all var(--transition);
+      }
+      .apply-step:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,99,235,0.09); border-color: rgba(37,99,235,0.2); }
+      .apply-step__num {
+        width: 36px; height: 36px; border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+        color: #fff; font-size: 0.85rem; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 16px;
+      }
+      .apply-step__title { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+      .apply-step__desc { font-size: 0.83rem; color: var(--color-muted); line-height: 1.6; }
+
+      /* ─── FUNDING GRID ───────────────────────────────────────── */
+      .funding-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .funding-card {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 28px 24px;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+        transition: all var(--transition);
+      }
+      .funding-card:hover { border-color: rgba(37,99,235,0.2); box-shadow: 0 6px 24px rgba(37,99,235,0.08); }
+      .funding-card__icon {
+        width: 40px; height: 40px; border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 14px;
+      }
+      .funding-card__icon--domestic { background: rgba(37,99,235,0.08); color: var(--color-accent); }
+      .funding-card__icon--international { background: rgba(217,119,6,0.08); color: var(--color-gold); }
+      .funding-card__icon--postdoc { background: rgba(22,163,74,0.08); color: var(--color-green); }
+      .funding-card__icon--visiting { background: rgba(8,145,178,0.08); color: var(--color-accent-2); }
+      .funding-card__icon svg { width: 20px; height: 20px; }
+      .funding-card__title { font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; }
+      .funding-card__list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+      .funding-card__list li {
+        font-size: 0.82rem; color: var(--color-muted);
+        display: flex; align-items: baseline; gap: 8px;
+      }
+      .funding-card__list li::before {
+        content: '·'; color: var(--color-accent); font-weight: 700; flex-shrink: 0;
+      }
+
+      /* ─── ADMISSION INFO ─────────────────────────────────────── */
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 16px;
+      }
+      .info-item {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        padding: 20px 22px;
+        transition: all var(--transition);
+      }
+      .info-item:hover { border-color: rgba(37,99,235,0.2); background: rgba(37,99,235,0.02); }
+      .info-item__label {
+        font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.07em; color: var(--color-muted); margin-bottom: 6px;
+      }
+      .info-item__value { font-size: 0.92rem; font-weight: 600; color: var(--color-text); }
+
+      /* ─── CONTACT CTA ────────────────────────────────────────── */
+      .contact-cta {
+        background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
+        border-radius: var(--radius);
+        padding: 56px 48px;
+        text-align: center;
+        color: #fff;
+      }
+      .contact-cta__title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+      .contact-cta__desc { font-size: 1rem; opacity: 0.85; max-width: 480px; margin: 0 auto 28px; line-height: 1.6; }
+      .contact-cta__btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: #fff; color: var(--color-accent);
+        font-size: 0.9rem; font-weight: 700;
+        padding: 12px 28px; border-radius: var(--radius-sm);
+        transition: all var(--transition);
+      }
+      .contact-cta__btn:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
+      .contact-cta__btn svg { width: 16px; height: 16px; }
+
+      /* ─── FOOTER ─────────────────────────────────────────────── */
+      .footer {
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        padding: 40px 24px;
+      }
+      .footer__content {
+        max-width: 1200px; margin: 0 auto;
+        display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+      }
+      .footer__logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--color-text); }
+      .footer__links { display: flex; gap: 6px; flex-wrap: wrap; }
+      .footer__link {
+        font-size: 0.8rem; color: var(--color-muted); padding: 5px 10px;
+        border-radius: 6px; transition: all var(--transition);
+      }
+      .footer__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
+      .footer__copy { font-size: 0.78rem; color: var(--color-muted); }
+
+      /* ─── FADE IN ────────────────────────────────────────────── */
+      .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+      /* ─── RESPONSIVE ─────────────────────────────────────────── */
+      @media (max-width: 768px) {
+        .nav__links { display: none; }
+        .position-card__header { flex-direction: column; }
+        .contact-cta { padding: 40px 24px; }
+        .footer__content { flex-direction: column; align-items: flex-start; }
+      }
+      @media (max-width: 480px) {
+        .apply-grid, .funding-grid, .info-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ── NAV ──────────────────────────────────────────────────── -->
+    <nav class="nav">
+      <div class="nav__container">
+        <a href="../" class="nav__logo">
+          <div class="nav__logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          DIIM Lab
+        </a>
+        <ul class="nav__links">
+          <li><a href="../" class="nav__link">Home</a></li>
+          <li><a href="../research/" class="nav__link">Research</a></li>
+          <li><a href="../people/" class="nav__link">People</a></li>
+          <li><a href="../publications/" class="nav__link">Publications</a></li>
+          <li><a href="../opening/" class="nav__link nav__link--active">Openings</a></li>
+          <li><a href="../teaching/" class="nav__link">Teaching</a></li>
+          <li><a href="../contact/" class="nav__link nav__link--cta">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ── PAGE HEADER ───────────────────────────────────────────── -->
+    <div class="page-header">
+      <div class="page-header__label">Join Us</div>
+      <h1 class="page-header__title">Openings</h1>
+      <p class="page-header__desc">We are always looking for excellent and self-motivated graduate students, postdocs, and visiting scholars to join the DIIM Lab.</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         OPEN POSITIONS
+    ════════════════════════════════════════════════════════════ -->
+    <section class="opening-section">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Open Positions</span>
+          <div class="section-divider__line"></div>
+          <span class="section-divider__count">1 Position</span>
+        </div>
+
+        <!-- Position 1 -->
+        <div class="position-card fade-in">
+          <div class="position-card__header">
+            <div>
+              <div class="position-card__title">Knowledge Representation and Learning for Smart Agriculture</div>
+              <div class="position-card__meta">
+                <span class="position-card__tag position-card__tag--phd">PhD</span>
+                <span class="position-card__tag position-card__tag--open">Open</span>
+                <span class="position-card__tag position-card__tag--funded">Funded</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="position-card__desc">
+            This project focuses on modeling, integrating, and applying agricultural knowledge for intelligent decision-making in digital farming systems. The research sits at the intersection of knowledge representation, machine learning, and smart agriculture — with the goal of enabling AI-driven insights for next-generation food systems.
+          </p>
+
+          <div class="position-card__section-title">Requirements</div>
+          <ul class="position-card__list">
+            <li>Master's degree in Computer Science, Engineering, Artificial Intelligence, or a closely related field</li>
+            <li>Proficiency in programming (Python, C++/C#, or MATLAB mandatory)</li>
+            <li>Experience with ontology engineering or knowledge graph construction</li>
+            <li>Background in machine learning / deep learning with structured or unstructured data</li>
+            <li>Ability to work with agricultural data fusion and multi-source datasets</li>
+            <li>Strong work ethic, communication skills, and ability to collaborate in a team environment</li>
+          </ul>
+
+          <div class="position-card__section-title">Research Areas</div>
+          <ul class="position-card__list">
+            <li>3D/4D printing and additive manufacturing</li>
+            <li>Industry 4.0 and smart manufacturing</li>
+            <li>Sustainable manufacturing and circular economy</li>
+            <li>CAD/CAM and computational design</li>
+            <li>Machine learning and artificial intelligence</li>
+          </ul>
+
+          <a href="mailto:syang19@uoguelph.ca?subject=PhD Application – Knowledge Representation and Learning for Smart Agriculture" class="position-card__apply">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Apply via Email
+          </a>
+        </div>
+
+        <!-- General Openings Note -->
+        <div class="position-card fade-in" style="border-style: dashed; background: var(--color-surface);">
+          <div class="position-card__header">
+            <div>
+              <div class="position-card__title">General Graduate &amp; Postdoc Inquiries</div>
+              <div class="position-card__meta">
+                <span class="position-card__tag position-card__tag--msc">MASc / MEng</span>
+                <span class="position-card__tag position-card__tag--phd">PhD</span>
+                <span class="position-card__tag position-card__tag--postdoc">Postdoc</span>
+                <span class="position-card__tag position-card__tag--visiting">Visiting</span>
+              </div>
+            </div>
+          </div>
+          <p class="position-card__desc">
+            We welcome inquiries from prospective graduate students and postdoctoral fellows interested in any of the lab's research areas — including digital twins, human-robot collaboration, AI for manufacturing, and agri-food systems. Visiting students and scholars are also encouraged to apply.
+          </p>
+          <a href="mailto:syang19@uoguelph.ca?subject=Research Inquiry – DIIM Lab" class="position-card__apply">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Send Inquiry
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HOW TO APPLY
+    ════════════════════════════════════════════════════════════ -->
+    <section class="opening-section opening-section--alt">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">How to Apply</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="apply-grid">
+          <div class="apply-step fade-in">
+            <div class="apply-step__num">1</div>
+            <div class="apply-step__title">Specify Your Position</div>
+            <div class="apply-step__desc">Indicate the position type you are applying for (undergraduate, MASc, PhD, postdoc, or visiting) and the specific research area you are interested in.</div>
+          </div>
+          <div class="apply-step fade-in">
+            <div class="apply-step__num">2</div>
+            <div class="apply-step__title">Summarize Your Experience</div>
+            <div class="apply-step__desc">Briefly describe your prior research experience, technical skills, and any relevant projects or publications that demonstrate your qualifications.</div>
+          </div>
+          <div class="apply-step fade-in">
+            <div class="apply-step__num">3</div>
+            <div class="apply-step__title">Note External Funding</div>
+            <div class="apply-step__desc">If you have or are applying for any external scholarships or fellowships, please mention them. This significantly strengthens your application.</div>
+          </div>
+          <div class="apply-step fade-in">
+            <div class="apply-step__num">4</div>
+            <div class="apply-step__title">Attach Your CV</div>
+            <div class="apply-step__desc">Send a full CV including your GPA, research background, technical expertise, and a list of publications (if any) to Dr. Sheng Yang at syang19@uoguelph.ca.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FUNDING OPPORTUNITIES
+    ════════════════════════════════════════════════════════════ -->
+    <section class="opening-section">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Funding Opportunities</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="funding-grid">
+          <div class="funding-card fade-in">
+            <div class="funding-card__icon funding-card__icon--domestic">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="funding-card__title">Domestic Students</div>
+            <ul class="funding-card__list">
+              <li>Vanier Canada Graduate Scholarships (CGS)</li>
+              <li>NSERC Postgraduate Scholarships</li>
+              <li>Ontario Graduate Scholarship (OGS)</li>
+            </ul>
+          </div>
+
+          <div class="funding-card fade-in">
+            <div class="funding-card__icon funding-card__icon--international">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="funding-card__title">International Students</div>
+            <ul class="funding-card__list">
+              <li>Vanier Canada Graduate Scholarships (CGS)</li>
+              <li>Ontario Trillium Scholarship (OTS)</li>
+              <li>Guelph-CSC Scholarship (Chinese nationals)</li>
+            </ul>
+          </div>
+
+          <div class="funding-card fade-in">
+            <div class="funding-card__icon funding-card__icon--postdoc">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+            </div>
+            <div class="funding-card__title">Postdoctoral Fellows</div>
+            <ul class="funding-card__list">
+              <li>NSERC Postdoctoral Fellowships</li>
+              <li>Banting Postdoctoral Fellowships</li>
+            </ul>
+          </div>
+
+          <div class="funding-card fade-in">
+            <div class="funding-card__icon funding-card__icon--visiting">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="funding-card__title">Visiting Scholars &amp; Interns</div>
+            <ul class="funding-card__list">
+              <li>Mitacs Globalink Research Internship</li>
+              <li>China Scholars' Exchange Program (CSC)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         ADMISSION INFO
+    ════════════════════════════════════════════════════════════ -->
+    <section class="opening-section opening-section--alt">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Admission Information</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item fade-in">
+            <div class="info-item__label">Minimum GPA</div>
+            <div class="info-item__value">75% or above (MSc / PhD)</div>
+          </div>
+          <div class="info-item fade-in">
+            <div class="info-item__label">IELTS (Min.)</div>
+            <div class="info-item__value">6.5 overall</div>
+          </div>
+          <div class="info-item fade-in">
+            <div class="info-item__label">TOEFL (Min.)</div>
+            <div class="info-item__value">89 iBT</div>
+          </div>
+          <div class="info-item fade-in">
+            <div class="info-item__label">Application Deadlines</div>
+            <div class="info-item__value">Jan 1 · May 1 · Aug 1</div>
+          </div>
+          <div class="info-item fade-in">
+            <div class="info-item__label">Domestic Tuition</div>
+            <div class="info-item__value">~$9,000 / year</div>
+          </div>
+          <div class="info-item fade-in">
+            <div class="info-item__label">International Tuition</div>
+            <div class="info-item__value">~$21,000 / year</div>
+          </div>
+          <div class="info-item fade-in">
+            <div class="info-item__label">Department</div>
+            <div class="info-item__value">Mechanical Engineering</div>
+          </div>
+          <div class="info-item fade-in">
+            <div class="info-item__label">University</div>
+            <div class="info-item__value">University of Guelph</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CONTACT CTA
+    ════════════════════════════════════════════════════════════ -->
+    <section class="opening-section">
+      <div class="section-inner">
+        <div class="contact-cta fade-in">
+          <div class="contact-cta__title">Interested in Joining the Lab?</div>
+          <p class="contact-cta__desc">Send Dr. Sheng Yang an email with your CV and a brief description of your research interests and background.</p>
+          <a href="mailto:syang19@uoguelph.ca?subject=Research Inquiry – DIIM Lab" class="contact-cta__btn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            syang19@uoguelph.ca
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer__content">
+        <a href="../" class="footer__logo">
+          <div class="nav__logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          DIIM Lab
+        </a>
+        <div class="footer__links">
+          <a href="../research/" class="footer__link">Research</a>
+          <a href="../people/" class="footer__link">People</a>
+          <a href="../publications/" class="footer__link">Publications</a>
+          <a href="../opening/" class="footer__link">Openings</a>
+          <a href="https://www.youtube.com/channel/UCh6oN-DiD9h4lSHXrCd7Ccg" target="_blank" class="footer__link">YouTube</a>
+          <a href="https://www.uoguelph.ca/engineering/" target="_blank" class="footer__link">College of Engineering</a>
+        </div>
+        <div class="footer__copy">© 2025 Design Innovation and Intelligent Manufacturing Lab · University of Guelph</div>
+      </div>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((el, i) => {
+          if (el.isIntersecting) {
+            setTimeout(() => el.target.classList.add('visible'), i * 60);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+  </body>
+</html>
