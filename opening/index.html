@@ -315,12 +315,41 @@
       .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
       .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+      /* ─── HAMBURGER ─────────────────────────────────────────── */
+      .nav__toggle {
+        display: none; flex-direction: column; justify-content: center; gap: 5px;
+        background: none; border: none; cursor: pointer;
+        padding: 8px; border-radius: var(--radius-sm);
+        transition: background var(--transition);
+      }
+      .nav__toggle:hover { background: rgba(0,0,0,0.05); }
+      .nav__toggle span {
+        display: block; width: 22px; height: 2px;
+        background: var(--color-text); border-radius: 2px;
+        transition: all 0.3s ease; transform-origin: center;
+      }
+      .nav__toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav__toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav__toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
       /* ─── RESPONSIVE ─────────────────────────────────────────── */
       @media (max-width: 768px) {
-        .nav__links { display: none; }
         .position-card__header { flex-direction: column; }
         .contact-cta { padding: 40px 24px; }
         .footer__content { flex-direction: column; align-items: flex-start; }
+        .nav__toggle { display: flex; }
+        .nav__links {
+          display: none; flex-direction: column; gap: 2px;
+          position: absolute; top: var(--nav-h); left: 0; right: 0;
+          background: rgba(255,255,255,0.97);
+          backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--color-border);
+          padding: 12px 16px 16px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .nav__links.open { display: flex; }
+        .nav__link { padding: 11px 16px; font-size: 0.95rem; width: 100%; }
+        .nav__link--cta { text-align: center; margin-top: 4px; }
       }
       @media (max-width: 480px) {
         .apply-grid, .funding-grid, .info-grid { grid-template-columns: 1fr; }
@@ -343,6 +372,9 @@
           </div>
           DIIM Lab
         </a>
+        <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
         <ul class="nav__links">
           <li><a href="../" class="nav__link">Home</a></li>
           <li><a href="../research/" class="nav__link">Research</a></li>
@@ -593,6 +625,28 @@
         });
       }, { threshold: 0.08 });
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      const toggle = document.querySelector('.nav__toggle');
+      const navLinks = document.querySelector('.nav__links');
+      toggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        toggle.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open);
+      });
+      navLinks.querySelectorAll('.nav__link').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav')) {
+          navLinks.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
     </script>
 
   </body>
