@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teaching | DIIM Lab</title>
+    <meta name="description" content="Courses taught by Dr. Sheng Yang at the University of Guelph — Design Innovation and Intelligent Manufacturing Lab." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <style>
+      :root {
+        --color-bg: #ffffff;
+        --color-surface: #f8fafc;
+        --color-surface-2: #f1f5f9;
+        --color-border: rgba(0,0,0,0.08);
+        --color-text: #0f172a;
+        --color-muted: #64748b;
+        --color-accent: #2563eb;
+        --color-accent-2: #0891b2;
+        --color-gold: #d97706;
+        --radius: 14px;
+        --radius-sm: 8px;
+        --font: 'Plus Jakarta Sans', sans-serif;
+        --transition: 0.25s ease;
+        --nav-h: 70px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--font); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      /* ─── NAV ─────────────────────────────────────────────────── */
+      .nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        height: var(--nav-h);
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav__container {
+        max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        height: 100%; display: flex; align-items: center; justify-content: space-between;
+      }
+      .nav__logo {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--color-text);
+      }
+      .nav__logo-icon {
+        width: 34px; height: 34px;
+        background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+        border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      }
+      .nav__logo-icon svg { width: 18px; height: 18px; }
+      .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
+      .nav__link {
+        padding: 7px 14px; border-radius: var(--radius-sm);
+        font-size: 0.875rem; font-weight: 500; color: var(--color-muted);
+        transition: color var(--transition), background var(--transition);
+      }
+      .nav__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
+      .nav__link--active { color: var(--color-text); font-weight: 600; }
+      .nav__link--cta { background: var(--color-accent); color: #fff; padding: 7px 16px; }
+      .nav__link--cta:hover { background: #1d4ed8; color: #fff; }
+
+      /* ─── PAGE HEADER ─────────────────────────────────────────── */
+      .page-header {
+        padding-top: calc(var(--nav-h) + 60px);
+        padding-bottom: 60px;
+        padding-left: 24px; padding-right: 24px;
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-border);
+        text-align: center;
+      }
+      .page-header__title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px;
+      }
+      .page-header__desc { font-size: 1rem; color: var(--color-muted); max-width: 520px; margin: 0 auto; }
+
+      /* ─── SECTIONS ────────────────────────────────────────────── */
+      .teaching-section { padding: 72px 24px; }
+      .teaching-section + .teaching-section { padding-top: 0; }
+      .teaching-section--alt { background: var(--color-surface); }
+      .section-inner { max-width: 1000px; margin: 0 auto; }
+
+      .section-divider {
+        display: flex; align-items: center; gap: 16px;
+        margin-bottom: 40px;
+      }
+      .section-divider__title {
+        font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em;
+        white-space: nowrap; color: var(--color-text);
+      }
+      .section-divider__line { flex: 1; height: 1px; background: var(--color-border); }
+
+      /* ─── COURSE CARDS ────────────────────────────────────────── */
+      .courses-list { display: flex; flex-direction: column; gap: 24px; }
+
+      .course-card {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 32px 36px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        transition: box-shadow var(--transition), border-color var(--transition);
+      }
+      .course-card:hover { box-shadow: 0 8px 32px rgba(37,99,235,0.09); border-color: rgba(37,99,235,0.2); }
+
+      .course-card__header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
+      .course-card__code {
+        font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+        color: var(--color-accent);
+        background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.15);
+        padding: 5px 13px; border-radius: 100px; white-space: nowrap; flex-shrink: 0;
+      }
+      .course-card__title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; color: var(--color-text); }
+      .course-card__desc { font-size: 0.9rem; color: var(--color-muted); line-height: 1.75; }
+
+      /* ─── SERVICES ────────────────────────────────────────────── */
+      .services-block {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 32px 36px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      }
+      .services-block__title {
+        font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.07em; color: var(--color-gold); margin-bottom: 14px;
+      }
+      .services-list { display: flex; flex-wrap: wrap; gap: 10px; }
+      .services-tag {
+        font-size: 0.82rem; font-weight: 600; color: var(--color-muted);
+        background: var(--color-surface-2); border: 1px solid var(--color-border);
+        padding: 5px 14px; border-radius: 100px;
+      }
+
+      /* ─── FOOTER ─────────────────────────────────────────────── */
+      .footer {
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        padding: 40px 24px;
+      }
+      .footer__content {
+        max-width: 1200px; margin: 0 auto;
+        display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+      }
+      .footer__logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--color-text); }
+      .footer__links { display: flex; gap: 6px; flex-wrap: wrap; }
+      .footer__link {
+        font-size: 0.8rem; color: var(--color-muted); padding: 5px 10px;
+        border-radius: 6px; transition: all var(--transition);
+      }
+      .footer__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
+      .footer__copy { font-size: 0.78rem; color: var(--color-muted); }
+
+      /* ─── FADE IN ─────────────────────────────────────────────── */
+      .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+      @media (max-width: 768px) {
+        .nav__links { display: none; }
+        .course-card { padding: 24px 20px; }
+        .footer__content { flex-direction: column; align-items: flex-start; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ── NAV ────────────────────────────────────────────────────── -->
+    <nav class="nav">
+      <div class="nav__container">
+        <a href="../" class="nav__logo">
+          <div class="nav__logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          DIIM Lab
+        </a>
+        <ul class="nav__links">
+          <li><a href="../" class="nav__link">Home</a></li>
+          <li><a href="../research/" class="nav__link">Research</a></li>
+          <li><a href="../people/" class="nav__link">People</a></li>
+          <li><a href="../publications/" class="nav__link">Publications</a></li>
+          <li><a href="../opening/" class="nav__link">Openings</a></li>
+          <li><a href="../teaching/" class="nav__link nav__link--active">Teaching</a></li>
+          <li><a href="../contact/" class="nav__link nav__link--cta">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ── PAGE HEADER ─────────────────────────────────────────────── -->
+    <div class="page-header">
+      <h1 class="page-header__title">Teaching</h1>
+      <p class="page-header__desc">Courses offered by Dr. Sheng Yang at the University of Guelph.</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         COURSES
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="teaching-section">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Courses</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="courses-list">
+
+          <div class="course-card fade-in">
+            <div class="course-card__header">
+              <span class="course-card__code">ENGG 6090</span>
+              <div class="course-card__title">Additive Manufacturing</div>
+            </div>
+            <p class="course-card__desc">
+              An advanced course covering the fundamentals of additive manufacturing processes and materials. Topics include the AM workflow, process selection criteria, design for additive manufacturing, cost analysis, sustainability considerations, business models, and ethical dimensions of emerging manufacturing technologies.
+            </p>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__header">
+              <span class="course-card__code">ENGG 6290</span>
+              <div class="course-card__title">Digital Manufacturing</div>
+            </div>
+            <p class="course-card__desc">
+              Explores the landscape of cyber-physical manufacturing systems. Topics include augmented and virtual reality in production, artificial intelligence and big data analytics, Internet of Things, cloud computing platforms, and digital twin technologies for intelligent manufacturing environments.
+            </p>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__header">
+              <span class="course-card__code">ENGG 1500</span>
+              <div class="course-card__title">Engineering Analysis</div>
+            </div>
+            <p class="course-card__desc">
+              A foundational engineering mathematics course. Topics include matrix algebra, vector spaces, linear systems of equations, linear transformations, eigenvalues and eigenvectors, matrix diagonalization, complex-variable algebra, and multivariable functions relevant to engineering applications.
+            </p>
+          </div>
+
+          <div class="course-card fade-in">
+            <div class="course-card__header">
+              <span class="course-card__code">ENGG 3120</span>
+              <div class="course-card__title">Computer-Aided Design &amp; Manufacturing</div>
+            </div>
+            <p class="course-card__desc">
+              Theory and practice of CAD/CAM systems. Topics include solid geometry modeling, complex shape modeling, assembly design, finite element analysis for stress and thermal problems, G-code programming, and computer-aided manufacturing simulation for production planning.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         PROFESSIONAL SERVICE
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="teaching-section teaching-section--alt">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Professional Memberships &amp; Service</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="services-block fade-in">
+          <div class="services-block__title">Memberships</div>
+          <div class="services-list">
+            <span class="services-tag">Canadian Society for Mechanical Engineering (CSME)</span>
+            <span class="services-tag">American Society of Mechanical Engineers (ASME)</span>
+            <span class="services-tag">Consortium for Research and Innovation in Agri-Food (CARE-AI)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer__content">
+        <a href="../" class="footer__logo">
+          <div class="nav__logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          DIIM Lab
+        </a>
+        <div class="footer__links">
+          <a href="../research/" class="footer__link">Research</a>
+          <a href="../people/" class="footer__link">People</a>
+          <a href="../publications/" class="footer__link">Publications</a>
+          <a href="../opening/" class="footer__link">Openings</a>
+          <a href="../teaching/" class="footer__link">Teaching</a>
+          <a href="https://www.uoguelph.ca/engineering/" target="_blank" class="footer__link">College of Engineering</a>
+        </div>
+        <div class="footer__copy">© 2025 Design Innovation and Intelligent Manufacturing Lab · University of Guelph</div>
+      </div>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((el, i) => {
+          if (el.isIntersecting) {
+            setTimeout(() => el.target.classList.add('visible'), i * 60);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+  </body>
+</html>

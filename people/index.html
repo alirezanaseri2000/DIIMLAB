@@ -155,12 +155,9 @@
       }
       .pi-card__role {
         font-size: 0.9rem; color: var(--color-accent); font-weight: 600;
-        display: flex; align-items: center; gap: 8px;
+        display: flex; flex-direction: column; gap: 2px;
       }
-      .pi-card__role::before {
-        content: ''; width: 6px; height: 6px; border-radius: 50%;
-        background: var(--color-accent); flex-shrink: 0;
-      }
+      .pi-card__role span { font-size: 0.85rem; color: var(--color-muted); font-weight: 500; }
       .pi-card__links { display: flex; gap: 8px; flex-wrap: wrap; }
       .pi-card__link {
         display: inline-flex; align-items: center; gap: 6px;
@@ -252,6 +249,15 @@
       }
       .member-card__link:hover { color: var(--color-accent); border-color: rgba(37,99,235,0.3); background: rgba(37,99,235,0.05); }
       .member-card__link svg { width: 14px; height: 14px; }
+      .member-card__meta {
+        display: flex; flex-direction: column; gap: 3px;
+        font-size: 0.75rem; color: var(--color-muted);
+        border-top: 1px solid var(--color-border);
+        padding-top: 8px; margin-top: 6px;
+      }
+      .member-card__meta-row { display: flex; align-items: flex-start; gap: 5px; line-height: 1.4; }
+      .member-card__meta-row svg { width: 11px; height: 11px; flex-shrink: 0; margin-top: 2px; }
+      .member-card__meta-row a { color: var(--color-accent); }
 
       /* ─── ALUMNI SECTION ──────────────────────────────────────── */
       .alumni-section { background: var(--color-surface); padding: 72px 24px; }
@@ -264,17 +270,29 @@
         background: #ffffff;
         border: 1px solid var(--color-border);
         border-radius: var(--radius-sm);
-        padding: 16px 20px;
-        display: flex; justify-content: space-between; align-items: center;
+        padding: 14px 16px;
+        display: flex; align-items: center; gap: 12px;
         transition: all var(--transition);
       }
       .alumni-item:hover { border-color: rgba(37,99,235,0.2); background: rgba(37,99,235,0.02); }
+      .alumni-item__photo {
+        width: 44px; height: 44px; border-radius: 50%;
+        overflow: hidden; flex-shrink: 0;
+        background: var(--color-surface-2); border: 1px solid var(--color-border);
+      }
+      .alumni-item__photo img { width: 100%; height: 100%; object-fit: cover; }
+      .alumni-item__photo-placeholder {
+        width: 100%; height: 100%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; background: linear-gradient(135deg, var(--color-surface), var(--color-surface-2));
+      }
+      .alumni-item__info { flex: 1; min-width: 0; }
       .alumni-item__name { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
-      .alumni-item__detail { font-size: 0.78rem; color: var(--color-muted); margin-top: 2px; }
+      .alumni-item__detail { font-size: 0.78rem; color: var(--color-muted); margin-top: 2px; line-height: 1.4; }
       .alumni-item__year {
         font-size: 0.75rem; font-weight: 700; color: var(--color-muted);
         background: var(--color-surface-2); border: 1px solid var(--color-border);
-        padding: 3px 9px; border-radius: 100px; white-space: nowrap;
+        padding: 3px 9px; border-radius: 100px; white-space: nowrap; flex-shrink: 0;
       }
 
       /* ─── FOOTER ──────────────────────────────────────────────── */
@@ -345,7 +363,6 @@
 
     <!-- ── PAGE HEADER ─────────────────────────────────────────────── -->
     <div class="page-header">
-      <div class="page-header__label">The Team</div>
       <h1 class="page-header__title">People</h1>
       <p class="page-header__desc">A multidisciplinary team from mechanical engineering, computer engineering, and data science.</p>
     </div>
@@ -373,7 +390,10 @@
           <div class="pi-card__main">
             <div>
               <div class="pi-card__name">Dr. Sheng Yang</div>
-              <div class="pi-card__role">Associate Professor in Digital Transformation / Industrial AI, University of Guelph</div>
+              <div class="pi-card__role">
+                Associate Professor in Digital Transformation / Industrial AI
+                <span>University of Guelph</span>
+              </div>
             </div>
 
             <div class="pi-card__links">
@@ -438,6 +458,16 @@
               <div class="member-card__name">Mohammadreza Zare</div>
               <span class="member-card__degree">Research Staff</span>
               <p class="member-card__topic">Soilless growing media knowledge representation and learning</p>
+              <div class="member-card__meta">
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                  B.S. University of Tehran
+                </div>
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <a href="mailto:zare@uoguelph.ca">zare@uoguelph.ca</a>
+                </div>
+              </div>
               <div class="member-card__links"></div>
             </div>
           </article>
@@ -460,6 +490,16 @@
               <div class="member-card__name">Enshen Zhu</div>
               <span class="member-card__degree">PhD Student</span>
               <p class="member-card__topic">Human digital twin modeling and simulation</p>
+              <div class="member-card__meta">
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                  M.S. University of Guelph · B.S. University of Toronto
+                </div>
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <a href="mailto:enshen@uoguelph.ca">enshen@uoguelph.ca</a>
+                </div>
+              </div>
               <div class="member-card__links">
                 <a href="https://www.linkedin.com/in/enshen-zhu/" target="_blank" class="member-card__link" title="LinkedIn">
                   <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -477,6 +517,16 @@
               <div class="member-card__name">Mohammad Vahid Ehteshamfar</div>
               <span class="member-card__degree">PhD Student</span>
               <p class="member-card__topic">Digital twin for smart additive manufacturing</p>
+              <div class="member-card__meta">
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                  M.S. Amirkabir University of Technology · B.S. Babol Noshiravani University of Technology
+                </div>
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <a href="mailto:mehtesha@uoguelph.ca">mehtesha@uoguelph.ca</a>
+                </div>
+              </div>
               <div class="member-card__links">
                 <a href="https://www.linkedin.com/in/mohammad-vahid-ehteshamfar/" target="_blank" class="member-card__link" title="LinkedIn">
                   <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -494,6 +544,16 @@
               <div class="member-card__name">Pranjali Sagar</div>
               <span class="member-card__degree">PhD Student</span>
               <p class="member-card__topic">AI for novel Agrifood applications</p>
+              <div class="member-card__meta">
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                  M.S. University of Guelph · B.S. University of Pune
+                </div>
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <a href="mailto:psagar@uoguelph.ca">psagar@uoguelph.ca</a>
+                </div>
+              </div>
               <div class="member-card__links">
                 <a href="https://www.linkedin.com/in/pranjali-sagar-1834271a0/" target="_blank" class="member-card__link" title="LinkedIn">
                   <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -511,6 +571,12 @@
               <div class="member-card__name">Zichen Wang</div>
               <span class="member-card__degree">PhD Student</span>
               <p class="member-card__topic">Personalized robot learning</p>
+              <div class="member-card__meta">
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                  M.S. University of Guelph · B.S. Carnegie Mellon University
+                </div>
+              </div>
               <div class="member-card__links"></div>
             </div>
           </article>
@@ -533,6 +599,12 @@
               <div class="member-card__name">Alireza Naseri</div>
               <span class="member-card__degree">MASc Student</span>
               <p class="member-card__topic">Human-robot collaboration for disassembly</p>
+              <div class="member-card__meta">
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                  B.S. K.N. Toosi University of Technology
+                </div>
+              </div>
               <div class="member-card__links">
                 <a href="https://www.linkedin.com/in/alirezanaseri79/" target="_blank" class="member-card__link" title="LinkedIn">
                   <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -550,6 +622,12 @@
               <div class="member-card__name">Syad Khwajazada</div>
               <span class="member-card__degree">MASc Student</span>
               <p class="member-card__topic">Human-robot collaboration for assembly</p>
+              <div class="member-card__meta">
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                  B.S. University of Guelph
+                </div>
+              </div>
               <div class="member-card__links"></div>
             </div>
           </article>
@@ -563,6 +641,12 @@
               <div class="member-card__name">Umair Asim</div>
               <span class="member-card__degree">MASc Student</span>
               <p class="member-card__topic">Human-AI collaboration</p>
+              <div class="member-card__meta">
+                <div class="member-card__meta-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10H2"/><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M6 12v7a6 6 0 0 0 12 0v-7"/></svg>
+                  B.S. National University of Sciences and Technology
+                </div>
+              </div>
               <div class="member-card__links">
                 <a href="https://www.linkedin.com/in/umairasim1326/" target="_blank" class="member-card__link" title="LinkedIn">
                   <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -589,7 +673,10 @@
         <div class="alumni-grid" style="margin-bottom: 40px;">
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/junfei_li.jpg" alt="Dr. Junfei Li" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Dr. Junfei Li</div>
               <div class="alumni-item__detail">Postdoctoral Fellow → Assistant Professor, Lakehead University</div>
             </div>
@@ -597,7 +684,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/ahmad_naser.jpg" alt="Dr. Ahmad Naser" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Dr. Ahmad Naser</div>
               <div class="alumni-item__detail">Research Associate → Assistant Professor, University of Manitoba</div>
             </div>
@@ -614,7 +704,10 @@
         <div class="alumni-grid" style="margin-bottom: 40px;">
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/vahid_haseltalab.jpg" alt="Vahid Haseltalab" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Vahid Haseltalab</div>
               <div class="alumni-item__detail">PhD, Mechanical Engineering → Postdoctoral Fellow, Toronto Metropolitan University</div>
             </div>
@@ -622,7 +715,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/ahmad_naser.jpg" alt="Ahmad Naser" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Ahmad Naser</div>
               <div class="alumni-item__detail">PhD, Mechanical Engineering → Assistant Professor, University of Manitoba</div>
             </div>
@@ -639,15 +735,21 @@
         <div class="alumni-grid" style="margin-bottom: 40px;">
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/da_long.jpg" alt="Da Long" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Da Long</div>
-              <div class="alumni-item__detail">MASc, Mechanical Engineering</div>
+              <div class="alumni-item__detail">MASc, Mechanical Engineering → PhD Student, UBC</div>
             </div>
             <span class="alumni-item__year">2025</span>
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/anna_mafor.jpg" alt="Anna Mafor" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Anna Mafor</div>
               <div class="alumni-item__detail">MASc, Engineering Systems &amp; Computing → PhD Student, University of Guelph</div>
             </div>
@@ -655,7 +757,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/zezhong_yu.jpg" alt="Zezhong Yu" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Zezhong Yu</div>
               <div class="alumni-item__detail">MASc, Computer Engineering → Research Assistant, University of Guelph</div>
             </div>
@@ -663,7 +768,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/manal_behih.jpg" alt="Manal Behih" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Manal Behih</div>
               <div class="alumni-item__detail">MASc, Engineering Systems &amp; Computing → Electrical Engineering Technologist, Edge Design &amp; Engineering</div>
             </div>
@@ -671,7 +779,21 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/alireza_naseri.jpg" alt="Alireza Naseri" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
+              <div class="alumni-item__name">Alireza Naseri</div>
+              <div class="alumni-item__detail">MASc, Engineering Systems &amp; Computing → Research Associate, University of Guelph</div>
+            </div>
+            <span class="alumni-item__year">2026</span>
+          </div>
+
+          <div class="alumni-item fade-in">
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/patrick_haynes.jpg" alt="Patrick Haynes" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Patrick Haynes</div>
               <div class="alumni-item__detail">MASc, Mechanical Engineering → Mechanical Engineer, Westinghouse Canada</div>
             </div>
@@ -679,7 +801,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/vipul_patel.jpg" alt="Vipul Patel" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Vipul Patel</div>
               <div class="alumni-item__detail">MASc, Mechanical Engineering</div>
             </div>
@@ -687,7 +812,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/carter_powell.jpg" alt="Carter Powell" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Carter Powell</div>
               <div class="alumni-item__detail">MASc, Mechanical Engineering → Director of R&amp;D, NEEB Engineering</div>
             </div>
@@ -695,7 +823,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/md_tahmid_bin_touhid.jpg" alt="Md Tahmid Bin Touhid" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Md Tahmid Bin Touhid</div>
               <div class="alumni-item__detail">MASc, Engineering Systems &amp; Computing → Research Assistant, University of Guelph</div>
             </div>
@@ -703,7 +834,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/sayed_amirhossein_mirahmadi.jpg" alt="Sayed Amirhossein Mirahmadi" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Sayed Amirhossein Mirahmadi</div>
               <div class="alumni-item__detail">MASc, Computer Engineering → Software Design Engineer, AGDATA</div>
             </div>
@@ -711,7 +845,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/jimit_vyas.jpg" alt="Jimit Vyas" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Jimit Vyas</div>
               <div class="alumni-item__detail">MASc, Mechanical Engineering</div>
             </div>
@@ -719,7 +856,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/nilmadhav_godhani.jpg" alt="Nilmadhav Godhani" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Nilmadhav Godhani</div>
               <div class="alumni-item__detail">MASc, Mechanical Engineering</div>
             </div>
@@ -727,7 +867,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/puravkumar_patel.jpg" alt="Puravkumar Patel" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Puravkumar Patel</div>
               <div class="alumni-item__detail">MASc, Mechanical Engineering</div>
             </div>
@@ -735,7 +878,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/akash_shashikant_tiwari.jpg" alt="Akash Shashikant Tiwari" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Akash Shashikant Tiwari</div>
               <div class="alumni-item__detail">MASc, Mechanical Engineering → Quality Control Engineer, Linamar</div>
             </div>
@@ -743,7 +889,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/purvatya_vishwash_patel.jpg" alt="Purvatya Vishwash Patel" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Purvatya Vishwash Patel</div>
               <div class="alumni-item__detail">MEng, Mechanical Engineering → Instructional Designer, Canada Life</div>
             </div>
@@ -751,7 +900,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/pinkesh_patel.jpg" alt="Pinkesh Patel" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Pinkesh Patel</div>
               <div class="alumni-item__detail">MEng, Mechanical Engineering → Project Control Coordinator, BWXT Canada</div>
             </div>
@@ -759,7 +911,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/mrunal_sangramsinh_marne.jpg" alt="Mrunal Sangramsinh Marne" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Mrunal Sangramsinh Marne</div>
               <div class="alumni-item__detail">MEng, Engineering Systems &amp; Computing → Software Test Engineer, TCS</div>
             </div>
@@ -767,7 +922,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/manan_desai.jpg" alt="Manan Desai" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Manan Desai</div>
               <div class="alumni-item__detail">MEng, Engineering Systems &amp; Computing → Software Test Engineer, TCS</div>
             </div>
@@ -784,7 +942,10 @@
         <div class="alumni-grid">
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/sebastian_valencia.jpg" alt="Sebastian Valencia" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Sebastian Valencia</div>
               <div class="alumni-item__detail">Mitacs Globalink Intern, Engineering Physics</div>
             </div>
@@ -792,7 +953,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/timothy_khan.jpg" alt="Timothy Khan" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Timothy Khan</div>
               <div class="alumni-item__detail">USRA, Biomedical Engineering</div>
             </div>
@@ -800,7 +964,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/jasmun_banwait.jpg" alt="Jasmun Banwait" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Jasmun Banwait</div>
               <div class="alumni-item__detail">URA, Biomedical Engineering</div>
             </div>
@@ -808,7 +975,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/vidhi_patel.jpg" alt="Vidhi Patel" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Vidhi Patel</div>
               <div class="alumni-item__detail">URA, Biomedical Engineering</div>
             </div>
@@ -816,7 +986,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/alejandro_moreno.jpg" alt="Alejandro Moreno" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Alejandro Moreno</div>
               <div class="alumni-item__detail">Mitacs Globalink Intern, Mechanical Engineering</div>
             </div>
@@ -824,7 +997,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/saloni_upadhyay.jpg" alt="Saloni Upadhyay" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Saloni Upadhyay</div>
               <div class="alumni-item__detail">Mitacs Globalink Intern, Mechanical Engineering</div>
             </div>
@@ -832,7 +1008,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/yasser_hariri.jpg" alt="Yasser Hariri" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Yasser Hariri</div>
               <div class="alumni-item__detail">URA, Biomedical Engineering</div>
             </div>
@@ -840,7 +1019,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/celina_zhou.jpg" alt="Celina Zhou" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Celina Zhou</div>
               <div class="alumni-item__detail">URA, Biomedical Engineering</div>
             </div>
@@ -848,7 +1030,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/xiaoqing_zhao.jpg" alt="Xiaoqing Zhao" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Xiaoqing Zhao</div>
               <div class="alumni-item__detail">URA, Mechanical Engineering</div>
             </div>
@@ -856,7 +1041,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/taha_memon.jpg" alt="Taha Memon" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Taha Memon</div>
               <div class="alumni-item__detail">URA, Computer Science</div>
             </div>
@@ -864,7 +1052,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/kritika_khanna.jpg" alt="Kritika Khanna" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Kritika Khanna</div>
               <div class="alumni-item__detail">URA, Biomedical Engineering</div>
             </div>
@@ -872,7 +1063,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/theodore_oskroba.jpg" alt="Theodore Oskroba" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Theodore Oskroba</div>
               <div class="alumni-item__detail">USRA, Computer Science</div>
             </div>
@@ -880,7 +1074,10 @@
           </div>
 
           <div class="alumni-item fade-in">
-            <div>
+            <div class="alumni-item__photo">
+              <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/japhet_geonel_kijoe.jpg" alt="Japhet Geonel Kijoe" onerror="this.parentElement.innerHTML='<div class=\'alumni-item__photo-placeholder\'>👤</div>'" />
+            </div>
+            <div class="alumni-item__info">
               <div class="alumni-item__name">Japhet Geonel Kijoe</div>
               <div class="alumni-item__detail">Mitacs Globalink Intern, Mechanical Engineering</div>
             </div>

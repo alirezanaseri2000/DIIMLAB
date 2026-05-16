@@ -305,12 +305,16 @@
       }
       .pillar:hover { border-color: rgba(37,99,235,0.25); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.08); }
       .pillar__icon {
-        width: 36px; height: 36px;
-        background: rgba(37,99,235,0.08); border-radius: 8px;
+        width: 100%; height: 110px;
+        border-radius: 10px;
         display: flex; align-items: center; justify-content: center;
-        margin-bottom: 12px;
+        margin-bottom: 16px; overflow: hidden;
       }
-      .pillar__icon svg { width: 18px; height: 18px; color: var(--color-accent); stroke: var(--color-accent); fill: none; stroke-width: 1.5; }
+      .pillar__icon svg { width: 52px; height: 52px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+      .pillar--mfg .pillar__icon { background: linear-gradient(135deg, #e0e7ff, #bfdbfe); color: #2563eb; }
+      .pillar--personal .pillar__icon { background: linear-gradient(135deg, #fde68a, #fed7aa); color: #d97706; }
+      .pillar--agri .pillar__icon { background: linear-gradient(135deg, #d1fae5, #a7f3d0); color: #059669; }
+      .pillar--energy .pillar__icon { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; }
       .pillar__title { font-size: 0.9rem; font-weight: 600; color: var(--color-text); margin-bottom: 6px; }
       .pillar__desc { font-size: 0.78rem; color: var(--color-muted); line-height: 1.6; }
 
@@ -601,30 +605,43 @@
           </div>
 
           <div class="pillars-grid fade-in">
-            <div class="pillar">
+            <div class="pillar pillar--mfg">
               <div class="pillar__icon">
-                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
               </div>
               <div class="pillar__title">Smart Manufacturing</div>
               <div class="pillar__desc">AI-driven process optimization, digital twins, and next-generation intelligent production systems.</div>
             </div>
-            <div class="pillar">
+            <div class="pillar pillar--personal">
               <div class="pillar__icon">
-                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
               </div>
               <div class="pillar__title">Personalized Products</div>
               <div class="pillar__desc">Human-centered design and additive manufacturing enabling customized, user-tailored products at scale.</div>
             </div>
-            <div class="pillar">
+            <div class="pillar pillar--agri">
               <div class="pillar__icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10"/><path d="M12 6v6l4 2"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
               </div>
               <div class="pillar__title">Precision Agriculture</div>
               <div class="pillar__desc">Data-driven sensing, machine learning, and autonomous systems for smart and sustainable farming.</div>
             </div>
-            <div class="pillar">
+            <div class="pillar pillar--energy">
               <div class="pillar__icon">
-                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                </svg>
               </div>
               <div class="pillar__title">Green Energy</div>
               <div class="pillar__desc">Intelligent monitoring and optimization of renewable energy systems for a sustainable future.</div>
@@ -678,6 +695,16 @@
         </div>
       </div>
     </section>
+
+    <!-- ── GOOGLE MAP ────────────────────────────────────────────────── -->
+    <div style="padding: 0 24px 60px; max-width: 1200px; margin: 0 auto;">
+      <iframe
+        src="https://maps.google.com/maps?q=50+Stone+Road+East+Guelph+Ontario+Canada+N1G+2W1&output=embed"
+        width="100%" height="380"
+        style="border:0; border-radius: 14px; display:block; box-shadow: 0 2px 16px rgba(0,0,0,0.08);"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
 
     <!-- ── FOOTER ─────────────────────────────────────────────────── -->
     <footer class="footer">
