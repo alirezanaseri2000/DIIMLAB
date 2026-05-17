@@ -67,6 +67,10 @@
         flex-shrink: 0;
       }
       .nav__logo-icon svg { width: 18px; height: 18px; }
+      .nav__logo-img {
+        width: 40px; height: 40px;
+        border-radius: 8px; object-fit: contain; flex-shrink: 0;
+      }
       .nav__links {
         display: flex; align-items: center; gap: 4px; list-style: none;
       }
@@ -420,13 +424,7 @@
     <nav class="nav">
       <div class="nav__container">
         <a href="./" class="nav__logo">
-          <div class="nav__logo-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
-              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+          <img src="images/logo.jpg" class="nav__logo-img" alt="DIIM Lab logo" />
           DIIM Lab
         </a>
         <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -742,13 +740,7 @@
     <footer class="footer">
       <div class="footer__content">
         <a href="./" class="footer__logo">
-          <div class="nav__logo-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
-              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+          <img src="images/logo.jpg" class="nav__logo-img" alt="DIIM Lab logo" />
           DIIM Lab
         </a>
         <div class="footer__links">
