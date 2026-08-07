@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research | Manufacturing and Intelligent Systems (MIS) Lab</title>
+    <meta name="description" content="Research areas and funding partners of the Manufacturing and Intelligent Systems (MIS) Lab, University of Guelph." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <style>
+      :root {
+        --color-bg: #ffffff;
+        --color-surface: #f8fafc;
+        --color-surface-2: #f1f5f9;
+        --color-border: rgba(0,0,0,0.08);
+        --color-text: #0f172a;
+        --color-muted: #64748b;
+        --color-accent: #2563eb;
+        --color-accent-2: #0891b2;
+        --color-gold: #d97706;
+        --radius: 14px;
+        --radius-sm: 8px;
+        --font: 'Plus Jakarta Sans', sans-serif;
+        --transition: 0.25s ease;
+        --nav-h: 70px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--font); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      /* ─── NAV ─────────────────────────────────────────────────── */
+      .nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        height: var(--nav-h);
+        background: rgba(255,255,255,0.92);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav__container {
+        max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        height: 100%; display: flex; align-items: center; justify-content: space-between;
+      }
+      .nav__logo {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--color-text);
+      }
+      .nav__logo-img { width: 40px; height: 40px; border-radius: 8px; object-fit: contain; flex-shrink: 0; }
+      .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
+      .nav__link {
+        padding: 7px 14px; border-radius: var(--radius-sm);
+        font-size: 0.875rem; font-weight: 500; color: var(--color-muted);
+        transition: color var(--transition), background var(--transition);
+      }
+      .nav__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
+      .nav__link--active { color: var(--color-text); font-weight: 600; }
+      .nav__link--cta { background: var(--color-accent); color: #fff; padding: 7px 16px; }
+      .nav__link--cta:hover { background: #1d4ed8; color: #fff; }
+
+      /* ─── PAGE HEADER ─────────────────────────────────────────── */
+      .page-header {
+        padding-top: calc(var(--nav-h) + 60px);
+        padding-bottom: 60px;
+        padding-left: 24px; padding-right: 24px;
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-border);
+        text-align: center;
+      }
+      .page-header__title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px;
+      }
+      .page-header__desc { font-size: 1rem; color: var(--color-muted); max-width: 600px; margin: 0 auto; }
+
+      /* ─── SECTIONS ────────────────────────────────────────────── */
+      .research-section { padding: 72px 24px; }
+      .research-section + .research-section { padding-top: 0; }
+      .research-section--alt { background: var(--color-surface); }
+      .section-inner { max-width: 1000px; margin: 0 auto; }
+
+      .section-divider {
+        display: flex; align-items: center; gap: 16px;
+        margin-bottom: 40px;
+      }
+      .section-divider__title {
+        font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em;
+        white-space: nowrap; color: var(--color-text);
+      }
+      .section-divider__line { flex: 1; height: 1px; background: var(--color-border); }
+
+      /* ─── OVERVIEW ────────────────────────────────────────────── */
+      .overview__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 52px;
+        align-items: center;
+      }
+      .overview__img {
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      }
+      .overview__img img {
+        width: 100%;
+        height: auto;
+        display: block;
+        padding: 24px;
+        object-fit: contain;
+      }
+      .overview__text { display: flex; flex-direction: column; gap: 16px; }
+      .overview__text p {
+        font-size: 0.975rem; color: var(--color-muted); line-height: 1.8;
+      }
+      .overview__text p strong { color: var(--color-text); }
+
+      /* ─── RESEARCH PILLARS ────────────────────────────────────── */
+      .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .pillar-card {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 28px 28px 28px 28px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        transition: box-shadow var(--transition), border-color var(--transition);
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .pillar-card:hover { box-shadow: 0 8px 32px rgba(37,99,235,0.09); border-color: rgba(37,99,235,0.2); }
+
+      .pillar-card__icon {
+        width: 44px; height: 44px; border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+      }
+      .pillar-card__icon svg { width: 24px; height: 24px; }
+      .pillar-card__icon--blue { background: rgba(37,99,235,0.10); color: var(--color-accent); }
+      .pillar-card__icon--teal { background: rgba(8,145,178,0.10); color: var(--color-accent-2); }
+      .pillar-card__icon--gold { background: rgba(217,119,6,0.10); color: var(--color-gold); }
+      .pillar-card__icon--green { background: rgba(22,163,74,0.10); color: #16a34a; }
+
+      .pillar-card__title { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
+      .pillar-card__desc { font-size: 0.875rem; color: var(--color-muted); line-height: 1.75; }
+
+      /* ─── SPONSORS ────────────────────────────────────────────── */
+      .sponsors-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .sponsor-tag {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 0.875rem; font-weight: 600;
+        color: var(--color-text);
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        padding: 10px 20px; border-radius: 100px;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+        transition: border-color var(--transition), box-shadow var(--transition), color var(--transition);
+      }
+      .sponsor-tag:hover {
+        border-color: rgba(37,99,235,0.3);
+        box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+        color: var(--color-accent);
+      }
+      .sponsor-tag svg { width: 13px; height: 13px; opacity: 0.5; flex-shrink: 0; }
+
+      /* ─── FOOTER ─────────────────────────────────────────────── */
+      .footer {
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        padding: 40px 24px;
+      }
+      .footer__content {
+        max-width: 1200px; margin: 0 auto;
+        display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+      }
+      .footer__logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; color: var(--color-text); }
+      .footer__links { display: flex; gap: 6px; flex-wrap: wrap; }
+      .footer__link {
+        font-size: 0.8rem; color: var(--color-muted); padding: 5px 10px;
+        border-radius: 6px; transition: all var(--transition);
+      }
+      .footer__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
+      .footer__copy { font-size: 0.78rem; color: var(--color-muted); }
+
+      /* ─── FADE IN ─────────────────────────────────────────────── */
+      .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+      .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+      /* ─── HAMBURGER ─────────────────────────────────────────── */
+      .nav__toggle {
+        display: none; flex-direction: column; justify-content: center; gap: 5px;
+        background: none; border: none; cursor: pointer;
+        padding: 8px; border-radius: var(--radius-sm);
+        transition: background var(--transition);
+      }
+      .nav__toggle:hover { background: rgba(0,0,0,0.05); }
+      .nav__toggle span {
+        display: block; width: 22px; height: 2px;
+        background: var(--color-text); border-radius: 2px;
+        transition: all 0.3s ease; transform-origin: center;
+      }
+      .nav__toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav__toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav__toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      @media (max-width: 768px) {
+        .overview__grid { grid-template-columns: 1fr; gap: 32px; }
+        .pillars-grid { grid-template-columns: 1fr; }
+        .footer__content { flex-direction: column; align-items: flex-start; }
+        .nav__toggle { display: flex; }
+        .nav__links {
+          display: none; flex-direction: column; gap: 2px;
+          position: absolute; top: var(--nav-h); left: 0; right: 0;
+          background: rgba(255,255,255,0.97);
+          backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--color-border);
+          padding: 12px 16px 16px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .nav__links.open { display: flex; }
+        .nav__link { padding: 11px 16px; font-size: 0.95rem; width: 100%; }
+        .nav__link--cta { background: none; color: var(--color-accent); font-weight: 700; padding: 11px 16px; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ── NAV ────────────────────────────────────────────────────── -->
+    <nav class="nav">
+      <div class="nav__container">
+        <a href="../" class="nav__logo">
+          <img src="../MISL_black_transparent_simple_pcb_true_mirror_wordmark_only.svg" class="nav__logo-img" alt="MIS Lab logo" />
+          Manufacturing and Intelligent Systems (MIS) Lab
+        </a>
+        <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav__links">
+          <li><a href="../" class="nav__link">Home</a></li>
+          <li><a href="../research/" class="nav__link nav__link--active">Research</a></li>
+          <li><a href="../people/" class="nav__link">People</a></li>
+          <li><a href="../publications/" class="nav__link">Publications</a></li>
+          <li><a href="../opening/" class="nav__link">Openings</a></li>
+          <li><a href="../teaching/" class="nav__link">Teaching</a></li>
+          <li><a href="../contact/" class="nav__link nav__link--cta">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ── PAGE HEADER ─────────────────────────────────────────────── -->
+    <div class="page-header">
+      <h1 class="page-header__title">Research</h1>
+      <p class="page-header__desc">Advancing intelligent engineering systems through AI, digital twins, and human-centered design.</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         RESEARCH OVERVIEW
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="research-section">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Research Overview</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="overview__grid">
+          <div class="overview__img fade-in">
+            <img src="../research.png" alt="MIS Lab research diagram showing four pillars: Smart Manufacturing, Precision Agriculture, Personalized Design, and Green Energy" />
+          </div>
+          <div class="overview__text fade-in">
+            <p>
+              The research at the <strong>MIS Lab</strong> focuses on advancing the fundamentals and applications of
+              <strong>design theory, digital twin, and artificial intelligence</strong> for improving the resilience,
+              sustainability, and efficiency of various engineering systems.
+            </p>
+            <p>
+              Our work spans human-robot collaborative systems, autonomous additive manufacturing systems,
+              mass personalization service systems, and agricultural systems — in close collaboration
+              with industrial and government partners.
+            </p>
+            <p>
+              We bring together a <strong>multidisciplinary team</strong> from mechanical engineering, computer
+              engineering, and data science to tackle real-world challenges across four core research pillars.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         RESEARCH PILLARS
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="research-section research-section--alt">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Research Pillars</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="pillars-grid">
+
+          <div class="pillar-card fade-in">
+            <div class="pillar-card__icon pillar-card__icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <div class="pillar-card__title">Smart Manufacturing</div>
+            <p class="pillar-card__desc">
+              Leveraging enabling technologies — AI, digital twin, and IoT — to improve the transparency,
+              traceability, efficiency, and resilience of manufacturing processes and systems.
+              Intelligent, adaptive, and resilient production systems.
+            </p>
+          </div>
+
+          <div class="pillar-card fade-in">
+            <div class="pillar-card__icon pillar-card__icon--teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="pillar-card__title">Personalized Design</div>
+            <p class="pillar-card__desc">
+              Developing data-driven methods and AI to support mass customization of personalized
+              products and services, including personalized human-robot collaboration systems.
+              Custom solutions for people, production, and systems.
+            </p>
+          </div>
+
+          <div class="pillar-card fade-in">
+            <div class="pillar-card__icon pillar-card__icon--gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <div class="pillar-card__title">Precision Agriculture</div>
+            <p class="pillar-card__desc">
+              Developing novel AI tools to support smart decision-making, autonomous control of greenhouse
+              operations, and knowledge reuse for food and farm systems.
+              Autonomous solutions for food and farms.
+            </p>
+          </div>
+
+          <div class="pillar-card fade-in">
+            <div class="pillar-card__icon pillar-card__icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 20h20M5 20V10l7-7 7 7v10M9 20v-5h6v5"/>
+              </svg>
+            </div>
+            <div class="pillar-card__title">Green Energy</div>
+            <p class="pillar-card__desc">
+              Leveraging advanced manufacturing processes (e.g., additive manufacturing) and AI to support
+              upcycling of EV batteries and agricultural waste into bio-fuel.
+              Energy system optimization and upcycling.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FUNDING & SPONSORS
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="research-section">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Funding &amp; Partners</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="sponsors-grid fade-in">
+
+          <a href="https://www.nserc-crsng.gc.ca/" target="_blank" class="sponsor-tag">
+            NSERC / CRSNG
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/nfrf-fnfr-eng.aspx" target="_blank" class="sponsor-tag">
+            New Frontiers in Research Fund (NFRF)
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.canada.ca/en/department-national-defence.html" target="_blank" class="sponsor-tag">
+            Department of National Defence (DND)
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.ontario.ca/page/ministry-agriculture-food-rural-affairs" target="_blank" class="sponsor-tag">
+            Ontario Ministry of Agriculture, Food &amp; Rural Affairs (OMAFA)
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.oc-innovation.ca/" target="_blank" class="sponsor-tag">
+            Ontario Centres of Innovation (OCI)
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.mitacs.ca/" target="_blank" class="sponsor-tag">
+            Mitacs
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.acu.ac.uk/" target="_blank" class="sponsor-tag">
+            Association of Commonwealth Universities (ACU)
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.d2l.com/" target="_blank" class="sponsor-tag">
+            D2L Innovation Guild
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.linamar.com/" target="_blank" class="sponsor-tag">
+            Linamar Corporation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.innovativenorth.ca/" target="_blank" class="sponsor-tag">
+            Innovative North
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+          <a href="https://www.uoguelph.ca/" target="_blank" class="sponsor-tag">
+            University of Guelph
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer__content">
+        <a href="../" class="footer__logo">
+          <img src="../MISL_black_transparent_simple_pcb_true_mirror_wordmark_only.svg" class="nav__logo-img" alt="MIS Lab logo" />
+          Manufacturing and Intelligent Systems (MIS) Lab
+        </a>
+        <div class="footer__links">
+          <a href="../research/" class="footer__link">Research</a>
+          <a href="../people/" class="footer__link">People</a>
+          <a href="../publications/" class="footer__link">Publications</a>
+          <a href="../opening/" class="footer__link">Openings</a>
+          <a href="../teaching/" class="footer__link">Teaching</a>
+          <a href="https://www.uoguelph.ca/engineering/" target="_blank" class="footer__link">College of Engineering</a>
+        </div>
+        <div class="footer__copy">© 2025 Manufacturing and Intelligent Systems (MIS) Lab · University of Guelph</div>
+      </div>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((el, i) => {
+          if (el.isIntersecting) {
+            setTimeout(() => el.target.classList.add('visible'), i * 60);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      const toggle = document.querySelector('.nav__toggle');
+      const navLinks = document.querySelector('.nav__links');
+      toggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        toggle.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open);
+      });
+      navLinks.querySelectorAll('.nav__link').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav')) {
+          navLinks.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    </script>
+
+  </body>
+</html>
