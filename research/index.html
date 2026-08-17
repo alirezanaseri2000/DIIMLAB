@@ -27,7 +27,7 @@
         --radius-sm: 8px;
         --font: 'Plus Jakarta Sans', sans-serif;
         --transition: 0.25s ease;
-        --nav-h: 70px;
+        --nav-h: 84px;
       }
 
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,7 +52,7 @@
         display: flex; align-items: center; gap: 10px;
         font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--color-text);
       }
-      .nav__logo-img { width: 40px; height: 40px; border-radius: 8px; object-fit: contain; flex-shrink: 0; }
+      .nav__logo-img { width: 60px; height: 60px; border-radius: 8px; object-fit: contain; flex-shrink: 0; }
       .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
       .nav__link {
         padding: 7px 14px; border-radius: var(--radius-sm);
@@ -157,24 +157,40 @@
       .sponsors-grid {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
       }
       .sponsor-tag {
-        display: inline-flex; align-items: center; gap: 6px;
-        font-size: 0.875rem; font-weight: 600;
-        color: var(--color-text);
+        display: inline-flex; align-items: center; justify-content: center;
         background: #ffffff;
         border: 1px solid var(--color-border);
-        padding: 10px 20px; border-radius: 100px;
+        border-radius: var(--radius);
+        padding: 14px 20px;
         box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-        transition: border-color var(--transition), box-shadow var(--transition), color var(--transition);
+        transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+        text-decoration: none;
       }
       .sponsor-tag:hover {
         border-color: rgba(37,99,235,0.3);
         box-shadow: 0 4px 16px rgba(37,99,235,0.08);
-        color: var(--color-accent);
+        transform: translateY(-2px);
       }
-      .sponsor-tag svg { width: 13px; height: 13px; opacity: 0.5; flex-shrink: 0; }
+      .sponsor-tag img {
+        height: 50px;
+        width: auto;
+        max-width: 160px;
+        object-fit: contain;
+        display: block;
+        filter: grayscale(20%);
+        transition: filter var(--transition);
+      }
+      .sponsor-tag:hover img { filter: grayscale(0%); }
+      .sponsor-tag--text {
+        font-size: 0.875rem; font-weight: 600; color: var(--color-text);
+        padding: 14px 22px;
+      }
+      .sponsor-tag--text:hover { color: var(--color-accent); }
 
       /* ─── FOOTER ─────────────────────────────────────────────── */
       .footer {
@@ -244,7 +260,7 @@
       <div class="nav__container">
         <a href="../" class="nav__logo">
           <img src="../MISL_black_transparent_simple_pcb_true_mirror_wordmark_only.svg" class="nav__logo-img" alt="MIS Lab logo" />
-          Manufacturing and Intelligent Systems (MIS) Lab
+          MIS Lab
         </a>
         <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -386,92 +402,48 @@
 
         <div class="sponsors-grid fade-in">
 
-          <a href="https://www.nserc-crsng.gc.ca/" target="_blank" class="sponsor-tag">
-            NSERC / CRSNG
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.nserc-crsng.gc.ca/" target="_blank" class="sponsor-tag" title="NSERC / CRSNG">
+            <img src="../images/sponsors/NSERC.png" alt="NSERC / CRSNG" />
           </a>
 
-          <a href="https://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/nfrf-fnfr-eng.aspx" target="_blank" class="sponsor-tag">
-            New Frontiers in Research Fund (NFRF)
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.sshrc-crsh.gc.ca/funding-financement/programs-programmes/nfrf-fnfr-eng.aspx" target="_blank" class="sponsor-tag" title="New Frontiers in Research Fund (NFRF)">
+            <img src="../images/sponsors/NFRF.jpg" alt="New Frontiers in Research Fund (NFRF)" />
           </a>
 
-          <a href="https://www.canada.ca/en/department-national-defence.html" target="_blank" class="sponsor-tag">
-            Department of National Defence (DND)
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.canada.ca/en/department-national-defence.html" target="_blank" class="sponsor-tag" title="Department of National Defence (DND)">
+            <img src="../images/sponsors/DND.png" alt="Department of National Defence (DND)" />
           </a>
 
-          <a href="https://www.ontario.ca/page/ministry-agriculture-food-rural-affairs" target="_blank" class="sponsor-tag">
-            Ontario Ministry of Agriculture, Food &amp; Rural Affairs (OMAFA)
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.ontario.ca/page/ministry-agriculture-food-rural-affairs" target="_blank" class="sponsor-tag" title="Ontario Ministry of Agriculture, Food & Rural Affairs (OMAFA)">
+            <img src="../images/sponsors/OMAFRA.png" alt="Ontario Ministry of Agriculture, Food & Rural Affairs" />
           </a>
 
-          <a href="https://www.oc-innovation.ca/" target="_blank" class="sponsor-tag">
-            Ontario Centres of Innovation (OCI)
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.oc-innovation.ca/" target="_blank" class="sponsor-tag" title="Ontario Centres of Innovation (OCI)">
+            <img src="../images/sponsors/OCI.png" alt="Ontario Centres of Innovation (OCI)" />
           </a>
 
-          <a href="https://www.mitacs.ca/" target="_blank" class="sponsor-tag">
-            Mitacs
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.mitacs.ca/" target="_blank" class="sponsor-tag" title="Mitacs">
+            <img src="../images/sponsors/Mitacs.png" alt="Mitacs" />
           </a>
 
-          <a href="https://www.acu.ac.uk/" target="_blank" class="sponsor-tag">
-            Association of Commonwealth Universities (ACU)
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.acu.ac.uk/" target="_blank" class="sponsor-tag" title="Association of Commonwealth Universities (ACU)">
+            <img src="../images/sponsors/ACU_Logo.jpg" alt="Association of Commonwealth Universities (ACU)" />
           </a>
 
-          <a href="https://www.d2l.com/" target="_blank" class="sponsor-tag">
-            D2L Innovation Guild
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.d2l.com/" target="_blank" class="sponsor-tag" title="D2L Innovation Guild">
+            <img src="../images/sponsors/D2L.png" alt="D2L Innovation Guild" />
           </a>
 
-          <a href="https://www.linamar.com/" target="_blank" class="sponsor-tag">
-            Linamar Corporation
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.linamar.com/" target="_blank" class="sponsor-tag" title="Linamar Corporation">
+            <img src="../images/sponsors/Linamar.png" alt="Linamar Corporation" />
           </a>
 
-          <a href="https://www.innovativenorth.ca/" target="_blank" class="sponsor-tag">
-            Innovative North
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.innovativenorth.ca/" target="_blank" class="sponsor-tag" title="Innovative North">
+            <img src="../images/sponsors/InnovativeNorth.png" alt="Innovative North" />
           </a>
 
-          <a href="https://www.uoguelph.ca/" target="_blank" class="sponsor-tag">
-            University of Guelph
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+          <a href="https://www.uoguelph.ca/" target="_blank" class="sponsor-tag" title="University of Guelph">
+            <img src="../images/sponsors/Guelph_icon.jpg" alt="University of Guelph" />
           </a>
 
         </div>
@@ -483,7 +455,7 @@
       <div class="footer__content">
         <a href="../" class="footer__logo">
           <img src="../MISL_black_transparent_simple_pcb_true_mirror_wordmark_only.svg" class="nav__logo-img" alt="MIS Lab logo" />
-          Manufacturing and Intelligent Systems (MIS) Lab
+          MIS Lab
         </a>
         <div class="footer__links">
           <a href="../research/" class="footer__link">Research</a>
@@ -493,7 +465,7 @@
           <a href="../teaching/" class="footer__link">Teaching</a>
           <a href="https://www.uoguelph.ca/engineering/" target="_blank" class="footer__link">College of Engineering</a>
         </div>
-        <div class="footer__copy">© 2025 Manufacturing and Intelligent Systems (MIS) Lab · University of Guelph</div>
+        <div class="footer__copy">© 2025 MIS Lab · University of Guelph</div>
       </div>
     </footer>
 
