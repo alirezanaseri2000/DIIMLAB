@@ -87,20 +87,41 @@
       }
       .nav__link--cta:hover { background: #2563eb; color: #fff; }
 
+      /* ─── PARALLAX BANNER ────────────────────────────────────── */
+      .site-banner {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - var(--nav-h));
+        margin-top: var(--nav-h);
+        background: url('banner.jpg') center / cover no-repeat;
+        background-attachment: fixed;
+        overflow: hidden;
+        will-change: background-position;
+      }
+      .site-banner__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.08) 0%,
+          rgba(0, 0, 0, 0.28) 70%,
+          rgba(255, 255, 255, 0.55) 100%
+        );
+      }
+      /* iOS / mobile: background-attachment:fixed not supported */
+      @media (max-width: 768px) {
+        .site-banner {
+          background-attachment: scroll;
+        }
+      }
+
       /* ─── HERO ───────────────────────────────────────────────── */
       .hero {
-        position: relative; min-height: 100vh;
+        position: relative;
         display: flex; align-items: center;
         overflow: hidden;
-        padding-top: var(--nav-h);
+        padding: 80px 24px;
         background: #ffffff;
-      }
-      .hero__image {
-        position: absolute; inset: 0; z-index: 0;
-      }
-      .hero__image img {
-        width: 100%; height: 100%; object-fit: cover;
-        opacity: 0.06;
       }
       .hero__bg {
         position: absolute; inset: 0; z-index: 1;
@@ -112,7 +133,7 @@
       }
       .hero__content {
         position: relative; z-index: 2;
-        max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        max-width: 1200px; margin: 0 auto;
         display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
         width: 100%;
       }
@@ -437,16 +458,17 @@
           <li><a href="publications/" class="nav__link">Publications</a></li>
           <li><a href="opening/" class="nav__link">Openings</a></li>
           <li><a href="teaching/" class="nav__link">Teaching</a></li>
-          <li><a href="contact/" class="nav__link nav__link--cta">Contact</a></li>
         </ul>
       </div>
     </nav>
 
+    <!-- ── PARALLAX BANNER ──────────────────────────────────────── -->
+    <div class="site-banner" id="site-banner">
+      <div class="site-banner__overlay"></div>
+    </div>
+
     <!-- ── HERO ─────────────────────────────────────────────────── -->
     <section class="hero">
-      <div class="hero__image">
-        <img src="images/hero.jpg" alt="" aria-hidden="true" />
-      </div>
       <div class="hero__bg"></div>
       <div class="hero__grid"></div>
 
@@ -710,6 +732,20 @@
     </footer>
 
     <script>
+      // Parallax banner
+      (function () {
+        const banner = document.getElementById('site-banner');
+        if (!banner) return;
+        // Only apply JS parallax on non-touch devices (where CSS fixed bg is unreliable)
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) return;
+        window.addEventListener('scroll', function () {
+          const scrolled = window.pageYOffset;
+          // Move background at 40% of scroll speed → slower = parallax depth
+          banner.style.backgroundPositionY = 'calc(50% + ' + (scrolled * 0.4) + 'px)';
+        }, { passive: true });
+      })();
+
       // Fade-in on scroll
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(el => {
