@@ -212,21 +212,20 @@
 
       /* ─── SPONSORS ────────────────────────────────────────────── */
       .sponsors-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        align-items: center;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
       }
       .sponsor-tag {
-        display: inline-flex; align-items: center; justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         background: #ffffff;
         border: 1px solid var(--color-border);
         border-radius: var(--radius);
-        padding: 14px 20px;
+        padding: 24px 20px;
         box-shadow: 0 1px 6px rgba(0,0,0,0.04);
         transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
         text-decoration: none;
+        min-height: 120px;
       }
       .sponsor-tag:hover {
         border-color: rgba(37,99,235,0.3);
@@ -234,9 +233,9 @@
         transform: translateY(-2px);
       }
       .sponsor-tag img {
-        height: 50px;
+        height: 80px;
         width: auto;
-        max-width: 160px;
+        max-width: 220px;
         object-fit: contain;
         display: block;
         filter: grayscale(20%);
@@ -248,6 +247,8 @@
         padding: 14px 22px;
       }
       .sponsor-tag--text:hover { color: var(--color-accent); }
+      @media (max-width: 900px) { .sponsors-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 480px) { .sponsors-grid { grid-template-columns: 1fr; } }
 
       /* ─── FOOTER ─────────────────────────────────────────────── */
       .footer {
@@ -325,7 +326,7 @@
         <ul class="nav__links">
           <li><a href="../" class="nav__link">Home</a></li>
           <li><a href="../research/" class="nav__link nav__link--active">Research</a></li>
-          <li><a href="../people/" class="nav__link">People</a></li>
+          <li><a href="../people/" class="nav__link">Team</a></li>
           <li><a href="../publications/" class="nav__link">Publications</a></li>
           <li><a href="../opening/" class="nav__link">Openings</a></li>
           <li><a href="../teaching/" class="nav__link">Teaching</a></li>
@@ -583,7 +584,7 @@
         </a>
         <div class="footer__links">
           <a href="../research/" class="footer__link">Research</a>
-          <a href="../people/" class="footer__link">People</a>
+          <a href="../people/" class="footer__link">Team</a>
           <a href="../publications/" class="footer__link">Publications</a>
           <a href="../opening/" class="footer__link">Openings</a>
           <a href="../teaching/" class="footer__link">Teaching</a>
