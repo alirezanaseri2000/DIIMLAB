@@ -152,6 +152,63 @@
 
       .pillar-card__title { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
       .pillar-card__desc { font-size: 0.875rem; color: var(--color-muted); line-height: 1.75; }
+      .pillar-card__projects {
+        list-style: none; padding: 0; margin-top: 4px;
+        display: flex; flex-direction: column; gap: 5px;
+      }
+      .pillar-card__projects li {
+        font-size: 0.8rem; color: var(--color-muted);
+        display: flex; align-items: flex-start; gap: 7px;
+        line-height: 1.5;
+      }
+      .pillar-card__projects li::before {
+        content: '→'; color: var(--color-accent); font-weight: 700;
+        flex-shrink: 0; margin-top: 0px;
+      }
+      .pillar-card__link {
+        display: inline-flex; align-items: center; gap: 5px;
+        font-size: 0.78rem; font-weight: 600; color: var(--color-accent);
+        margin-top: 6px; transition: gap var(--transition);
+      }
+      .pillar-card__link:hover { gap: 8px; }
+      .pillar-card__link svg { width: 12px; height: 12px; }
+      a.pillar-card { text-decoration: none; cursor: pointer; }
+
+      /* ─── LAB FACILITY ────────────────────────────────────────── */
+      .facility-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .facility-card {
+        background: #ffffff;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+      }
+      .facility-card:hover {
+        box-shadow: 0 8px 28px rgba(37,99,235,0.09);
+        border-color: rgba(37,99,235,0.2);
+        transform: translateY(-2px);
+      }
+      .facility-card img {
+        width: 100%; height: 200px; object-fit: cover; display: block;
+      }
+      .facility-card__caption {
+        padding: 14px 16px;
+        font-size: 0.85rem; font-weight: 600; color: var(--color-text);
+      }
+      .facility-card__sub {
+        font-size: 0.78rem; color: var(--color-muted); margin-top: 3px; font-weight: 400;
+      }
+      @media (max-width: 768px) {
+        .facility-grid { grid-template-columns: 1fr; }
+      }
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .facility-grid { grid-template-columns: repeat(2, 1fr); }
+      }
 
       /* ─── SPONSORS ────────────────────────────────────────────── */
       .sponsors-grid {
@@ -272,7 +329,6 @@
           <li><a href="../publications/" class="nav__link">Publications</a></li>
           <li><a href="../opening/" class="nav__link">Openings</a></li>
           <li><a href="../teaching/" class="nav__link">Teaching</a></li>
-          <li><a href="../contact/" class="nav__link nav__link--cta">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -329,7 +385,7 @@
 
         <div class="pillars-grid">
 
-          <div class="pillar-card fade-in">
+          <a href="smart-manufacturing/" class="pillar-card fade-in">
             <div class="pillar-card__icon pillar-card__icon--blue">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
@@ -339,11 +395,18 @@
             <p class="pillar-card__desc">
               Leveraging enabling technologies — AI, digital twin, and IoT — to improve the transparency,
               traceability, efficiency, and resilience of manufacturing processes and systems.
-              Intelligent, adaptive, and resilient production systems.
             </p>
-          </div>
+            <ul class="pillar-card__projects">
+              <li>Project 1</li>
+              <li>Project 2</li>
+            </ul>
+            <span class="pillar-card__link">
+              View projects
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
 
-          <div class="pillar-card fade-in">
+          <a href="personalized-design/" class="pillar-card fade-in">
             <div class="pillar-card__icon pillar-card__icon--teal">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
@@ -354,11 +417,18 @@
             <p class="pillar-card__desc">
               Developing data-driven methods and AI to support mass customization of personalized
               products and services, including personalized human-robot collaboration systems.
-              Custom solutions for people, production, and systems.
             </p>
-          </div>
+            <ul class="pillar-card__projects">
+              <li>Project 1</li>
+              <li>Project 2</li>
+            </ul>
+            <span class="pillar-card__link">
+              View projects
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
 
-          <div class="pillar-card fade-in">
+          <a href="precision-agriculture/" class="pillar-card fade-in">
             <div class="pillar-card__icon pillar-card__icon--gold">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/>
@@ -368,11 +438,18 @@
             <p class="pillar-card__desc">
               Developing novel AI tools to support smart decision-making, autonomous control of greenhouse
               operations, and knowledge reuse for food and farm systems.
-              Autonomous solutions for food and farms.
             </p>
-          </div>
+            <ul class="pillar-card__projects">
+              <li>Project 1</li>
+              <li>Project 2</li>
+            </ul>
+            <span class="pillar-card__link">
+              View projects
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
 
-          <div class="pillar-card fade-in">
+          <a href="green-energy/" class="pillar-card fade-in">
             <div class="pillar-card__icon pillar-card__icon--green">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M2 20h20M5 20V10l7-7 7 7v10M9 20v-5h6v5"/>
@@ -382,9 +459,16 @@
             <p class="pillar-card__desc">
               Leveraging advanced manufacturing processes (e.g., additive manufacturing) and AI to support
               upcycling of EV batteries and agricultural waste into bio-fuel.
-              Energy system optimization and upcycling.
             </p>
-          </div>
+            <ul class="pillar-card__projects">
+              <li>Project 1</li>
+              <li>Project 2</li>
+            </ul>
+            <span class="pillar-card__link">
+              View projects
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
 
         </div>
       </div>
@@ -445,6 +529,46 @@
           <a href="https://www.uoguelph.ca/" target="_blank" class="sponsor-tag" title="University of Guelph">
             <img src="../images/sponsors/Guelph_icon.jpg" alt="University of Guelph" />
           </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         LAB FACILITY
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="research-section research-section--alt">
+      <div class="section-inner">
+        <div class="section-divider fade-in">
+          <span class="section-divider__title">Lab Facility</span>
+          <div class="section-divider__line"></div>
+        </div>
+
+        <div class="facility-grid">
+
+          <div class="facility-card fade-in">
+            <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/research/fms.jpg" alt="Flexible Manufacturing System" loading="lazy" />
+            <div class="facility-card__caption">
+              Flexible Manufacturing System (FMS)
+              <div class="facility-card__sub">Smart Manufacturing Cell</div>
+            </div>
+          </div>
+
+          <div class="facility-card fade-in">
+            <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/research/quest2.jpg" alt="Oculus Quest 2 VR Headset" loading="lazy" />
+            <div class="facility-card__caption">
+              Oculus Quest 2
+              <div class="facility-card__sub">VR / Human-Robot Collaboration</div>
+            </div>
+          </div>
+
+          <div class="facility-card fade-in">
+            <img src="https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/research/methodx.png" alt="Makerbot Method X Composite Printer" loading="lazy" />
+            <div class="facility-card__caption">
+              Makerbot Method X
+              <div class="facility-card__sub">Composite Additive Manufacturing</div>
+            </div>
+          </div>
 
         </div>
       </div>
