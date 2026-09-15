@@ -28,21 +28,6 @@
   },
   "current": [
     {
-      "group": "Research Staff",
-      "members": [
-        {
-          "name": "Mohammadreza Zare",
-          "degree": "Research Staff",
-          "topic": "Soilless growing media knowledge representation and learning",
-          "education": "B.S. University of Tehran",
-          "email": "zare@uoguelph.ca",
-          "period": "2025 – Present",
-          "photo": "../images/people/mohammadreza_zare.jpg",
-          "linkedin": ""
-        }
-      ]
-    },
-    {
       "group": "PhD Students",
       "members": [
         {
@@ -92,7 +77,7 @@
       "members": [
         {
           "name": "Syad Khwajazada",
-          "degree": "MASc Student",
+          "degree": "Master's Student",
           "topic": "Human-robot collaboration for assembly",
           "education": "B.S. University of Guelph",
           "email": "",
@@ -102,7 +87,7 @@
         },
         {
           "name": "Umair Asim",
-          "degree": "MASc Student",
+          "degree": "Master's Student",
           "topic": "Human-AI collaboration",
           "education": "B.S. National University of Sciences and Technology",
           "email": "",
@@ -112,7 +97,7 @@
         },
         {
           "name": "Hussein Abdulsada",
-          "degree": "MASc Student",
+          "degree": "Master's Student",
           "topic": "Virtual robot learning",
           "education": "B.S. McMaster University",
           "email": "",
@@ -122,13 +107,43 @@
         },
         {
           "name": "Kendal Cabral",
-          "degree": "MEnv Student",
+          "degree": "Master's Student",
           "topic": "Soilless growing media design",
           "education": "B.S. University of British Columbia",
           "email": "",
           "period": "2025 – Present",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/kendal_cabral.jpg",
           "linkedin": "https://www.linkedin.com/in/kendal-cabral-922806344/"
+        },
+        {
+          "name": "Mohammadreza Zare",
+          "degree": "Master's Student",
+          "topic": "Soilless growing media knowledge representation and learning",
+          "education": "B.S. University of Tehran",
+          "email": "zare@uoguelph.ca",
+          "period": "2025 – Present",
+          "photo": "../images/people/mohammadreza_zare.jpg",
+          "linkedin": ""
+        },
+        {
+          "name": "Hunter Adelson",
+          "degree": "Master's Student",
+          "topic": "UAV for strawberry pollination",
+          "education": "B.S. University of Guelph",
+          "email": "",
+          "period": "2026 – Present",
+          "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/hunter_adelson.jpg",
+          "linkedin": "https://www.linkedin.com/in/hunter-adelson-019414271/"
+        },
+        {
+          "name": "Saim Azfar",
+          "degree": "Master's Student",
+          "topic": "Human-AI collaboration for nuclear power plant",
+          "education": "B.S. York University",
+          "email": "",
+          "period": "2026 – Present",
+          "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/saim_azfar.jpg",
+          "linkedin": ""
         }
       ]
     },
@@ -141,28 +156,28 @@
           "topic": "Robotic gripper design",
           "education": "Systems and Computing Engineering, University of Guelph",
           "email": "",
-          "period": "2025 – Present",
+          "period": "2026 – Present",
           "photo": "",
           "linkedin": ""
         },
         {
-          "name": "Ahmad Alwan",
-          "degree": "URA",
-          "topic": "AM quality prediction",
-          "education": "Computer Engineering, University of Guelph",
+          "name": "Yiying Mo",
+          "degree": "Mitacs Intern",
+          "topic": "Human digital twin simulation",
+          "education": "Information and Computing Science, South China Agricultural University",
           "email": "",
-          "period": "2025 – Present",
-          "photo": "",
+          "period": "2026 – Present",
+          "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/yiying_mo.jpg",
           "linkedin": ""
         },
         {
-          "name": "Abdelrhman Aldeeb",
-          "degree": "URA",
-          "topic": "AM quality prediction",
-          "education": "Computer Engineering, McMaster University",
+          "name": "Arwa Mahwash",
+          "degree": "Mitacs Intern",
+          "topic": "AI for soilless growing media design",
+          "education": "Computer Science, University of Engineering and Technology, Lahore",
           "email": "",
-          "period": "2025 – Present",
-          "photo": "",
+          "period": "2026 – Present",
+          "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/arwa_mahwash.jpg",
           "linkedin": ""
         }
       ]
@@ -175,13 +190,15 @@
         {
           "name": "Dr. Junfei Li",
           "detail": "Postdoctoral Fellow → Assistant Professor, Lakehead University",
+          "education": "Ph.D. University of Guelph · B.S. Chongqing University of Posts and Telecommunications",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/junfei_li.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/junfei-li-844471293/",
           "year": "2022 – 2024"
         },
         {
           "name": "Dr. Ahmad Naser",
           "detail": "Research Associate → Assistant Professor, University of Manitoba",
+          "education": "Ph.D. University of Guelph · M.S. American University of Sharjah · B.S. American University of Sharjah",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/ahmad_naser.jpg",
           "linkedin": "",
           "year": "2023 – 2024"
@@ -189,6 +206,7 @@
         {
           "name": "Charity Yeboaa",
           "detail": "Research Intern — Industry big data analytics",
+          "education": "M.S. University of Guelph · B.S. University for Development Studies",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/charity_yeboaa.jpg",
           "linkedin": "",
           "year": "2022 – 2023"
@@ -196,13 +214,15 @@
         {
           "name": "Tony Zhang",
           "detail": "Research Intern — Industry big data analytics",
+          "education": "M.S. University of Guelph · B.S. University of Toronto",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/tony_zhang.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/tony19990329/",
           "year": "2022 – 2023"
         },
         {
           "name": "Jonathan Millman",
           "detail": "Research Assistant — Novel optimized cores for multi-blast sandwich shields",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/jonathan_millman.jpg",
           "linkedin": "",
           "year": "2021 – 2021"
@@ -215,13 +235,15 @@
         {
           "name": "Vahid Haseltalab",
           "detail": "PhD, Mechanical Engineering → Postdoctoral Fellow, Toronto Metropolitan University",
+          "education": "M.S. Middle East Technical University · B.S. Mashhad Technical University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/vahid_haseltalab.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/vhaseltalab/",
           "year": "2021 – 2025"
         },
         {
           "name": "Ahmad Naser",
           "detail": "PhD, Mechanical Engineering → Assistant Professor, University of Manitoba",
+          "education": "M.S. American University of Sharjah · B.S. American University of Sharjah",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/ahmad_naser.jpg",
           "linkedin": "",
           "year": "2020 – 2023"
@@ -233,128 +255,146 @@
       "members": [
         {
           "name": "Alireza Naseri",
-          "detail": "MASc, Engineering Systems & Computing → Research Associate, University of Guelph",
+          "detail": "Master's, Engineering Systems & Computing → Research Associate, University of Guelph",
+          "education": "B.S. K.N. Toosi University of Technology",
           "photo": "../images/people/alireza_naseri.jpg",
           "linkedin": "",
           "year": "2024 – 2026"
         },
         {
           "name": "Da Long",
-          "detail": "MASc, Mechanical Engineering → PhD Student, UBC",
+          "detail": "Master's, Mechanical Engineering → PhD Student, UBC",
+          "education": "B.S. Beihang University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/da_long.jpg",
           "linkedin": "",
           "year": "2023 – 2025"
         },
         {
           "name": "Anna Mafor",
-          "detail": "MASc, Engineering Systems & Computing → PhD Student, University of Guelph",
+          "detail": "Master's, Engineering Systems & Computing → PhD Student, University of Guelph",
+          "education": "B.S. University of Bamenda",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/anna_mafor.jpg",
           "linkedin": "",
           "year": "2023 – 2025"
         },
         {
           "name": "Zezhong Yu",
-          "detail": "MASc, Computer Engineering → Research Assistant, University of Guelph",
+          "detail": "Master's, Computer Engineering → Research Assistant, University of Guelph",
+          "education": "M.S. University of Science and Technology of China · B.S. Shandong Normal University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/zezhong_yu.jpg",
           "linkedin": "",
           "year": "2023 – 2025"
         },
         {
           "name": "Manal Behih",
-          "detail": "MASc, Engineering Systems & Computing → Electrical Engineering Technologist, Edge Design & Engineering",
+          "detail": "Master's, Engineering Systems & Computing → Electrical Engineering Technologist, Edge Design & Engineering",
+          "education": "B.S. McMaster University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/manal_behih.jpg",
           "linkedin": "",
           "year": "2023 – 2025"
         },
         {
           "name": "Patrick Haynes",
-          "detail": "MASc, Mechanical Engineering → Mechanical Engineer, Westinghouse Canada",
+          "detail": "Master's, Mechanical Engineering → Mechanical Engineer, Westinghouse Canada",
+          "education": "B.S. Queen's University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/patrick_haynes.jpg",
           "linkedin": "",
           "year": "2021 – 2023"
         },
         {
           "name": "Vipul Patel",
-          "detail": "MASc, Mechanical Engineering",
+          "detail": "Master's, Mechanical Engineering",
+          "education": "B.S. G.H. Patel College of Engineering and Technology",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/vipul_patel.jpg",
           "linkedin": "",
           "year": "2021 – 2023"
         },
         {
           "name": "Carter Powell",
-          "detail": "MASc, Mechanical Engineering → Director of R&D, NEEB Engineering",
+          "detail": "Master's, Mechanical Engineering → Director of R&D, NEEB Engineering",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/carter_powell.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/carter-p/",
           "year": "2021 – 2023"
         },
         {
           "name": "Md Tahmid Bin Touhid",
-          "detail": "MASc, Engineering Systems & Computing → Research Assistant, University of Guelph",
+          "detail": "Master's, Engineering Systems & Computing → Research Assistant, University of Guelph",
+          "education": "B.S. University of Malaya",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/md_tahmid_bin_touhid.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/tahmid-touhid/",
           "year": "2021 – 2023"
         },
         {
           "name": "Sayed Amirhossein Mirahmadi",
-          "detail": "MASc, Computer Engineering → Software Design Engineer, AGDATA",
+          "detail": "Master's, Computer Engineering → Software Design Engineer, AGDATA",
+          "education": "B.S. University of Shahrekord",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/sayed_amirhossein_mirahmadi.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/amirhm97/",
           "year": "2021 – 2023"
         },
         {
           "name": "Jimit Vyas",
-          "detail": "MASc, Mechanical Engineering",
+          "detail": "Master's, Mechanical Engineering",
+          "education": "B.S. Gujarat Technological University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/jimit_vyas.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/jimit-vyas-1b042519b/",
           "year": "2021 – 2023"
         },
         {
           "name": "Nilmadhav Godhani",
-          "detail": "MASc, Mechanical Engineering",
+          "detail": "Master's, Mechanical Engineering",
+          "education": "B.S. Gujarat Technological University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/nilmadhav_godhani.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/nilmadhav-godhani-6a920616a/",
           "year": "2021 – 2023"
         },
         {
           "name": "Puravkumar Patel",
-          "detail": "MASc, Mechanical Engineering",
+          "detail": "Master's, Mechanical Engineering",
+          "education": "B.S. A D Patel Institute of Technology",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/puravkumar_patel.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/patel-purav-0a5724148/",
           "year": "2021 – 2023"
         },
         {
           "name": "Akash Shashikant Tiwari",
-          "detail": "MASc, Mechanical Engineering → Quality Control Engineer, Linamar",
+          "detail": "Master's, Mechanical Engineering → Quality Control Engineer, Linamar",
+          "education": "B.S. SVKM's NMIMS University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/akash_shashikant_tiwari.jpg",
           "linkedin": "",
           "year": "2020 – 2022"
         },
         {
           "name": "Purvatya Vishwash Patel",
-          "detail": "MEng, Mechanical Engineering → Instructional Designer, Canada Life",
+          "detail": "Master's, Mechanical Engineering → Instructional Designer, Canada Life",
+          "education": "B.S. Uka Tarsadia University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/purvatya_vishwash_patel.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/purvatya/",
           "year": "2020 – 2021"
         },
         {
           "name": "Pinkesh Patel",
-          "detail": "MEng, Mechanical Engineering → Project Control Coordinator, BWXT Canada",
+          "detail": "Master's, Mechanical Engineering → Project Control Coordinator, BWXT Canada",
+          "education": "B.S. Sardar Patel University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/pinkesh_patel.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/pinkesh-patel88/",
           "year": "2020 – 2021"
         },
         {
           "name": "Mrunal Sangramsinh Marne",
-          "detail": "MEng, Engineering Systems & Computing → Software Test Engineer, TCS",
+          "detail": "Master's, Engineering Systems & Computing → Software Test Engineer, TCS",
+          "education": "B.S. Sardar Vallabhai Patel Institute of Technology",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/mrunal_sangramsinh_marne.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/mrunalmarne/",
           "year": "2020 – 2020"
         },
         {
           "name": "Manan Desai",
-          "detail": "MEng, Engineering Systems & Computing → Software Test Engineer, TCS",
+          "detail": "Master's, Engineering Systems & Computing → Software Test Engineer, TCS",
+          "education": "B.S. Charusat University",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/manan_desai.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/manandesai98/",
           "year": "2020 – 2020"
         }
       ]
@@ -363,15 +403,33 @@
       "group": "Undergraduate & Intern Alumni",
       "members": [
         {
+          "name": "Ahmad Alwan",
+          "detail": "URA, Computer Engineering, University of Guelph",
+          "education": "B.S. University of Guelph",
+          "photo": "",
+          "linkedin": "",
+          "year": "2026"
+        },
+        {
+          "name": "Abdelrhman Aldeeb",
+          "detail": "URA, Computer Engineering, McMaster University",
+          "education": "B.S. McMaster University",
+          "photo": "",
+          "linkedin": "",
+          "year": "2026"
+        },
+        {
           "name": "Sebastian Valencia",
           "detail": "Mitacs Globalink Intern, Engineering Physics",
+          "education": "B.S. Universidad Nacional de Colombia",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/sebastian_valencia.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/sebasgaviriav/",
           "year": "2025"
         },
         {
           "name": "Timothy Khan",
           "detail": "USRA, Biomedical Engineering",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/timothy_khan.jpg",
           "linkedin": "",
           "year": "2025"
@@ -379,13 +437,15 @@
         {
           "name": "Jasmun Banwait",
           "detail": "URA, Biomedical Engineering",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/jasmun_banwait.jpg",
           "linkedin": "",
-          "year": "2025"
+          "year": "2024 – 2025"
         },
         {
           "name": "Vidhi Patel",
           "detail": "URA, Biomedical Engineering",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/vidhi_patel.jpg",
           "linkedin": "",
           "year": "2024"
@@ -393,13 +453,15 @@
         {
           "name": "Alejandro Moreno",
           "detail": "Mitacs Globalink Intern, Mechanical Engineering",
+          "education": "B.S. Universidad Nacional de Colombia",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/alejandro_moreno.jpg",
-          "linkedin": "",
+          "linkedin": "https://www.linkedin.com/in/alejandro-pineros-moreno/",
           "year": "2024"
         },
         {
           "name": "Saloni Upadhyay",
           "detail": "Mitacs Globalink Intern, Mechanical Engineering",
+          "education": "B.S. Dayalbagh Educational Institute",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/saloni_upadhyay.jpg",
           "linkedin": "",
           "year": "2024"
@@ -407,6 +469,7 @@
         {
           "name": "Yasser Hariri",
           "detail": "URA, Biomedical Engineering",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/yasser_hariri.jpg",
           "linkedin": "",
           "year": "2023"
@@ -414,6 +477,7 @@
         {
           "name": "Celina Zhou",
           "detail": "URA, Biomedical Engineering",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/celina_zhou.jpg",
           "linkedin": "",
           "year": "2023"
@@ -421,6 +485,7 @@
         {
           "name": "Xiaoqing Zhao",
           "detail": "URA, Mechanical Engineering",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/xiaoqing_zhao.jpg",
           "linkedin": "",
           "year": "2023"
@@ -428,6 +493,7 @@
         {
           "name": "Taha Memon",
           "detail": "URA, Computer Science",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/taha_memon.jpg",
           "linkedin": "",
           "year": "2023"
@@ -435,6 +501,7 @@
         {
           "name": "Kritika Khanna",
           "detail": "URA, Biomedical Engineering",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/kritika_khanna.jpg",
           "linkedin": "",
           "year": "2023"
@@ -442,6 +509,7 @@
         {
           "name": "Theodore Oskroba",
           "detail": "USRA, Computer Science",
+          "education": "B.S. University of Guelph",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/theodore_oskroba.jpg",
           "linkedin": "",
           "year": "2022"
@@ -449,6 +517,7 @@
         {
           "name": "Japhet Geonel Kijoe",
           "detail": "Mitacs Globalink Intern, Mechanical Engineering",
+          "education": "B.S. Vellore Institute of Technology",
           "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/japhet_geonel_kijoe.jpg",
           "linkedin": "",
           "year": "2022"

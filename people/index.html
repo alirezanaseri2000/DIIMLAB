@@ -388,7 +388,6 @@
           <li><a href="../" class="nav__link">Home</a></li>
           <li><a href="../research/" class="nav__link">Research</a></li>
           <li><a href="../people/" class="nav__link nav__link--active">Team</a></li>
-          <li><a href="../publications/" class="nav__link">Publications</a></li>
           <li><a href="../opening/" class="nav__link">Openings</a></li>
           <li><a href="../teaching/" class="nav__link">Teaching</a></li>
         </ul>
@@ -426,7 +425,6 @@
         <div class="footer__links">
           <a href="../research/" class="footer__link">Research</a>
           <a href="../people/" class="footer__link">Team</a>
-          <a href="../publications/" class="footer__link">Publications</a>
           <a href="../opening/" class="footer__link">Openings</a>
           <a href="https://www.youtube.com/channel/UCh6oN-DiD9h4lSHXrCd7Ccg" target="_blank" class="footer__link">YouTube</a>
           <a href="https://www.uoguelph.ca/engineering/" target="_blank" class="footer__link">College of Engineering</a>
@@ -508,14 +506,16 @@
           ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" />`
           : `<div class="member-card__photo-placeholder">👤</div>`;
 
-        const emailRow = m.email
-          ? `<div class="member-card__meta-row">${SVG_EMAIL}<a href="mailto:${esc(m.email)}">${esc(m.email)}</a></div>`
+        const linkedinBtn = m.linkedin
+          ? `<a href="${esc(m.linkedin)}" target="_blank" class="member-card__link" title="LinkedIn">${SVG_LI}</a>`
           : '';
 
-        const linkedinBtn = m.linkedin
-          ? `<div class="member-card__links">
-               <a href="${esc(m.linkedin)}" target="_blank" class="member-card__link" title="LinkedIn">${SVG_LI}</a>
-             </div>`
+        const emailBtn = m.email
+          ? `<a href="mailto:${esc(m.email)}" class="member-card__link" title="Email">${SVG_EMAIL}</a>`
+          : '';
+
+        const linksHtml = (linkedinBtn || emailBtn)
+          ? `<div class="member-card__links">${linkedinBtn}${emailBtn}</div>`
           : '';
 
         return `
@@ -527,10 +527,9 @@
               <p class="member-card__topic">${esc(m.topic)}</p>
               <div class="member-card__meta">
                 <div class="member-card__meta-row">${SVG_EDU}${esc(m.education)}</div>
-                ${emailRow}
                 <div class="member-card__meta-row">${SVG_CAL}${esc(m.period)}</div>
               </div>
-              ${linkedinBtn}
+              ${linksHtml}
             </div>
           </article>`;
       }
