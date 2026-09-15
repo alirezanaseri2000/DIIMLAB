@@ -33,6 +33,7 @@
         {
           "name": "Enshen Zhu",
           "degree": "PhD Student",
+          "start": "2023.09",
           "topic": "Human digital twin modeling and simulation",
           "education": "M.S. University of Guelph · B.S. University of Toronto",
           "email": "enshen@uoguelph.ca",
@@ -43,6 +44,7 @@
         {
           "name": "Mohammad Vahid Ehteshamfar",
           "degree": "PhD Student",
+          "start": "2021.09",
           "topic": "Digital twin for smart additive manufacturing",
           "education": "M.S. Amirkabir University of Technology · B.S. Babol Noshiravani University of Technology",
           "email": "mehtesha@uoguelph.ca",
@@ -53,6 +55,7 @@
         {
           "name": "Pranjali Sagar",
           "degree": "PhD Student",
+          "start": "2024.09",
           "topic": "AI for novel Agrifood applications",
           "education": "M.S. University of Guelph · B.S. University of Pune",
           "email": "psagar@uoguelph.ca",
@@ -63,6 +66,7 @@
         {
           "name": "Zichen Wang",
           "degree": "PhD Student",
+          "start": "2025.03",
           "topic": "Personalized robot learning",
           "education": "M.S. University of Guelph · B.S. Carnegie Mellon University",
           "email": "",
@@ -78,6 +82,7 @@
         {
           "name": "Syad Khwajazada",
           "degree": "Master's Student",
+          "start": "2025.01",
           "topic": "Human-robot collaboration for assembly",
           "education": "B.S. University of Guelph",
           "email": "",
@@ -88,6 +93,7 @@
         {
           "name": "Umair Asim",
           "degree": "Master's Student",
+          "start": "2026.01",
           "topic": "Human-AI collaboration",
           "education": "B.S. National University of Sciences and Technology",
           "email": "",
@@ -98,6 +104,7 @@
         {
           "name": "Hussein Abdulsada",
           "degree": "Master's Student",
+          "start": "2026.05",
           "topic": "Virtual robot learning",
           "education": "B.S. McMaster University",
           "email": "",
@@ -108,6 +115,7 @@
         {
           "name": "Kendal Cabral",
           "degree": "Master's Student",
+          "start": "2026.05",
           "topic": "Soilless growing media design",
           "education": "B.S. University of British Columbia",
           "email": "",
@@ -118,6 +126,7 @@
         {
           "name": "Mohammadreza Zare",
           "degree": "Master's Student",
+          "start": "2025.09",
           "topic": "Soilless growing media knowledge representation and learning",
           "education": "B.S. University of Tehran",
           "email": "zare@uoguelph.ca",
@@ -128,6 +137,7 @@
         {
           "name": "Hunter Adelson",
           "degree": "Master's Student",
+          "start": "2026.09",
           "topic": "UAV for strawberry pollination",
           "education": "B.S. University of Guelph",
           "email": "",
@@ -138,6 +148,7 @@
         {
           "name": "Saim Azfar",
           "degree": "Master's Student",
+          "start": "2026.09",
           "topic": "Human-AI collaboration for nuclear power plant",
           "education": "B.S. York University",
           "email": "",
@@ -153,6 +164,7 @@
         {
           "name": "Mostafa Radwan",
           "degree": "URA",
+          "start": "2026.05",
           "topic": "Robotic gripper design",
           "education": "Systems and Computing Engineering, University of Guelph",
           "email": "",
@@ -163,6 +175,7 @@
         {
           "name": "Yiying Mo",
           "degree": "Mitacs Intern",
+          "start": "2026.06",
           "topic": "Human digital twin simulation",
           "education": "Information and Computing Science, South China Agricultural University",
           "email": "",
@@ -173,6 +186,7 @@
         {
           "name": "Arwa Mahwash",
           "degree": "Mitacs Intern",
+          "start": "2026.07",
           "topic": "AI for soilless growing media design",
           "education": "Computer Science, University of Engineering and Technology, Lahore",
           "email": "",
