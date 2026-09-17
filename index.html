@@ -104,9 +104,37 @@
         background: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0.08) 0%,
-          rgba(0, 0, 0, 0.28) 70%,
+          rgba(0, 0, 0, 0.45) 70%,
           rgba(255, 255, 255, 0.55) 100%
         );
+      }
+      .site-banner__text {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 24px;
+        z-index: 2;
+      }
+      .site-banner__headline {
+        font-size: clamp(2rem, 5vw, 3.6rem);
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+        margin-bottom: 16px;
+      }
+      .site-banner__subline {
+        font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+        font-weight: 500;
+        color: rgba(255,255,255,0.88);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-shadow: 0 1px 10px rgba(0,0,0,0.5);
       }
       /* iOS / mobile: background-attachment:fixed not supported */
       @media (max-width: 768px) {
@@ -465,6 +493,10 @@
     <!-- ── PARALLAX BANNER ──────────────────────────────────────── -->
     <div class="site-banner" id="site-banner">
       <div class="site-banner__overlay"></div>
+      <div class="site-banner__text">
+        <div class="site-banner__headline">Intelligent Systems for a Smarter World</div>
+        <div class="site-banner__subline">AI &nbsp;·&nbsp; Digital Twins &nbsp;·&nbsp; Smart Manufacturing &nbsp;·&nbsp; Precision Agriculture &nbsp;·&nbsp; Green Energy</div>
+      </div>
     </div>
 
     <!-- ── HERO ─────────────────────────────────────────────────── -->
