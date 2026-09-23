@@ -57,8 +57,9 @@
       .nav__logo {
         display: flex; align-items: center; gap: 10px;
         font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em;
-        color: var(--color-text);
+        color: var(--color-text); line-height: 1;
       }
+      .nav__logo span { line-height: 1; align-self: center; }
       .nav__logo-icon {
         width: 34px; height: 34px;
         background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
@@ -70,6 +71,7 @@
       .nav__logo-img {
         height: 36px; width: auto;
         object-fit: contain; flex-shrink: 0;
+        align-self: center; display: block;
       }
       .nav__links {
         display: flex; align-items: center; gap: 4px; list-style: none;
@@ -130,11 +132,15 @@
       }
       .site-banner__subline {
         font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-        font-weight: 500;
-        color: rgba(255,255,255,0.88);
-        letter-spacing: 0.06em;
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+        text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 2px 24px rgba(0,0,0,0.7);
+        background: rgba(0,0,0,0.28);
+        padding: 8px 22px;
+        border-radius: 100px;
+        backdrop-filter: blur(4px);
       }
       /* iOS / mobile: background-attachment:fixed not supported */
       @media (max-width: 768px) {
@@ -509,7 +515,7 @@
           
           <h1 class="hero__title">
             Manufacturing and<br>
-            <span class="gradient-text">Intelligent Systems</span>
+            <span class="gradient-text">Intelligent Systems Lab (MISL)</span>
           </h1>
           <p class="hero__description">
             We develop next-generation intelligent engineering systems through synergistic research on AI,
@@ -535,7 +541,7 @@
             <div class="hero__stat-label">Projects</div>
           </div>
           <div class="hero__stat-card">
-            <div class="hero__stat-value">Over 2M $</div>
+            <div class="hero__stat-value">$2M+</div>
             <div class="hero__stat-label">Overall Funding</div>
           </div>
         </div>
