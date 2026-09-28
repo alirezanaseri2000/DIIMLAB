@@ -343,6 +343,96 @@
         font-size: 0.72rem; color: var(--color-muted); margin-top: 2px; line-height: 1.4;
       }
 
+      /* ─── ALUMNI FULL CARDS ─────────────────────────────────────── */
+      .alumni-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+      }
+      .alumni-card {
+        background: #ffffff; border: 1px solid var(--color-border);
+        border-radius: var(--radius); overflow: hidden;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+        transition: all var(--transition);
+        display: flex; flex-direction: column;
+      }
+      .alumni-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(37,99,235,0.1);
+        border-color: rgba(37,99,235,0.2);
+      }
+      .alumni-card__photo {
+        aspect-ratio: 1; background: var(--color-surface-2); overflow: hidden;
+      }
+      .alumni-card__photo img {
+        width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease;
+      }
+      .alumni-card:hover .alumni-card__photo img { transform: scale(1.04); }
+      .alumni-card__photo-placeholder {
+        width: 100%; height: 100%; aspect-ratio: 1;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2.5rem; color: var(--color-muted);
+        background: linear-gradient(135deg, var(--color-surface), var(--color-surface-2));
+      }
+      .alumni-card__body {
+        padding: 20px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1;
+      }
+      .alumni-card__name { font-size: 0.95rem; font-weight: 700; color: var(--color-text); }
+      .alumni-card__sep { height: 1px; background: var(--color-border); width: 100%; margin: 2px 0; }
+      .alumni-card__position { font-size: 0.8rem; color: var(--color-muted); line-height: 1.5; flex: 1; }
+      .alumni-card__meta {
+        display: flex; flex-direction: column; gap: 3px;
+        font-size: 0.75rem; color: var(--color-muted);
+        border-top: 1px solid var(--color-border); padding-top: 8px; margin-top: 4px;
+      }
+      .alumni-card__meta-row { display: flex; align-items: flex-start; gap: 5px; line-height: 1.4; }
+      .alumni-card__meta-row svg { width: 11px; height: 11px; flex-shrink: 0; margin-top: 2px; }
+      .alumni-card__links { display: flex; gap: 8px; margin-top: 2px; }
+      .alumni-card__link {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 30px; height: 30px; border-radius: 6px;
+        border: 1px solid var(--color-border); color: var(--color-muted);
+        transition: all var(--transition);
+      }
+      .alumni-card__link:hover { color: var(--color-accent); border-color: rgba(37,99,235,0.3); background: rgba(37,99,235,0.05); }
+      .alumni-card__link svg { width: 14px; height: 14px; }
+      .alumni-card__link--disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+      /* ─── ALUMNI ACCORDION ──────────────────────────────────────── */
+      .alumni-accordion {
+        background: #ffffff; border: 1px solid var(--color-border);
+        border-radius: var(--radius); overflow: hidden;
+      }
+      .alumni-accordion__header {
+        display: flex; align-items: center; gap: 12px;
+        padding: 18px 22px;
+        background: #ffffff; cursor: pointer;
+        border: none; width: 100%; text-align: left;
+        transition: background var(--transition);
+      }
+      .alumni-accordion__header:hover { background: var(--color-surface); }
+      .alumni-accordion__title {
+        font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em;
+        color: var(--color-text); flex: 1;
+      }
+      .alumni-accordion__count {
+        font-size: 0.78rem; font-weight: 600; color: var(--color-muted);
+        background: var(--color-surface-2); border: 1px solid var(--color-border);
+        padding: 3px 10px; border-radius: 100px;
+      }
+      .alumni-accordion__chevron {
+        width: 18px; height: 18px; color: var(--color-muted);
+        transition: transform 0.3s ease; flex-shrink: 0;
+      }
+      .alumni-accordion.open .alumni-accordion__chevron { transform: rotate(180deg); }
+      .alumni-accordion__content {
+        height: 0; overflow: hidden; transition: height 0.35s ease;
+      }
+      .alumni-accordion.open .alumni-accordion__content {
+        border-top: 1px solid var(--color-border);
+      }
+      .alumni-accordion__inner { padding: 20px; }
+
       /* ─── FADE IN ─────────────────────────────────────────────── */
       .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
       .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -371,6 +461,7 @@
       }
       @media (max-width: 768px) {
         .members-grid { grid-template-columns: repeat(2, 1fr); }
+        .alumni-card-grid { grid-template-columns: repeat(2, 1fr); }
         .footer__content { flex-direction: column; align-items: flex-start; }
         .nav__toggle { display: flex; }
         .nav__links {
@@ -388,6 +479,7 @@
       }
       @media (max-width: 480px) {
         .members-grid { grid-template-columns: 1fr; }
+        .alumni-card-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -611,6 +703,55 @@
           </div>`;
       }
 
+      /* ── Render a full-size alumni card (PhD / Master's) ────────── */
+      function renderAlumniCard(m) {
+        const photoContent = m.photo
+          ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" />`
+          : `<div class="alumni-card__photo-placeholder">👤</div>`;
+
+        const position = extractPosition(m.detail);
+
+        const linkedinBtn = m.linkedin
+          ? `<a href="${esc(m.linkedin)}" target="_blank" class="alumni-card__link" title="LinkedIn">${SVG_LI}</a>`
+          : `<span class="alumni-card__link alumni-card__link--disabled" title="LinkedIn">${SVG_LI}</span>`;
+
+        return `
+          <article class="alumni-card fade-in">
+            <div class="alumni-card__photo">${photoContent}</div>
+            <div class="alumni-card__body">
+              <div class="alumni-card__name">${esc(m.name)}</div>
+              <div class="alumni-card__sep"></div>
+              <p class="alumni-card__position">${esc(position)}</p>
+              <div class="alumni-card__meta">
+                <div class="alumni-card__meta-row">${SVG_EDU}${esc(m.education)}</div>
+                <div class="alumni-card__meta-row">${SVG_CAL}${esc(m.year)}</div>
+              </div>
+              <div class="alumni-card__links">${linkedinBtn}</div>
+            </div>
+          </article>`;
+      }
+
+      /* ── Accordion toggle ───────────────────────────────────────── */
+      function toggleAlumniAccordion(btn) {
+        const accordion = btn.closest('.alumni-accordion');
+        const content   = accordion.querySelector('.alumni-accordion__content');
+        const isOpen    = accordion.classList.contains('open');
+
+        if (isOpen) {
+          content.style.height = content.scrollHeight + 'px';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            content.style.height = '0';
+          }));
+          accordion.classList.remove('open');
+        } else {
+          accordion.classList.add('open');
+          content.style.height = content.scrollHeight + 'px';
+          content.addEventListener('transitionend', () => {
+            content.style.height = 'auto';
+          }, { once: true });
+        }
+      }
+
       /* ── Render a single alumni item ────────────────────────────── */
       function renderAlumniItem(m) {
         const photoContent = m.photo
@@ -634,18 +775,44 @@
       }
 
       /* ── Render all alumni groups ───────────────────────────────── */
+      const SVG_CHEVRON = `<svg class="alumni-accordion__chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>`;
+
       function renderAlumni(groups) {
         return groups.map((g, i) => {
-          const isPostdoc = g.group === 'Postdoc & Research Staff Alumni';
-          const renderFn  = isPostdoc ? renderPostdocAlumniItem : renderAlumniItem;
-          return `
-            <div class="section-divider fade-in">
-              <span class="section-divider__title">${esc(g.group)}</span>
-              <div class="section-divider__line"></div>
-            </div>
-            <div class="alumni-grid" style="margin-bottom: ${i < groups.length - 1 ? '40px' : '0'};">
-              ${g.members.map(renderFn).join('')}
-            </div>`;
+          const count = g.members.length;
+          const label = count === 1 ? '1 Member' : `${count} Members`;
+          const isAccordion = g.group === 'Postdoc & Research Staff Alumni' ||
+                              g.group === 'Undergraduate & Intern Alumni';
+
+          if (isAccordion) {
+            const isPostdoc = g.group === 'Postdoc & Research Staff Alumni';
+            const renderFn  = isPostdoc ? renderPostdocAlumniItem : renderAlumniItem;
+            return `
+              <div class="alumni-accordion fade-in" style="margin-bottom: ${i < groups.length - 1 ? '20px' : '0'};">
+                <button class="alumni-accordion__header" onclick="toggleAlumniAccordion(this)">
+                  <span class="alumni-accordion__title">${esc(g.group)}</span>
+                  <span class="alumni-accordion__count">${label}</span>
+                  ${SVG_CHEVRON}
+                </button>
+                <div class="alumni-accordion__content">
+                  <div class="alumni-accordion__inner">
+                    <div class="alumni-grid">
+                      ${g.members.map(renderFn).join('')}
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+          } else {
+            return `
+              <div class="section-divider fade-in">
+                <span class="section-divider__title">${esc(g.group)}</span>
+                <div class="section-divider__line"></div>
+                <span class="section-divider__count">${label}</span>
+              </div>
+              <div class="alumni-card-grid fade-in" style="margin-bottom: ${i < groups.length - 1 ? '48px' : '0'};">
+                ${g.members.map(renderAlumniCard).join('')}
+              </div>`;
+          }
         }).join('');
       }
 
@@ -668,6 +835,9 @@
         });
         document.querySelectorAll('.alumni-item__photo img').forEach(img => {
           img.onerror = function () { this.parentElement.innerHTML = '<div class="alumni-item__photo-placeholder">👤</div>'; };
+        });
+        document.querySelectorAll('.alumni-card__photo img').forEach(img => {
+          img.onerror = function () { this.parentElement.innerHTML = '<div class="alumni-card__photo-placeholder">👤</div>'; };
         });
       }
 
