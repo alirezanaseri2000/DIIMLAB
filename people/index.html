@@ -781,16 +781,6 @@
         return groups.map((g, i) => {
           const count = g.members.length;
           const label = count === 1 ? '1 Member' : `${count} Members`;
-          const isPostdoc  = g.group === 'Postdoc & Research Staff Alumni';
-          const isFullCard = g.group === "PhD Alumni" || g.group === "Master's Alumni";
-
-          // Choose inner renderer and layout
-          const renderFn   = isPostdoc  ? renderPostdocAlumniItem
-                           : isFullCard ? renderAlumniCard
-                           :              renderAlumniItem;
-          const innerGrid  = isFullCard
-            ? `<div class="alumni-card-grid">${g.members.map(renderFn).join('')}</div>`
-            : `<div class="alumni-grid">${g.members.map(renderFn).join('')}</div>`;
 
           return `
             <div class="alumni-accordion fade-in" style="margin-bottom: ${i < groups.length - 1 ? '20px' : '0'};">
@@ -801,7 +791,9 @@
               </button>
               <div class="alumni-accordion__content">
                 <div class="alumni-accordion__inner">
-                  ${innerGrid}
+                  <div class="alumni-card-grid">
+                    ${g.members.map(renderAlumniCard).join('')}
+                  </div>
                 </div>
               </div>
             </div>`;
