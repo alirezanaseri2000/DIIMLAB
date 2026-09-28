@@ -169,7 +169,7 @@
           "education": "Systems and Computing Engineering, University of Guelph",
           "email": "mradwan@uoguelph.ca",
           "period": "2026 – Present",
-          "photo": "",
+          "photo": "../images/people/mostafa_radwan.jpg",
           "linkedin": ""
         },
         {
@@ -180,7 +180,7 @@
           "education": "Information and Computing Science, South China Agricultural University",
           "email": "myiying@uoguelph.ca",
           "period": "2026 – Present",
-          "photo": "https://raw.githubusercontent.com/SY1990/diim-lab/master/themes/img/people/yiying_mo.jpg",
+          "photo": "../images/people/myiying_mo.JPG",
           "linkedin": ""
         },
         {
