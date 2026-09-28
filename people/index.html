@@ -703,7 +703,7 @@
           </div>`;
       }
 
-      /* ── Render a full-size alumni card (PhD / Master's) ────────── */
+      /* ── Render a full-size alumni card ────────────────────────── */
       function renderAlumniCard(m) {
         const photoContent = m.photo
           ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" />`
@@ -714,6 +714,10 @@
         const linkedinBtn = m.linkedin
           ? `<a href="${esc(m.linkedin)}" target="_blank" class="alumni-card__link" title="LinkedIn">${SVG_LI}</a>`
           : `<span class="alumni-card__link alumni-card__link--disabled" title="LinkedIn">${SVG_LI}</span>`;
+
+        const emailBtn = m.email
+          ? `<a href="mailto:${esc(m.email)}" class="alumni-card__link" title="Email">${SVG_EMAIL}</a>`
+          : `<span class="alumni-card__link alumni-card__link--disabled" title="Email">${SVG_EMAIL}</span>`;
 
         return `
           <article class="alumni-card fade-in">
@@ -726,7 +730,7 @@
                 <div class="alumni-card__meta-row">${SVG_EDU}${esc(m.education)}</div>
                 <div class="alumni-card__meta-row">${SVG_CAL}${esc(m.year)}</div>
               </div>
-              <div class="alumni-card__links">${linkedinBtn}</div>
+              <div class="alumni-card__links">${linkedinBtn}${emailBtn}</div>
             </div>
           </article>`;
       }
