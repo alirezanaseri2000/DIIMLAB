@@ -50,8 +50,9 @@
       }
       .nav__logo {
         display: flex; align-items: center; gap: 10px;
-        font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--color-text);
+        font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--color-text); line-height: 1;
       }
+      .nav__logo span { line-height: 1; align-self: center; }
       .nav__logo-img { height: 36px; width: auto; object-fit: contain; flex-shrink: 0; }
       .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; }
       .nav__link {
@@ -189,7 +190,7 @@
       <div class="nav__container">
         <a href="../../" class="nav__logo">
           <img src="../../MISL_black_transparent_simple_pcb_true_mirror_wordmark_only.svg" class="nav__logo-img" alt="MIS Lab logo" />
-          MIS Lab
+          <span style="color: var(--color-accent);">Prof. Sheng Yang's Group</span>
         </a>
         <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
