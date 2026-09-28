@@ -781,38 +781,30 @@
         return groups.map((g, i) => {
           const count = g.members.length;
           const label = count === 1 ? '1 Member' : `${count} Members`;
-          const isAccordion = g.group === 'Postdoc & Research Staff Alumni' ||
-                              g.group === 'Undergraduate & Intern Alumni';
+          const isPostdoc  = g.group === 'Postdoc & Research Staff Alumni';
+          const isFullCard = g.group === "PhD Alumni" || g.group === "Master's Alumni";
 
-          if (isAccordion) {
-            const isPostdoc = g.group === 'Postdoc & Research Staff Alumni';
-            const renderFn  = isPostdoc ? renderPostdocAlumniItem : renderAlumniItem;
-            return `
-              <div class="alumni-accordion fade-in" style="margin-bottom: ${i < groups.length - 1 ? '20px' : '0'};">
-                <button class="alumni-accordion__header" onclick="toggleAlumniAccordion(this)">
-                  <span class="alumni-accordion__title">${esc(g.group)}</span>
-                  <span class="alumni-accordion__count">${label}</span>
-                  ${SVG_CHEVRON}
-                </button>
-                <div class="alumni-accordion__content">
-                  <div class="alumni-accordion__inner">
-                    <div class="alumni-grid">
-                      ${g.members.map(renderFn).join('')}
-                    </div>
-                  </div>
+          // Choose inner renderer and layout
+          const renderFn   = isPostdoc  ? renderPostdocAlumniItem
+                           : isFullCard ? renderAlumniCard
+                           :              renderAlumniItem;
+          const innerGrid  = isFullCard
+            ? `<div class="alumni-card-grid">${g.members.map(renderFn).join('')}</div>`
+            : `<div class="alumni-grid">${g.members.map(renderFn).join('')}</div>`;
+
+          return `
+            <div class="alumni-accordion fade-in" style="margin-bottom: ${i < groups.length - 1 ? '20px' : '0'};">
+              <button class="alumni-accordion__header" onclick="toggleAlumniAccordion(this)">
+                <span class="alumni-accordion__title">${esc(g.group)}</span>
+                <span class="alumni-accordion__count">${label}</span>
+                ${SVG_CHEVRON}
+              </button>
+              <div class="alumni-accordion__content">
+                <div class="alumni-accordion__inner">
+                  ${innerGrid}
                 </div>
-              </div>`;
-          } else {
-            return `
-              <div class="section-divider fade-in">
-                <span class="section-divider__title">${esc(g.group)}</span>
-                <div class="section-divider__line"></div>
-                <span class="section-divider__count">${label}</span>
               </div>
-              <div class="alumni-card-grid fade-in" style="margin-bottom: ${i < groups.length - 1 ? '48px' : '0'};">
-                ${g.members.map(renderAlumniCard).join('')}
-              </div>`;
-          }
+            </div>`;
         }).join('');
       }
 
