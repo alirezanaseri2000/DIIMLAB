@@ -323,6 +323,25 @@
       .footer__link:hover { color: var(--color-text); background: rgba(0,0,0,0.05); }
       .footer__copy { font-size: 0.78rem; color: var(--color-muted); }
 
+      /* ─── MEMBER CARD EXTRAS ──────────────────────────────────── */
+      .member-card__sep {
+        height: 1px; background: var(--color-border); width: 100%; margin: 4px 0;
+      }
+      .member-card__link--disabled {
+        opacity: 0.3; cursor: default; pointer-events: none;
+      }
+
+      /* ─── ALUMNI POSTDOC EXTRAS ────────────────────────────────── */
+      .alumni-item__link--disabled {
+        opacity: 0.3; cursor: default; pointer-events: none;
+      }
+      .alumni-item__detail--wrap {
+        white-space: normal; word-break: break-word;
+      }
+      .alumni-item__background {
+        font-size: 0.72rem; color: var(--color-muted); margin-top: 2px; line-height: 1.4;
+      }
+
       /* ─── FADE IN ─────────────────────────────────────────────── */
       .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
       .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -506,30 +525,31 @@
           ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" />`
           : `<div class="member-card__photo-placeholder">👤</div>`;
 
+        // Year only — strip ".MM" suffix
+        const startYear = m.start ? String(m.start).split('.')[0] : '';
+
+        // Always show LinkedIn + email; use disabled span when no link
         const linkedinBtn = m.linkedin
           ? `<a href="${esc(m.linkedin)}" target="_blank" class="member-card__link" title="LinkedIn">${SVG_LI}</a>`
-          : '';
+          : `<span class="member-card__link member-card__link--disabled" title="LinkedIn">${SVG_LI}</span>`;
 
         const emailBtn = m.email
           ? `<a href="mailto:${esc(m.email)}" class="member-card__link" title="Email">${SVG_EMAIL}</a>`
-          : '';
-
-        const linksHtml = (linkedinBtn || emailBtn)
-          ? `<div class="member-card__links">${linkedinBtn}${emailBtn}</div>`
-          : '';
+          : `<span class="member-card__link member-card__link--disabled" title="Email">${SVG_EMAIL}</span>`;
 
         return `
           <article class="member-card fade-in">
             <div class="member-card__photo">${photoContent}</div>
             <div class="member-card__body">
               <div class="member-card__name">${esc(m.name)}</div>
-              <span class="member-card__degree">${esc(m.start)}</span>
+              <span class="member-card__degree">${esc(startYear)}</span>
+              <div class="member-card__sep"></div>
               <p class="member-card__topic">${esc(m.topic)}</p>
               <div class="member-card__meta">
                 <div class="member-card__meta-row">${SVG_EDU}${esc(m.education)}</div>
                 <div class="member-card__meta-row">${SVG_CAL}${esc(m.period)}</div>
               </div>
-              ${linksHtml}
+              <div class="member-card__links">${linkedinBtn}${emailBtn}</div>
             </div>
           </article>`;
       }
@@ -548,6 +568,46 @@
               ${g.members.map(renderMemberCard).join('')}
             </div>`;
         }).join('');
+      }
+
+      /* ── Postdoc alumni helpers ─────────────────────────────────── */
+      function endYearOnly(yearStr) {
+        const parts = String(yearStr).split('–').map(s => s.trim());
+        return parts[parts.length - 1];
+      }
+      function stripDegreeLabels(edu) {
+        return edu.replace(/\b(Ph\.D\.?|M\.S\.?|B\.S\.?|M\.Eng\.?|B\.Eng\.?|M\.A\.?|B\.A\.?)\s*/g, '').replace(/\s+·\s+/g, ' · ').trim();
+      }
+      function extractPosition(detail) {
+        const idx = detail.indexOf('→');
+        return idx !== -1 ? detail.slice(idx + 1).trim() : detail;
+      }
+
+      /* ── Render a postdoc / research-staff alumni item ──────────── */
+      function renderPostdocAlumniItem(m) {
+        const photoContent = m.photo
+          ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" />`
+          : `<div class="alumni-item__photo-placeholder">👤</div>`;
+
+        const position   = extractPosition(m.detail);
+        const background = m.education ? stripDegreeLabels(m.education) : '';
+        const endYr      = endYearOnly(m.year);
+
+        const linkedinBtn = m.linkedin
+          ? `<a href="${esc(m.linkedin)}" target="_blank" class="alumni-item__link" title="LinkedIn">${SVG_LI}</a>`
+          : `<span class="alumni-item__link alumni-item__link--disabled" title="LinkedIn">${SVG_LI}</span>`;
+
+        return `
+          <div class="alumni-item fade-in">
+            <div class="alumni-item__photo">${photoContent}</div>
+            <div class="alumni-item__info">
+              <div class="alumni-item__name">${esc(m.name)}</div>
+              <div class="alumni-item__detail alumni-item__detail--wrap">${esc(position)}</div>
+              <div class="alumni-item__background">${esc(background)}</div>
+            </div>
+            ${linkedinBtn}
+            <span class="alumni-item__year">${esc(endYr)}</span>
+          </div>`;
       }
 
       /* ── Render a single alumni item ────────────────────────────── */
@@ -574,15 +634,18 @@
 
       /* ── Render all alumni groups ───────────────────────────────── */
       function renderAlumni(groups) {
-        return groups.map((g, i) => `
-          <div class="section-divider fade-in">
-            <span class="section-divider__title">${esc(g.group)}</span>
-            <div class="section-divider__line"></div>
-          </div>
-          <div class="alumni-grid" style="margin-bottom: ${i < groups.length - 1 ? '40px' : '0'};">
-            ${g.members.map(renderAlumniItem).join('')}
-          </div>`
-        ).join('');
+        return groups.map((g, i) => {
+          const isPostdoc = g.group === 'Postdoc & Research Staff Alumni';
+          const renderFn  = isPostdoc ? renderPostdocAlumniItem : renderAlumniItem;
+          return `
+            <div class="section-divider fade-in">
+              <span class="section-divider__title">${esc(g.group)}</span>
+              <div class="section-divider__line"></div>
+            </div>
+            <div class="alumni-grid" style="margin-bottom: ${i < groups.length - 1 ? '40px' : '0'};">
+              ${g.members.map(renderFn).join('')}
+            </div>`;
+        }).join('');
       }
 
       /* ── Scroll fade-in observer ────────────────────────────────── */
