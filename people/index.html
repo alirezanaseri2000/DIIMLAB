@@ -531,7 +531,7 @@
     <footer class="footer">
       <div class="footer__content">
         <a href="../" class="footer__logo">
-          <img src="../MISL_black_transparent_simple_pcb_true_mirror_wordmark_only.svg" class="nav__logo-img" alt="MIS Lab logo" />
+          <img src="../images/sponsors/Guelph_icon.jpg" class="nav__logo-img" alt="University of Guelph logo" style="height:40px;" />
           MIS Lab
         </a>
         <div class="footer__links">
@@ -618,9 +618,6 @@
           ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" />`
           : `<div class="member-card__photo-placeholder">👤</div>`;
 
-        // Year only — strip ".MM" suffix
-        const startYear = m.start ? String(m.start).split('.')[0] : '';
-
         // Always show LinkedIn + email; use disabled span when no link
         const linkedinBtn = m.linkedin
           ? `<a href="${esc(m.linkedin)}" target="_blank" class="member-card__link" title="LinkedIn">${SVG_LI}</a>`
@@ -635,7 +632,6 @@
             <div class="member-card__photo">${photoContent}</div>
             <div class="member-card__body">
               <div class="member-card__name">${esc(m.name)}</div>
-              <span class="member-card__degree">${esc(startYear)}</span>
               <div class="member-card__sep"></div>
               <p class="member-card__topic">${esc(m.topic)}</p>
               <div class="member-card__meta">
