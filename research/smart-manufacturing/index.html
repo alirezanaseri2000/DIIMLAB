@@ -125,6 +125,13 @@
       }
       .project-card__title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
       .project-card__desc { font-size: 0.9rem; color: var(--color-muted); line-height: 1.75; }
+      .project-card__link {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 0.82rem; font-weight: 600; color: var(--color-accent);
+        margin-top: 14px; transition: gap var(--transition);
+      }
+      .project-card__link:hover { gap: 10px; }
+      .project-card__link svg { width: 13px; height: 13px; }
 
       /* ─── FOOTER ─────────────────────────────────────────────── */
       .footer {
@@ -240,10 +247,14 @@
 
           <div class="project-card fade-in">
             <div class="project-card__num">Project 1</div>
-            <div class="project-card__title">Project Title</div>
+            <div class="project-card__title">Digital Twin for Smart Manufacturing</div>
             <p class="project-card__desc">
-              Project description will be added here.
+              This project develops AI-powered digital twin systems that create virtual replicas of physical manufacturing environments, with a focus on human workers and collaborative robot cells. Key capabilities include real-time fatigue detection through computer vision, AI-based pose estimation and motion prediction, and eye-state monitoring — all using lightweight neural networks optimized for the factory floor. The goal is to improve worker safety, enable safer human-robot collaboration, and increase the transparency and resilience of manufacturing processes.
             </p>
+            <a href="https://diim-lab.github.io/DigitalTwinWebsite/index.html" target="_blank" class="project-card__link">
+              Visit project website
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
 
           <div class="project-card fade-in">
