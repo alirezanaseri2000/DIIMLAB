@@ -503,8 +503,8 @@
     <div class="site-banner" id="site-banner">
       <div class="site-banner__overlay"></div>
       <div class="site-banner__text">
-        <div class="site-banner__headline">Intelligent Systems for a Smarter World</div>
-        <div class="site-banner__subline">AI &nbsp;·&nbsp; Digital Twins &nbsp;·&nbsp; Smart Manufacturing &nbsp;·&nbsp; Precision Agriculture &nbsp;·&nbsp; Green Energy</div>
+        <div class="site-banner__headline" id="banner-headline">Intelligent Systems for a Smarter World</div>
+        <div class="site-banner__subline" id="banner-subline">AI &nbsp;·&nbsp; Digital Twins &nbsp;·&nbsp; Smart Manufacturing &nbsp;·&nbsp; Precision Agriculture &nbsp;·&nbsp; Green Energy</div>
       </div>
     </div>
 
@@ -530,23 +530,8 @@
           </div>
         </div>
 
-        <div class="hero__stats fade-in">
-          <div class="hero__stat-card">
-            <div class="hero__stat-value">2020</div>
-            <div class="hero__stat-label">Lab Established</div>
-          </div>
-          <div class="hero__stat-card">
-            <div class="hero__stat-value">50+</div>
-            <div class="hero__stat-label">Team Members</div>
-          </div>
-          <div class="hero__stat-card">
-            <div class="hero__stat-value">10+</div>
-            <div class="hero__stat-label">Projects</div>
-          </div>
-          <div class="hero__stat-card">
-            <div class="hero__stat-value">$2M+</div>
-            <div class="hero__stat-label">Overall Funding</div>
-          </div>
+        <div class="hero__stats fade-in" id="stats-container">
+          <!-- Loaded dynamically from data/home.json -->
         </div>
       </div>
     </section>
@@ -560,98 +545,16 @@
       </div>
 
       <div class="news__layout">
-        <div class="news__list">
-
-          <div class="news-item news-item--highlight fade-in">
-            <span class="news-item__date">2025.09.10</span>
-            <div class="news-item__body">
-              <p class="news-item__text">Dr. Junfei Li has joined Lakehead University as a Tenure-Track Assistant Professor, congratulations!</p>
-            </div>
-          </div>
-
-          <div class="news-item fade-in">
-            <span class="news-item__date">2025.08.25</span>
-            <div class="news-item__body">
-              <p class="news-item__text">Anna has successfully defended her MASc thesis, congratulations!</p>
-            </div>
-          </div>
-
-          <div class="news-item fade-in">
-            <span class="news-item__date">2025.05.15</span>
-            <div class="news-item__body">
-              <p class="news-item__text">One PhD position is available on <strong>knowledge representation and learning in smart agriculture</strong> beginning 09/2025 or 01/2026. Master and undergraduate students looking for research projects are also welcomed. <a href="opening/">See openings →</a></p>
-            </div>
-          </div>
-
-          <div class="news-item fade-in">
-            <span class="news-item__date">2025.05.15</span>
-            <div class="news-item__body">
-              <p class="news-item__text">Enshen, Anna, and Da have won the Braithwaite travel grant for attending international conferences, congratulations!</p>
-            </div>
-          </div>
-
-          <div class="news-item fade-in">
-            <span class="news-item__date">2025.05.15</span>
-            <div class="news-item__body">
-              <p class="news-item__text">Enshen has won the prestigious NSERC CGS scholarship, congratulations!</p>
-            </div>
-          </div>
-
-          <div class="news-item fade-in">
-            <span class="news-item__date">2025.04.20</span>
-            <div class="news-item__body">
-              <p class="news-item__text">Manal and Zezhong have successfully defended their Masters' projects, congratulations!</p>
-            </div>
-          </div>
-
-          <div class="news-item fade-in">
-            <span class="news-item__date">2025.03.20</span>
-            <div class="news-item__body">
-              <p class="news-item__text">Our project on AI for soilless growing media was funded by <strong>NSERC Alliance Grant</strong>, congratulations!</p>
-            </div>
-          </div>
-
-          <!-- 
-            ── HOW TO ADD NEWS ──────────────────────────────────────
-            Copy the block below and paste above this comment.
-            Update the date and text content.
-            
-          <div class="news-item fade-in">
-            <span class="news-item__date">YYYY.MM.DD</span>
-            <div class="news-item__body">
-              <p class="news-item__text">Your news text here.</p>
-            </div>
-          </div>
-          -->
-
+        <div class="news__list" id="news-list">
+          <!-- Loaded dynamically from data/home.json -->
         </div>
 
         <!-- Upcoming Events Sidebar -->
-        <aside class="events-panel fade-in">
+        <aside class="events-panel fade-in" id="events-panel">
           <div class="events-panel__title">Upcoming Events</div>
-
-          <div class="event-card">
-            <div class="event-card__name">CSME Congress 2026</div>
-            <div class="event-card__detail">UBC, Canada<br/>May 24–27, 2026<br/>Submission deadline: Jan 15, 2026</div>
-            <a href="http://www.csme-scgm.ca/conferences" target="_blank" class="event-card__link">
-              Learn more
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+          <div id="events-list">
+            <!-- Loaded dynamically from data/home.json -->
           </div>
-
-          <div class="event-card">
-            <div class="event-card__name">AMD 2025</div>
-            <div class="event-card__detail">Toronto, Canada<br/>October 21–23, 2025</div>
-            <a href="https://www.admtoronto.com/en/home.html" target="_blank" class="event-card__link">
-              Learn more
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <!--
-            ── HOW TO ADD AN EVENT ──────────────────────────────────
-            Copy the event-card block above and update fields.
-          -->
         </aside>
       </div>
     </section>
@@ -771,6 +674,69 @@
         <div class="footer__copy">© 2025 MIS Lab · University of Guelph</div>
       </div>
     </footer>
+
+    <script>
+      // ── Dynamic content loader (reads from data/home.json or admin localStorage override) ──
+      (async function loadHomeContent() {
+        let data;
+        try {
+          const override = localStorage.getItem('mislab_home_data');
+          data = override ? JSON.parse(override) : await fetch('data/home.json').then(r => r.json());
+        } catch(e) { return; }
+
+        function escHtml(s) {
+          return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        // Banner
+        if (data.banner) {
+          const h = document.getElementById('banner-headline');
+          const s = document.getElementById('banner-subline');
+          if (h) h.textContent = data.banner.headline || h.textContent;
+          if (s) s.innerHTML  = data.banner.subline  || s.innerHTML;
+        }
+
+        // Stats
+        if (data.stats && data.stats.length) {
+          const el = document.getElementById('stats-container');
+          if (el) el.innerHTML = data.stats.map(s => `
+            <div class="hero__stat-card">
+              <div class="hero__stat-value">${escHtml(s.value)}</div>
+              <div class="hero__stat-label">${escHtml(s.label)}</div>
+            </div>`).join('');
+        }
+
+        // News
+        if (data.news && data.news.length) {
+          const el = document.getElementById('news-list');
+          if (el) {
+            el.innerHTML = data.news.map(n => `
+              <div class="news-item ${n.highlight ? 'news-item--highlight' : ''} fade-in">
+                <span class="news-item__date">${escHtml(n.date)}</span>
+                <div class="news-item__body">
+                  <p class="news-item__text">${n.html || escHtml(n.text || '')}</p>
+                </div>
+              </div>`).join('');
+            // Re-observe new fade-in elements
+            el.querySelectorAll('.fade-in').forEach(e => observer.observe(e));
+          }
+        }
+
+        // Events
+        if (data.events && data.events.length) {
+          const el = document.getElementById('events-list');
+          if (el) el.innerHTML = data.events.map(ev => `
+            <div class="event-card">
+              <div class="event-card__name">${escHtml(ev.name)}</div>
+              <div class="event-card__detail">${escHtml(ev.detail || '').replace(/\n/g,'<br/>')}</div>
+              ${ev.link ? `<a href="${escHtml(ev.link)}" target="_blank" class="event-card__link">
+                ${escHtml(ev.linkText || 'Learn more')}
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>` : ''}
+            </div>`).join('');
+        }
+      })();
+    </script>
 
     <script>
       // Parallax banner

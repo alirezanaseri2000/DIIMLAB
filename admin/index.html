@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | MIS Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-2: #0891b2;
+      --bg: #f8fafc;
+      --sidebar: #0f172a;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: rgba(0,0,0,0.08);
+      --white: #ffffff;
+      --danger: #ef4444;
+      --success: #10b981;
+      --gold: #d97706;
+      --radius: 12px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+    /* ── Login ───────────────────────────────────────────────────── */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    }
+    .login-card {
+      background: var(--white); border-radius: 20px; padding: 48px 40px;
+      width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .login-logo { text-align: center; margin-bottom: 32px; }
+    .login-logo h1 { font-size: 1.4rem; font-weight: 700; }
+    .login-logo p  { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+    .login-error { color: var(--danger); font-size: 0.85rem; text-align: center; margin-top: 12px; display: none; }
+
+    /* ── Forms ───────────────────────────────────────────────────── */
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block; font-size: 0.75rem; font-weight: 700; color: var(--muted);
+      margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; padding: 9px 13px; border: 1px solid var(--border); border-radius: 8px;
+      font-size: 0.875rem; color: var(--text); background: var(--white); font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--accent);
+    }
+    .form-group textarea { resize: vertical; min-height: 72px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ── Buttons ─────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 16px; border-radius: 8px; font-size: 0.875rem;
+      font-weight: 600; cursor: pointer; border: none; font-family: inherit;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .btn--full { width: 100%; justify-content: center; }
+    .btn--primary { background: var(--accent); color: var(--white); }
+    .btn--primary:hover { background: #1d4ed8; }
+    .btn--secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+    .btn--secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn--success { background: var(--success); color: var(--white); }
+    .btn--success:hover { background: #059669; }
+    .btn--danger { background: transparent; color: var(--danger); border: 1px solid rgba(239,68,68,0.25); }
+    .btn--danger:hover { background: rgba(239,68,68,0.06); }
+    .btn--sm { padding: 6px 12px; font-size: 0.8rem; }
+    .btn svg { width: 15px; height: 15px; }
+
+    /* ── Dashboard layout ────────────────────────────────────────── */
+    #dashboard { display: none; min-height: 100vh; }
+    .dashboard { display: flex; min-height: 100vh; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 230px; background: var(--sidebar); flex-shrink: 0;
+      display: flex; flex-direction: column;
+    }
+    .sidebar__header { padding: 22px 18px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .sidebar__logo { font-size: 0.95rem; font-weight: 700; color: #fff; }
+    .sidebar__sub  { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    .sidebar__nav  { padding: 14px 10px; flex: 1; }
+    .nav-section   { margin-bottom: 22px; }
+    .nav-section__label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.28);
+      padding: 0 8px; margin-bottom: 4px;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 8px; padding: 9px 10px;
+      border-radius: 8px; font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.68); cursor: pointer;
+      transition: all 0.18s; border: none; background: none; width: 100%; text-align: left;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
+    .nav-item.active { background: var(--accent); color: #fff; }
+    .nav-item svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .sidebar__footer { padding: 14px 10px; border-top: 1px solid rgba(255,255,255,0.07); }
+
+    /* Main */
+    .main { flex: 1; overflow-x: hidden; display: flex; flex-direction: column; }
+    .topbar {
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 0 28px; height: 60px; display: flex; align-items: center;
+      justify-content: space-between; flex-shrink: 0;
+    }
+    .topbar__title { font-size: 1rem; font-weight: 700; }
+    .topbar__actions { display: flex; gap: 10px; align-items: center; }
+    .content { padding: 28px; max-width: 980px; }
+
+    /* Panels */
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .panel__header { margin-bottom: 22px; }
+    .panel__title { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+    .panel__desc  { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+
+    /* Cards */
+    .card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px; margin-bottom: 18px;
+    }
+    .card__title {
+      font-size: 0.9rem; font-weight: 700; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .card__title span { flex: 1; }
+
+    /* Tabs */
+    .tabs {
+      display: flex; gap: 2px; margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      padding: 8px 14px; font-size: 0.85rem; font-weight: 500; color: var(--muted);
+      border: none; background: none; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.18s;
+    }
+    .tab-btn.active  { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .tab-btn:hover:not(.active) { color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* List items */
+    .item-list { display: flex; flex-direction: column; gap: 8px; }
+    .list-item {
+      display: flex; align-items: flex-start; gap: 12px; padding: 13px 14px;
+      border: 1px solid var(--border); border-radius: 9px; background: var(--bg);
+      transition: border-color 0.18s;
+    }
+    .list-item:hover { border-color: rgba(37,99,235,0.2); }
+    .list-item__date {
+      font-size: 0.72rem; font-weight: 600; color: var(--accent);
+      background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.15);
+      padding: 3px 8px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+    }
+    .list-item__text { flex: 1; font-size: 0.85rem; line-height: 1.5; }
+    .list-item__actions { display: flex; gap: 5px; flex-shrink: 0; }
+
+    /* Stats grid */
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .stat-editor { display: flex; gap: 10px; }
+    .stat-editor .form-group { margin-bottom: 0; }
+    .stat-editor .val-group { width: 90px; flex-shrink: 0; }
+    .stat-editor .lbl-group { flex: 1; }
+
+    /* Member cards */
+    .member-row {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+      border: 1px solid var(--border); border-radius: 9px; margin-bottom: 8px;
+      background: var(--bg);
+    }
+    .member-row:hover { border-color: rgba(37,99,235,0.2); }
+    .member-row__avatar {
+      width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+      background: #e2e8f0; flex-shrink: 0; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .member-row__avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .member-row__info { flex: 1; min-width: 0; }
+    .member-row__name { font-size: 0.875rem; font-weight: 600; }
+    .member-row__detail { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
+    .member-row__actions { display: flex; gap: 5px; flex-shrink: 0; }
+
+    /* Badge */
+    .badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 100px;
+      background: rgba(37,99,235,0.09); color: var(--accent); border: 1px solid rgba(37,99,235,0.18);
+    }
+    .badge--gold { background: rgba(217,119,6,0.09); color: var(--gold); border-color: rgba(217,119,6,0.2); }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1000;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal {
+      background: var(--white); border-radius: 16px; padding: 28px;
+      width: 100%; max-width: 520px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal__title { font-size: 1rem; font-weight: 700; margin-bottom: 18px; }
+    .modal__actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+
+    /* Save toast */
+    .save-toast {
+      position: fixed; bottom: 22px; right: 22px;
+      background: var(--success); color: #fff;
+      padding: 11px 18px; border-radius: 9px; font-size: 0.85rem; font-weight: 600;
+      box-shadow: 0 4px 16px rgba(16,185,129,0.3);
+      transform: translateY(80px); transition: transform 0.3s ease; z-index: 500;
+    }
+    .save-toast.show { transform: translateY(0); }
+
+    /* Export cards */
+    .export-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px 22px; display: flex; align-items: center; gap: 18px; margin-bottom: 14px;
+    }
+    .export-card__icon {
+      width: 44px; height: 44px; background: rgba(37,99,235,0.09); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0;
+    }
+    .export-card__info { flex: 1; }
+    .export-card__name { font-size: 0.9rem; font-weight: 600; }
+    .export-card__desc { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+    /* Info box */
+    .info-box {
+      background: rgba(37,99,235,0.05); border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 9px; padding: 14px 16px; font-size: 0.82rem; color: var(--muted);
+      margin-bottom: 20px; line-height: 1.6;
+    }
+    .info-box strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <!-- ── Login Screen ──────────────────────────────────────────────── -->
+  <div id="login-screen">
+    <div class="login-card">
+      <div class="login-logo">
+        <h1>MIS Lab Admin</h1>
+        <p>Manufacturing &amp; Intelligent Systems Lab</p>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="u" placeholder="Username" autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="p" placeholder="Password" autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Sign In</button>
+        <div id="login-error" class="login-error">Incorrect username or password</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Dashboard ─────────────────────────────────────────────────── -->
+  <div id="dashboard">
+    <div class="dashboard">
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar__header">
+          <div class="sidebar__logo">MIS Lab Admin</div>
+          <div class="sidebar__sub">Content Management</div>
+        </div>
+        <nav class="sidebar__nav">
+          <div class="nav-section">
+            <div class="nav-section__label">Manage</div>
+            <button class="nav-item active" data-panel="home-panel" onclick="switchPanel(this)">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Home Page
+            </button>
+            <button class="nav-item" data-panel="team-panel" onclick="switchPanel(this)">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Team
+            </button>
+          </div>
+          <div class="nav-section">
+            <div class="nav-section__label">Tools</div>
+            <button class="nav-item" data-panel="export-panel" onclick="switchPanel(this)">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export / Deploy
+            </button>
+          </div>
+        </nav>
+        <div class="sidebar__footer">
+          <button class="nav-item" onclick="logout()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign Out
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <div class="main">
+        <div class="topbar">
+          <span class="topbar__title" id="panel-title">Home Page</span>
+          <div class="topbar__actions">
+            <a href="../" target="_blank" class="btn btn--sm btn--secondary">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              View Site
+            </a>
+          </div>
+        </div>
+
+        <div class="content">
+
+          <!-- ══ HOME PAGE PANEL ══════════════════════════════════════ -->
+          <div class="panel active" id="home-panel">
+            <div class="panel__header">
+              <h2 class="panel__title">Home Page</h2>
+              <p class="panel__desc">Edit content shown on the main page. Changes save instantly to your browser and are visible on the site.</p>
+            </div>
+
+            <div class="tabs" id="home-tabs">
+              <button class="tab-btn active" onclick="switchTab(this,'tab-stats','home-tabs')">Stats</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-banner','home-tabs')">Banner</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-news','home-tabs')">News</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-events','home-tabs')">Events</button>
+            </div>
+
+            <!-- Stats Tab -->
+            <div class="tab-panel active" id="tab-stats">
+              <div class="card">
+                <div class="card__title">
+                  <span>Hero Statistics</span>
+                  <button class="btn btn--sm btn--success" onclick="saveStats()">Save</button>
+                </div>
+                <div class="stats-grid" id="stats-editor"></div>
+              </div>
+            </div>
+
+            <!-- Banner Tab -->
+            <div class="tab-panel" id="tab-banner">
+              <div class="card">
+                <div class="card__title">
+                  <span>Banner Text</span>
+                  <button class="btn btn--sm btn--success" onclick="saveBanner()">Save</button>
+                </div>
+                <div class="form-group">
+                  <label>Headline</label>
+                  <input type="text" id="banner-headline" placeholder="Main headline" />
+                </div>
+                <div class="form-group">
+                  <label>Subline (HTML allowed, e.g. <code style="font-size:0.85em">&amp;nbsp;·&amp;nbsp;</code> for separators)</label>
+                  <input type="text" id="banner-subline" placeholder="Subline text" />
+                </div>
+              </div>
+            </div>
+
+            <!-- News Tab -->
+            <div class="tab-panel" id="tab-news">
+              <div class="card">
+                <div class="card__title">
+                  <span>News Items</span>
+                  <button class="btn btn--sm btn--primary" onclick="openNewsModal()">+ Add News</button>
+                </div>
+                <div class="item-list" id="news-editor"></div>
+              </div>
+            </div>
+
+            <!-- Events Tab -->
+            <div class="tab-panel" id="tab-events">
+              <div class="card">
+                <div class="card__title">
+                  <span>Upcoming Events</span>
+                  <button class="btn btn--sm btn--primary" onclick="openEventModal()">+ Add Event</button>
+                </div>
+                <div class="item-list" id="events-editor"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══ TEAM PANEL ══════════════════════════════════════════ -->
+          <div class="panel" id="team-panel">
+            <div class="panel__header">
+              <h2 class="panel__title">Team</h2>
+              <p class="panel__desc">Manage current lab members and alumni.</p>
+            </div>
+
+            <div class="tabs" id="team-tabs">
+              <button class="tab-btn active" onclick="switchTab(this,'tab-current','team-tabs')">Current Members</button>
+              <button class="tab-btn" onclick="switchTab(this,'tab-alumni','team-tabs')">Alumni</button>
+            </div>
+
+            <div class="tab-panel active" id="tab-current">
+              <div id="current-editor"></div>
+            </div>
+            <div class="tab-panel" id="tab-alumni">
+              <div id="alumni-editor"></div>
+            </div>
+          </div>
+
+          <!-- ══ EXPORT PANEL ════════════════════════════════════════ -->
+          <div class="panel" id="export-panel">
+            <div class="panel__header">
+              <h2 class="panel__title">Export &amp; Deploy</h2>
+              <p class="panel__desc">Download the updated data files and replace them in your project to publish changes for all visitors.</p>
+            </div>
+
+            <div class="info-box">
+              <strong>How it works:</strong> Changes you make here are saved in your browser. To make them visible to everyone, download the files below and replace them in your project folder, then commit and push.
+            </div>
+
+            <div class="export-card">
+              <div class="export-card__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              </div>
+              <div class="export-card__info">
+                <div class="export-card__name">data/home.json</div>
+                <div class="export-card__desc">News, events, stats and banner — replace in <code>DIIMLAB/data/</code></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="downloadHomeJson()">Download</button>
+            </div>
+
+            <div class="export-card">
+              <div class="export-card__icon">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20" height="20"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              </div>
+              <div class="export-card__info">
+                <div class="export-card__name">data/people.json</div>
+                <div class="export-card__desc">Team members and alumni — replace in <code>DIIMLAB/data/</code></div>
+              </div>
+              <button class="btn btn--primary btn--sm" onclick="downloadPeopleJson()">Download</button>
+            </div>
+
+            <div class="card" style="border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.02);margin-top:8px;">
+              <div class="card__title" style="color:var(--danger);">
+                <span>Reset Local Changes</span>
+              </div>
+              <p style="font-size:0.82rem;color:var(--muted);margin-bottom:14px;">
+                Clears all browser-saved edits and reloads the original data files. This does NOT affect the live site.
+              </p>
+              <button class="btn btn--danger btn--sm" onclick="resetData()">Clear Local Changes</button>
+            </div>
+          </div>
+
+        </div><!-- /content -->
+      </div><!-- /main -->
+    </div><!-- /dashboard -->
+  </div>
+
+  <div class="save-toast" id="save-toast">Saved!</div>
+
+  <script>
+    /* ══════════════════════════════════════════════════════════════
+       AUTH
+    ══════════════════════════════════════════════════════════════ */
+    const CREDS = { user: 'admin', pass: 'admin' };
+
+    if (sessionStorage.getItem('mislab_admin') === '1') initDashboard();
+
+    document.getElementById('login-form').onsubmit = e => {
+      e.preventDefault();
+      if (document.getElementById('u').value === CREDS.user &&
+          document.getElementById('p').value === CREDS.pass) {
+        sessionStorage.setItem('mislab_admin', '1');
+        initDashboard();
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+      }
+    };
+
+    function logout() {
+      sessionStorage.removeItem('mislab_admin');
+      location.reload();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       STATE
+    ══════════════════════════════════════════════════════════════ */
+    let homeData   = null;
+    let peopleData = null;
+
+    async function initDashboard() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard').style.display   = 'block';
+      await loadAll();
+    }
+
+    async function loadAll() {
+      // Home
+      const ho = localStorage.getItem('mislab_home_data');
+      homeData = ho ? tryParse(ho) : null;
+      if (!homeData) homeData = await fetch('../data/home.json').then(r => r.json()).catch(() => ({
+        banner: { headline: '', subline: '' }, stats: [], news: [], events: []
+      }));
+
+      // People
+      const po = localStorage.getItem('mislab_people_data');
+      peopleData = po ? tryParse(po) : null;
+      if (!peopleData) peopleData = await fetch('../data/people.json').then(r => r.json()).catch(() => ({
+        pi: {}, current: [], alumni: []
+      }));
+
+      renderAll();
+    }
+
+    function tryParse(s) { try { return JSON.parse(s); } catch(e) { return null; } }
+
+    function renderAll() {
+      renderStats();
+      renderBanner();
+      renderNews();
+      renderEvents();
+      renderCurrent();
+      renderAlumni();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════════════════════════════ */
+    const PANEL_TITLES = {
+      'home-panel': 'Home Page',
+      'team-panel': 'Team',
+      'export-panel': 'Export / Deploy'
+    };
+
+    function switchPanel(btn) {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(btn.dataset.panel).classList.add('active');
+      document.getElementById('panel-title').textContent = PANEL_TITLES[btn.dataset.panel] || '';
+    }
+
+    function switchTab(btn, tabId, tabsId) {
+      const tabs = document.getElementById(tabsId);
+      tabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // Find all tab-panels that are siblings of the tabs element
+      const panel = tabs.closest('.panel');
+      panel.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SAVE HELPERS
+    ══════════════════════════════════════════════════════════════ */
+    let toastTimer;
+    function toast() {
+      const t = document.getElementById('save-toast');
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function saveHome()   { localStorage.setItem('mislab_home_data',   JSON.stringify(homeData));   toast(); }
+    function savePeople() { localStorage.setItem('mislab_people_data', JSON.stringify(peopleData)); toast(); }
+
+    /* ══════════════════════════════════════════════════════════════
+       STATS
+    ══════════════════════════════════════════════════════════════ */
+    function renderStats() {
+      document.getElementById('stats-editor').innerHTML = homeData.stats.map((s, i) => `
+        <div class="card" style="padding:14px;margin-bottom:0;">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">Stat ${i+1}</div>
+          <div class="stat-editor">
+            <div class="form-group val-group">
+              <label>Value</label>
+              <input type="text" value="${esc(s.value)}" oninput="homeData.stats[${i}].value=this.value" />
+            </div>
+            <div class="form-group lbl-group">
+              <label>Label</label>
+              <input type="text" value="${esc(s.label)}" oninput="homeData.stats[${i}].label=this.value" />
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function saveStats() { saveHome(); }
+
+    /* ══════════════════════════════════════════════════════════════
+       BANNER
+    ══════════════════════════════════════════════════════════════ */
+    function renderBanner() {
+      document.getElementById('banner-headline').value = homeData.banner?.headline || '';
+      document.getElementById('banner-subline').value  = homeData.banner?.subline  || '';
+    }
+
+    function saveBanner() {
+      homeData.banner = {
+        headline: document.getElementById('banner-headline').value,
+        subline:  document.getElementById('banner-subline').value
+      };
+      saveHome();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       NEWS
+    ══════════════════════════════════════════════════════════════ */
+    function renderNews() {
+      const el = document.getElementById('news-editor');
+      if (!homeData.news?.length) { el.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:8px;">No news items. Click "+ Add News" to add one.</p>'; return; }
+      el.innerHTML = homeData.news.map((n, i) => `
+        <div class="list-item">
+          <span class="list-item__date">${esc(n.date)}</span>
+          <div class="list-item__text">
+            ${n.html || esc(n.text || '')}
+            ${n.highlight ? ' <span class="badge badge--gold">Highlight</span>' : ''}
+          </div>
+          <div class="list-item__actions">
+            <button class="btn btn--sm btn--secondary" onclick="openNewsModal(${i})">Edit</button>
+            <button class="btn btn--sm btn--danger" onclick="delNews(${i})">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function delNews(i) {
+      if (!confirm('Delete this news item?')) return;
+      homeData.news.splice(i, 1);
+      renderNews();
+      saveHome();
+    }
+
+    function openNewsModal(idx = -1) {
+      const n = idx >= 0 ? homeData.news[idx] : null;
+      modal(`
+        <div class="modal__title">${idx >= 0 ? 'Edit' : 'Add'} News Item</div>
+        <div class="form-group">
+          <label>Date (YYYY.MM.DD)</label>
+          <input type="text" id="_nd" value="${n ? esc(n.date) : ''}" placeholder="2025.06.01" />
+        </div>
+        <div class="form-group">
+          <label>Text (HTML allowed: &lt;strong&gt;, &lt;a href=""&gt;, etc.)</label>
+          <textarea id="_nt" rows="3">${n ? (n.html ?? esc(n.text ?? '')) : ''}</textarea>
+        </div>
+        <div class="form-group" style="display:flex;align-items:center;gap:8px;">
+          <input type="checkbox" id="_nh" ${n?.highlight ? 'checked' : ''} style="width:auto;margin:0;" />
+          <label style="margin:0;text-transform:none;font-size:.875rem;font-weight:500;color:var(--text);">Highlight (bold, shown at top)</label>
+        </div>
+        <div class="modal__actions">
+          <button class="btn btn--secondary btn--sm" onclick="closeModal()">Cancel</button>
+          <button class="btn btn--primary btn--sm" onclick="saveNews(${idx})">Save</button>
+        </div>
+      `);
+    }
+
+    function saveNews(idx) {
+      const date = v('_nd'), html = v('_nt'), highlight = document.getElementById('_nh').checked;
+      if (!date || !html) { alert('Please fill in date and text.'); return; }
+      const item = { date, html, highlight };
+      if (idx >= 0) homeData.news[idx] = item; else homeData.news.unshift(item);
+      closeModal(); renderNews(); saveHome();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       EVENTS
+    ══════════════════════════════════════════════════════════════ */
+    function renderEvents() {
+      const el = document.getElementById('events-editor');
+      if (!homeData.events?.length) { el.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:8px;">No events. Click "+ Add Event" to add one.</p>'; return; }
+      el.innerHTML = homeData.events.map((e, i) => `
+        <div class="list-item">
+          <div class="list-item__text">
+            <strong>${esc(e.name)}</strong><br/>
+            <span style="font-size:.78rem;color:var(--muted);">${esc(e.detail||'').replace(/\n/g,'<br/>')}</span>
+          </div>
+          <div class="list-item__actions">
+            <button class="btn btn--sm btn--secondary" onclick="openEventModal(${i})">Edit</button>
+            <button class="btn btn--sm btn--danger" onclick="delEvent(${i})">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function delEvent(i) {
+      if (!confirm('Delete this event?')) return;
+      homeData.events.splice(i, 1); renderEvents(); saveHome();
+    }
+
+    function openEventModal(idx = -1) {
+      const e = idx >= 0 ? homeData.events[idx] : null;
+      modal(`
+        <div class="modal__title">${idx >= 0 ? 'Edit' : 'Add'} Event</div>
+        <div class="form-group">
+          <label>Event Name</label>
+          <input type="text" id="_en" value="${e ? esc(e.name) : ''}" placeholder="Conference Name 2026" />
+        </div>
+        <div class="form-group">
+          <label>Details (location, dates — use new lines)</label>
+          <textarea id="_ed" rows="3">${e ? esc(e.detail||'') : ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label>Link URL (optional)</label>
+          <input type="text" id="_el" value="${e ? esc(e.link||'') : ''}" placeholder="https://example.com" />
+        </div>
+        <div class="form-group">
+          <label>Link Button Text</label>
+          <input type="text" id="_elt" value="${e ? esc(e.linkText||'Learn more') : 'Learn more'}" />
+        </div>
+        <div class="modal__actions">
+          <button class="btn btn--secondary btn--sm" onclick="closeModal()">Cancel</button>
+          <button class="btn btn--primary btn--sm" onclick="saveEvent(${idx})">Save</button>
+        </div>
+      `);
+    }
+
+    function saveEvent(idx) {
+      const name = v('_en');
+      if (!name) { alert('Please enter an event name.'); return; }
+      const item = { name, detail: v('_ed'), link: v('_el'), linkText: v('_elt') || 'Learn more' };
+      if (idx >= 0) homeData.events[idx] = item; else homeData.events.push(item);
+      closeModal(); renderEvents(); saveHome();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       CURRENT MEMBERS
+    ══════════════════════════════════════════════════════════════ */
+    function renderCurrent() {
+      document.getElementById('current-editor').innerHTML = (peopleData.current || []).map((grp, gi) => `
+        <div class="card">
+          <div class="card__title">
+            <span>${esc(grp.group)} <span class="badge">${grp.members.length}</span></span>
+            <button class="btn btn--sm btn--primary" onclick="openMemberModal(${gi})">+ Add Member</button>
+          </div>
+          ${grp.members.map((m, mi) => memberRow(m, `openMemberModal(${gi},${mi})`, `delMember(${gi},${mi})`)).join('')}
+        </div>
+      `).join('');
+    }
+
+    function memberRow(m, editCall, delCall) {
+      const avatarHtml = m.photo
+        ? `<div class="member-row__avatar"><img src="${esc(m.photo)}" alt="" onerror="this.parentElement.textContent='👤'" /></div>`
+        : `<div class="member-row__avatar">👤</div>`;
+      return `
+        <div class="member-row">
+          ${avatarHtml}
+          <div class="member-row__info">
+            <div class="member-row__name">${esc(m.name)}</div>
+            <div class="member-row__detail">${esc(m.topic||'')}${m.period ? ' · '+esc(m.period) : ''}</div>
+          </div>
+          <div class="member-row__actions">
+            <button class="btn btn--sm btn--secondary" onclick="${editCall}">Edit</button>
+            <button class="btn btn--sm btn--danger"    onclick="${delCall}">Remove</button>
+          </div>
+        </div>`;
+    }
+
+    function delMember(gi, mi) {
+      if (!confirm('Remove this member?')) return;
+      peopleData.current[gi].members.splice(mi, 1); renderCurrent(); savePeople();
+    }
+
+    function openMemberModal(gi, mi = -1) {
+      const m = mi >= 0 ? peopleData.current[gi].members[mi] : null;
+      modal(`
+        <div class="modal__title">${mi >= 0 ? 'Edit' : 'Add'} Member — ${esc(peopleData.current[gi].group)}</div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="_mn" value="${m?esc(m.name):''}" /></div>
+        <div class="form-group"><label>Research Topic</label><input type="text" id="_mt" value="${m?esc(m.topic||''):''}" /></div>
+        <div class="form-group"><label>Education (e.g. M.S. Univ A · B.S. Univ B)</label><input type="text" id="_me" value="${m?esc(m.education||''):''}" /></div>
+        <div class="form-row">
+          <div class="form-group"><label>Period</label><input type="text" id="_mp" value="${m?esc(m.period||''):''}" placeholder="2023 – Present" /></div>
+          <div class="form-group"><label>Degree Label</label><input type="text" id="_mdeg" value="${m?esc(m.degree||''):''}" placeholder="PhD Student" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" id="_mmail" value="${m?esc(m.email||''):''}" /></div>
+          <div class="form-group"><label>LinkedIn URL</label><input type="text" id="_mli" value="${m?esc(m.linkedin||''):''}" /></div>
+        </div>
+        <div class="form-group"><label>Photo path (e.g. ../images/people/name.jpg)</label><input type="text" id="_mphoto" value="${m?esc(m.photo||''):''}" /></div>
+        <div class="modal__actions">
+          <button class="btn btn--secondary btn--sm" onclick="closeModal()">Cancel</button>
+          <button class="btn btn--primary btn--sm" onclick="saveMember(${gi},${mi})">Save</button>
+        </div>
+      `);
+    }
+
+    function saveMember(gi, mi) {
+      const name = v('_mn'); if (!name) { alert('Please enter a name.'); return; }
+      const obj = {
+        name, topic: v('_mt'), education: v('_me'), period: v('_mp'),
+        degree: v('_mdeg'), email: v('_mmail'), linkedin: v('_mli'), photo: v('_mphoto')
+      };
+      if (mi >= 0) peopleData.current[gi].members[mi] = { ...peopleData.current[gi].members[mi], ...obj };
+      else         peopleData.current[gi].members.push(obj);
+      closeModal(); renderCurrent(); savePeople();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ALUMNI
+    ══════════════════════════════════════════════════════════════ */
+    function renderAlumni() {
+      document.getElementById('alumni-editor').innerHTML = (peopleData.alumni || []).map((grp, gi) => `
+        <div class="card">
+          <div class="card__title">
+            <span>${esc(grp.group)} <span class="badge">${grp.members.length}</span></span>
+            <button class="btn btn--sm btn--primary" onclick="openAlumniModal(${gi})">+ Add</button>
+          </div>
+          ${grp.members.map((m, mi) => memberRow(m, `openAlumniModal(${gi},${mi})`, `delAlumni(${gi},${mi})`)).join('')}
+        </div>
+      `).join('');
+    }
+
+    function delAlumni(gi, mi) {
+      if (!confirm('Remove this entry?')) return;
+      peopleData.alumni[gi].members.splice(mi, 1); renderAlumni(); savePeople();
+    }
+
+    function openAlumniModal(gi, mi = -1) {
+      const m = mi >= 0 ? peopleData.alumni[gi].members[mi] : null;
+      modal(`
+        <div class="modal__title">${mi >= 0 ? 'Edit' : 'Add'} — ${esc(peopleData.alumni[gi].group)}</div>
+        <div class="form-group"><label>Full Name</label><input type="text" id="_an" value="${m?esc(m.name):''}" /></div>
+        <div class="form-group"><label>Detail / Current Position (prefix → for arrow)</label><input type="text" id="_ad" value="${m?esc(m.detail||''):''}" placeholder="→ Postdoctoral Researcher, MIT" /></div>
+        <div class="form-group"><label>Education</label><input type="text" id="_ae" value="${m?esc(m.education||''):''}" /></div>
+        <div class="form-row">
+          <div class="form-group"><label>Year / Period</label><input type="text" id="_ay" value="${m?esc(m.year||''):''}" placeholder="2021–2023" /></div>
+          <div class="form-group"><label>LinkedIn URL</label><input type="text" id="_ali" value="${m?esc(m.linkedin||''):''}" /></div>
+        </div>
+        <div class="form-group"><label>Photo path</label><input type="text" id="_aphoto" value="${m?esc(m.photo||''):''}" /></div>
+        <div class="modal__actions">
+          <button class="btn btn--secondary btn--sm" onclick="closeModal()">Cancel</button>
+          <button class="btn btn--primary btn--sm" onclick="saveAlumni(${gi},${mi})">Save</button>
+        </div>
+      `);
+    }
+
+    function saveAlumni(gi, mi) {
+      const name = v('_an'); if (!name) { alert('Please enter a name.'); return; }
+      const obj = { name, detail: v('_ad'), education: v('_ae'), year: v('_ay'), linkedin: v('_ali'), photo: v('_aphoto') };
+      if (mi >= 0) peopleData.alumni[gi].members[mi] = { ...peopleData.alumni[gi].members[mi], ...obj };
+      else         peopleData.alumni[gi].members.push(obj);
+      closeModal(); renderAlumni(); savePeople();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       EXPORT
+    ══════════════════════════════════════════════════════════════ */
+    function dlJson(data, name) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+      a.download = name; a.click(); URL.revokeObjectURL(a.href);
+    }
+    function downloadHomeJson()   { dlJson(homeData,   'home.json'); }
+    function downloadPeopleJson() { dlJson(peopleData, 'people.json'); }
+
+    function resetData() {
+      if (!confirm('Clear all local changes and reload from original files?')) return;
+      localStorage.removeItem('mislab_home_data');
+      localStorage.removeItem('mislab_people_data');
+      homeData = peopleData = null;
+      loadAll();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       MODAL HELPERS
+    ══════════════════════════════════════════════════════════════ */
+    function modal(html) {
+      const bd = document.createElement('div');
+      bd.className = 'modal-backdrop'; bd.id = 'active-modal';
+      bd.onclick = e => { if (e.target === bd) closeModal(); };
+      bd.innerHTML = `<div class="modal">${html}</div>`;
+      document.body.appendChild(bd);
+    }
+
+    function closeModal() {
+      document.getElementById('active-modal')?.remove();
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       UTILITIES
+    ══════════════════════════════════════════════════════════════ */
+    function esc(s) {
+      return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function v(id) { return document.getElementById(id)?.value?.trim() ?? ''; }
+  </script>
+</body>
+</html>

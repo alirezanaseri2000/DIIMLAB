@@ -1,0 +1,63 @@
+{
+  "banner": {
+    "headline": "Intelligent Systems for a Smarter World",
+    "subline": "AI &nbsp;·&nbsp; Digital Twins &nbsp;·&nbsp; Smart Manufacturing &nbsp;·&nbsp; Precision Agriculture &nbsp;·&nbsp; Green Energy"
+  },
+  "stats": [
+    { "value": "2020", "label": "Lab Established" },
+    { "value": "50+",  "label": "Team Members" },
+    { "value": "10+",  "label": "Projects" },
+    { "value": "$2M+", "label": "Overall Funding" }
+  ],
+  "news": [
+    {
+      "date": "2025.09.10",
+      "html": "Dr. Junfei Li has joined Lakehead University as a Tenure-Track Assistant Professor, congratulations!",
+      "highlight": true
+    },
+    {
+      "date": "2025.08.25",
+      "html": "Anna has successfully defended her MASc thesis, congratulations!",
+      "highlight": false
+    },
+    {
+      "date": "2025.05.15",
+      "html": "One PhD position is available on <strong>knowledge representation and learning in smart agriculture</strong> beginning 09/2025 or 01/2026. Master and undergraduate students looking for research projects are also welcomed. <a href=\"opening/\">See openings →</a>",
+      "highlight": false
+    },
+    {
+      "date": "2025.05.15",
+      "html": "Enshen, Anna, and Da have won the Braithwaite travel grant for attending international conferences, congratulations!",
+      "highlight": false
+    },
+    {
+      "date": "2025.05.15",
+      "html": "Enshen has won the prestigious NSERC CGS scholarship, congratulations!",
+      "highlight": false
+    },
+    {
+      "date": "2025.04.20",
+      "html": "Manal and Zezhong have successfully defended their Masters' projects, congratulations!",
+      "highlight": false
+    },
+    {
+      "date": "2025.03.20",
+      "html": "Our project on AI for soilless growing media was funded by <strong>NSERC Alliance Grant</strong>, congratulations!",
+      "highlight": false
+    }
+  ],
+  "events": [
+    {
+      "name": "CSME Congress 2026",
+      "detail": "UBC, Canada\nMay 24–27, 2026\nSubmission deadline: Jan 15, 2026",
+      "link": "http://www.csme-scgm.ca/conferences",
+      "linkText": "Learn more"
+    },
+    {
+      "name": "AMD 2025",
+      "detail": "Toronto, Canada\nOctober 21–23, 2025",
+      "link": "https://www.admtoronto.com/en/home.html",
+      "linkText": "Learn more"
+    }
+  ]
+}

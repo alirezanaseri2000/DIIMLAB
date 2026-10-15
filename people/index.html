@@ -826,19 +826,22 @@
         });
       }
 
-      /* ── Fetch data and render page ─────────────────────────────── */
-      fetch('../data/people.json')
-        .then(r => r.json())
-        .then(data => {
-          document.getElementById('pi-container').innerHTML      = renderPI(data.pi);
-          document.getElementById('current-members').innerHTML   = renderCurrentMembers(data.current);
-          document.getElementById('alumni-container').innerHTML  = renderAlumni(data.alumni);
-
-          addImageFallbacks();
-
-          document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        })
-        .catch(err => console.error('Failed to load people data:', err));
+      /* ── Fetch data and render page (checks admin localStorage override first) ── */
+      (async function() {
+        let data;
+        try {
+          const override = localStorage.getItem('mislab_people_data');
+          data = override ? JSON.parse(override) : await fetch('../data/people.json').then(r => r.json());
+        } catch(err) {
+          console.error('Failed to load people data:', err);
+          return;
+        }
+        document.getElementById('pi-container').innerHTML      = renderPI(data.pi);
+        document.getElementById('current-members').innerHTML   = renderCurrentMembers(data.current);
+        document.getElementById('alumni-container').innerHTML  = renderAlumni(data.alumni);
+        addImageFallbacks();
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      })();
 
       /* ── Mobile nav toggle ──────────────────────────────────────── */
       const toggle   = document.querySelector('.nav__toggle');
